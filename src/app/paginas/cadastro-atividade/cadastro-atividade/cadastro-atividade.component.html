@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Cadastro de Atividade
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <ion-item>
+            <ion-label position="floating">Título:</ion-label>
+            <ion-input [(ngModel)]="atividade.titulo"></ion-input>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Descrição:</ion-label>
+          <ion-textarea [(ngModel)]="atividade.descricao" rows="3"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Material:</ion-label>
+          <ion-textarea [(ngModel)]="atividade.material" rows="3"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="success" [routerLink]="'/'">
+          <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
+          Enviar Vídeo
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" color="primary" (click)="salvarAtividade()" [routerLink]="'/'">
+      <ion-icon slot="start" name="save-outline"></ion-icon>
+      Salvar
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
