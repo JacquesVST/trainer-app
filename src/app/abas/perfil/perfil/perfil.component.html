@@ -12,20 +12,25 @@
     </ion-toolbar>
   </ion-header>
   <ion-grid>
-    <ion-row>
-      <ion-col text-center>
-        <ion-spinner name="crescent" *ngIf="!usuarios.length"></ion-spinner>
 
-        <ion-list *ngIf="usuarios.length">
-          <ion-item *ngFor="let u of usuarios">
-            <ion-label>{{u.id + ' - ' + u.primeiroNome + ' - ' + u.email}}</ion-label>
-            <ion-checkbox slot="start"></ion-checkbox>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-spinner name="crescent" *ngIf="spinnerRequest"></ion-spinner>
+
+        <ion-list *ngIf="!spinnerRequest && usuarios.length">
+          <ion-radio-group [value]="usuarioSelecionado">
+          <ion-item *ngFor="let usuario of usuarios">
+            <ion-label>{{usuario.id + ' - ' + usuario.primeiroNome + ' - ' + usuario.email}}</ion-label>
+            <ion-radio slot="start" [value]="usuario"></ion-radio>
           </ion-item>
+        </ion-radio-group>
         </ion-list>
       </ion-col>
     </ion-row>
+
     <ion-row>
-      <ion-col text-center>
+      <ion-col class="ion-text-center">
+        <ion-button (click)="testar(usuarioSelecionado)">Debug</ion-button>
         <ion-list>
           <ion-item (click)="navegar('/cadastro-atividade')">
             <ion-label>Cadastro de Atividade</ion-label>
@@ -42,5 +47,6 @@
         </ion-list>
         </ion-col>
     </ion-row>
+
   </ion-grid>
 </ion-content>

@@ -13,6 +13,7 @@ export class PerfilComponent implements OnInit {
 
   public usuarioSelecionado: Usuario = new Usuario();
   public usuarios: Usuario[] = [];
+  public spinnerRequest: boolean;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -25,10 +26,13 @@ export class PerfilComponent implements OnInit {
   }
 
   public listarUsuarios(): void{
+    this.spinnerRequest = true;
     this.usuarioService.listarUsuarios().subscribe(
       (usuarios: Usuario[]) => {
         this.usuarios = usuarios;
+        this.spinnerRequest = false;
       }, (err) => {
+        this.spinnerRequest = false;
         this.toastService.erro('Erro ao listar usuários!');
         console.log(err);
       }
@@ -36,10 +40,13 @@ export class PerfilComponent implements OnInit {
   }
 
   public buscarUsuario(idUsuario: number): void {
+    this.spinnerRequest = true;
     this.usuarioService.buscarUsuario(idUsuario).subscribe(
       (usuario: Usuario) => {
         this.usuarioSelecionado = usuario;
+        this.spinnerRequest = false;
       }, (err) => {
+        this.spinnerRequest = false;
         this.toastService.erro('Erro ao buscar usuários!');
         console.log(err);
       }
@@ -48,6 +55,10 @@ export class PerfilComponent implements OnInit {
 
   public navegar(url: string): void{
     this.router.navigate([url]);
+  }
+
+  public testar(x: any){
+    console.log(x);
   }
 
 }

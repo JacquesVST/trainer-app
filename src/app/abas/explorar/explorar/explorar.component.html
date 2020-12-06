@@ -11,12 +11,20 @@
       <ion-title size="large">Explorar</ion-title>
     </ion-toolbar>
   </ion-header>
-  <br>
-  <div *ngIf="tags && tags.length">
-    <ion-chip [style]="{'color':tag.cor, 'border-color':tag.cor}" *ngFor="let tag of tags" outline>
-      <ion-label>{{tag.descricao}}</ion-label>
-    </ion-chip>
-  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-spinner name="crescent" *ngIf="spinnerRequest"></ion-spinner>
+
+        <div *ngIf="!spinnerRequest && tags.length">
+          <ion-chip [style]="{'color':tag.cor, 'border-color':tag.cor}" *ngFor="let tag of tags" outline>
+            <ion-label>{{tag.descricao}}</ion-label>
+          </ion-chip>
+        </div>
+      </ion-col>
+      </ion-row>
+  </ion-grid>
 
     <div id="container">
       <strong>Página Inicial</strong>

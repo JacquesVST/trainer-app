@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/perfil"></ion-back-button>
+    </ion-buttons>
     <ion-title>
       Cadastro de Atividade
     </ion-title>
@@ -8,6 +11,11 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
+    <ion-row *ngIf="spinnerTags">
+      <ion-col class="ion-text-center">
+        <ion-spinner  name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
     <ion-row>
       <ion-col>
           <ion-item>
@@ -43,12 +51,24 @@
         </ion-button>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Tags:</ion-label>
+          <ion-select [(ngModel)]="tagsSelecionadas" multiple="true" cancelText="Cancelar" okText="Ok" [disabled]="spinnerTags">
+            <ion-select-option *ngFor="let tag of tags" [value]="tag">{{tag.descricao}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="primary" (click)="salvarAtividade()" [routerLink]="'/'">
+    <ion-button expand="block" color="primary" (click)="salvarAtividade()" [routerLink]="'/'" [disabled]="spinnerTags || spinnerRequest">
       <ion-icon slot="start" name="save-outline"></ion-icon>
       Salvar
     </ion-button>

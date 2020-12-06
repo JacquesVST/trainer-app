@@ -2,31 +2,34 @@ import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class ToastService {
-
   constructor(private toastController: ToastController) { }
 
-  async sucesso(mensagem: string){
-    const toast = await this.toastController.create({
-      message: mensagem,
-      duration: 2000,
-      position: 'top',
-      color: 'success'
-    });
-    toast.present();
+  public sucesso(mensagem: string): void {
+    this.toastController
+      .create({
+        message: mensagem,
+        duration: 2000,
+        position: 'top',
+        color: 'success'
+      })
+      .then((toast) => {
+        toast.present();
+      });
   }
 
-  async erro(mensagem: string){
-    const toast = await this.toastController.create({
-      message: mensagem,
-      duration: 2000,
-      position: 'top',
-      color: 'error'
-    });
-    toast.present();
+  public erro(mensagem: string): void {
+    this.toastController
+      .create({
+        message: mensagem,
+        duration: 2000,
+        position: 'top',
+        color: 'danger'
+      })
+      .then((toast) => {
+        toast.present();
+      });
   }
-
 }

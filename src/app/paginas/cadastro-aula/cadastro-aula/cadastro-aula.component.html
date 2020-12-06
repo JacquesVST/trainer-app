@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/perfil"></ion-back-button>
+    </ion-buttons>
     <ion-title>
       Cadastro de Aula
     </ion-title>
@@ -45,7 +48,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button expand="block" color="warning" [routerLink]="'/'">
+        <ion-button expand="block" color="warning" (click)="abrirModalSequencia()">
           <ion-icon slot="start" name="create-outline"></ion-icon>
           Editar conteúdo da aula
         </ion-button>

@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Cadastro de Sequência
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Atividade:</ion-label>
+          <ion-select [(ngModel)]="atividadeSelecionada" cancelText="Cancelar" okText="Ok" [disabled]="spinnerInicial">
+            <ion-select-option *ngFor="let atividade of atividades" [value]="atividade">{{atividade.titulo}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Repetições:</ion-label>
+          <ion-input [(ngModel)]="sequencia.repeticoes" type="number" min="1"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Séries:</ion-label>
+          <ion-input [(ngModel)]="sequencia.series" type="number" min="1"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Tempo:</ion-label>
+          <ion-input [(ngModel)]="sequencia.tempo" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="primary" (click)="salvarSequencia()" [routerLink]="'/'">
+            <ion-icon slot="start" name="save-outline"></ion-icon>
+            Salvar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

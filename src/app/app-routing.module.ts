@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/cadastro-aula/cadastro-aula.module').then(m => m.CadastroAulaModule)
   },
   {
+    path: 'cadastro-sequencia',
+    loadChildren: () => import('./paginas/cadastro-sequencia/cadastro-sequencia.module').then(m => m.CadastroSequenciaModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./paginas/login/login.module').then(m => m.LoginModule)
   },

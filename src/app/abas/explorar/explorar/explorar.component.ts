@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tag } from 'src/app/shared/model/tag.model';
 import { ToastService } from 'src/app/shared/service/toast.service';
-import { TagService } from '../shared/service/tag.service';
+import { TagService } from '../../../shared/service/tag.service';
 
 @Component({
   selector: 'app-explorar',
@@ -16,19 +16,22 @@ export class ExplorarComponent implements OnInit {
   constructor(
     private tagService: TagService,
     private toastService: ToastService
-    ) { }
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.listarTags();
   }
 
-  public listarTags(): void{
+  public listarTags(): void {
+    this.spinnerRequest = true;
     this.tagService.listarTags().subscribe(
       (tags: Tag[]) => {
         this.tags = tags;
       }, (err) => {
         console.log(err);
         this.toastService.erro('Erro ao buscar tags!');
+      }, () => {
+        this.spinnerRequest = false;
       }
     );
   }

@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { ToastService } from 'src/app/shared/service/toast.service';
+import { CadastroSequenciaComponent } from '../../cadastro-sequencia/cadastro-sequencia/cadastro-sequencia.component';
 import { AulaForm } from '../shared/model/aula-form.model';
 import { CadastroAulaService } from '../shared/service/cadastro-aula.service';
 
@@ -18,7 +20,8 @@ export class CadastroAulaComponent {
 
   constructor(
     private cadastroAulaService: CadastroAulaService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private modalController: ModalController
   ) { }
 
   public cadastrarAula(): void {
@@ -43,9 +46,19 @@ export class CadastroAulaComponent {
     }
   }
 
-  public prepararForm(): void{
+  public prepararForm(): void {
     this.aula.idInstrutor = this.idInstrutor;
     this.aula.idImagem = this.idImagem;
+  }
+
+  async abrirModalSequencia() {
+    const modal = await this.modalController.create({
+      component: CadastroSequenciaComponent,
+      componentProps: {
+        'idAula': this.idAula
+      }
+    });
+    return await modal.present();
   }
 
 }
