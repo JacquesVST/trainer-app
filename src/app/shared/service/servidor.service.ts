@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 export class ServidorService {
 
-  public urlServidor = 'http://192.168.15.14:8080/';
+  public urlServidor = 'http://192.168.15.37:8080/';
 
   constructor() { }
 
