@@ -8,19 +8,19 @@ const routes: Routes = [
   },
   {
     path: 'cadastro-atividade',
-    loadChildren: () => import('./paginas/cadastro-atividade/cadastro-atividade.module').then(m => m.CadastroAtividadeModule)
+    loadChildren: () => import('./pages/cadastro-atividade/cadastro-atividade.module').then(m => m.CadastroAtividadeModule)
   },
   {
     path: 'cadastro-aula',
-    loadChildren: () => import('./paginas/cadastro-aula/cadastro-aula.module').then(m => m.CadastroAulaModule)
+    loadChildren: () => import('./pages/cadastro-aula/cadastro-aula.module').then(m => m.CadastroAulaModule)
   },
   {
     path: 'cadastro-sequencia',
-    loadChildren: () => import('./paginas/cadastro-sequencia/cadastro-sequencia.module').then(m => m.CadastroSequenciaModule)
+    loadChildren: () => import('./pages/cadastro-sequencia/cadastro-sequencia.module').then(m => m.CadastroSequenciaModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./paginas/login/login.module').then(m => m.LoginModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
   },
   {
     path: '**',

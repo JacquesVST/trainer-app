@@ -9,19 +9,19 @@ const routes: Routes = [
     children: [
       {
         path: 'explorar',
-        loadChildren: () => import('../abas/explorar/explorar.module').then(m => m.ExplorarModule)
+        loadChildren: () => import('../tabs/explorar/explorar.module').then(m => m.ExplorarModule)
       },
       {
         path: 'biblioteca',
-        loadChildren: () => import('../abas/biblioteca/biblioteca.module').then(m => m.BibliotecaModule)
+        loadChildren: () => import('../tabs/biblioteca/biblioteca.module').then(m => m.BibliotecaModule)
       },
       {
         path: 'perfil',
-        loadChildren: () => import('../abas/perfil/perfil.module').then(m => m.PerfilModule)
+        loadChildren: () => import('../tabs/perfil/perfil.module').then(m => m.PerfilModule)
       },
       {
         path: 'conversas',
-        loadChildren: () => import('../abas/conversas/conversas.module').then(m => m.ConversasModule)
+        loadChildren: () => import('../tabs/conversas/conversas.module').then(m => m.ConversasModule)
       },
       {
         path: '',
