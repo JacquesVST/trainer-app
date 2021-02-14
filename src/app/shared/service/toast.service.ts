@@ -7,10 +7,10 @@ import { ToastController } from '@ionic/angular';
 export class ToastService {
   constructor(private toastController: ToastController) { }
 
-  public sucesso(mensagem: string): void {
+  public success(message: string): void {
     this.toastController
       .create({
-        message: mensagem,
+        message: message,
         duration: 2000,
         position: 'top',
         color: 'success'
@@ -20,10 +20,10 @@ export class ToastService {
       });
   }
 
-  public erro(mensagem: string): void {
+  public error(message: string): void {
     this.toastController
       .create({
-        message: mensagem,
+        message: message,
         duration: 2000,
         position: 'top',
         color: 'danger'

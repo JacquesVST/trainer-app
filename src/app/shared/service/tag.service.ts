@@ -1,27 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Tag } from 'src/app/shared/model/tag.model';
-import { ServidorService } from 'src/app/shared/service/servidor.service';
+import { Tag } from '../model/entity/tag.model';
+import { ServerService } from './server.service';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class TagService {
 
-    private url: string = this.servidorService.getServidor() + 'tag';
-
     constructor(
-        private http: HttpClient,
-        private servidorService: ServidorService) { }
+        private serverService: ServerService,
+        private http: HttpClient
+    ) { }
 
-    public listarTags(): Observable<Tag[]> {
+    private url: string = `${this.serverService.getServer()}/tag/`;
+
+
+    public getAllTags(): Observable<Tag[]> {
         return this.http.get<Tag[]>(this.url);
     }
 
-    public buscarTag(idTag: number): Observable<Tag> {
-        return this.http.get<Tag>(this.url + '/' + idTag);
+    public newTag(tag: Tag): Observable<void> {
+        return this.http.post<void>(this.url, tag);
     }
 
 }

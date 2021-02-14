@@ -8,31 +8,27 @@ const routes: Routes = [
     component: DashboardPage,
     children: [
       {
-        path: 'explorar',
-        loadChildren: () => import('../tabs/explorar/explorar.module').then(m => m.ExplorarModule)
+        path: 'explore',
+        loadChildren: () => import('../tabs/explore/explore.module').then(m => m.ExploreModule)
       },
       {
-        path: 'biblioteca',
-        loadChildren: () => import('../tabs/biblioteca/biblioteca.module').then(m => m.BibliotecaModule)
+        path: 'library',
+        loadChildren: () => import('../tabs/library/library.module').then(m => m.LibraryModule)
       },
       {
-        path: 'perfil',
-        loadChildren: () => import('../tabs/perfil/perfil.module').then(m => m.PerfilModule)
-      },
-      {
-        path: 'conversas',
-        loadChildren: () => import('../tabs/conversas/conversas.module').then(m => m.ConversasModule)
+        path: 'profile',
+        loadChildren: () => import('../tabs/profile/profile.module').then(m => m.ProfileModule)
       },
       {
         path: '',
-        redirectTo: '/dashboard/explorar',
+        redirectTo: '/dashboard/explore',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/dashboard/explorar',
+    redirectTo: '/dashboard/explore',
     pathMatch: 'full'
   }
 ];

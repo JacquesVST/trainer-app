@@ -1,32 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      <ion-searchbar [placeholder]="'Pesquisar'" animated></ion-searchbar>
+      <ion-searchbar [placeholder]="'Search'" animated></ion-searchbar>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="explorar">
+    <ion-tab-button tab="explore">
       <ion-icon name="bag-outline"></ion-icon>
-      <ion-label>Explorar</ion-label>
+      <ion-label>Explore</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="biblioteca">
+    <ion-tab-button tab="library">
       <ion-icon name="library-outline"></ion-icon>
-      <ion-label>Biblioteca</ion-label>
+      <ion-label>Library</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="perfil">
+    <ion-tab-button tab="profile">
       <ion-icon name="person-outline"></ion-icon>
-      <ion-label>Meu Perfil</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="conversas">
-      <ion-icon name="chatbox-outline"></ion-icon>
-      <ion-label>Minhas Conversas</ion-label>
+      <ion-label>My Profile</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
-
 </ion-tabs>

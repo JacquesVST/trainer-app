@@ -7,18 +7,6 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
   },
   {
-    path: 'cadastro-atividade',
-    loadChildren: () => import('./pages/cadastro-atividade/cadastro-atividade.module').then(m => m.CadastroAtividadeModule)
-  },
-  {
-    path: 'cadastro-aula',
-    loadChildren: () => import('./pages/cadastro-aula/cadastro-aula.module').then(m => m.CadastroAulaModule)
-  },
-  {
-    path: 'cadastro-sequencia',
-    loadChildren: () => import('./pages/cadastro-sequencia/cadastro-sequencia.module').then(m => m.CadastroSequenciaModule)
-  },
-  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
   },
