@@ -1,5 +1,5 @@
 import { Training } from "./training.model";
-import { User } from "./user.model";
+import { User } from "./user/user.model";
 
 export interface Session {
     id: number;

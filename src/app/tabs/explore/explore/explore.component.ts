@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tag } from 'src/app/shared/model/entity/tag.model';
+import { Tag } from 'src/app/shared/model/tag.model';
 import { TagService } from 'src/app/shared/service/tag.service';
 import { ToastService } from 'src/app/shared/service/toast.service';
 

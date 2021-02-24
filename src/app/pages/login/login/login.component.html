@@ -1,55 +1,25 @@
 <ion-content>
-      <ion-slides pager="true" [options]="slideOpts">
-        <ion-slide>
-          <div class="slide">
-            <img src="./assets/images/personal_training.png">
-            <h1>Bem Vindo ao Trainer App!</h1>
-            <p>Começe agora sua rotina remotamente com acompanhamento profissional.</p>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="slide">
-            <img src="./assets/images/browse.png">
-            <h1>Procure por aulas que te satisfaçam!</h1>
-            <p>Ou entre em contato com profissionais para te auxiliar nisto.</p>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="slide">
-            <img src="./assets/images/chat.png">
-            <h1>Obtenha feedback do instrutor criador da aula!</h1>
-            <p>Através do chat, onde podem tirar dúvidas e enviar relatórios</p>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="slide">
-            <img src="./assets/images/login.png">
-            <h1>Acesse como aluno hoje mesmo!</h1><br>
-            <ion-item>
-              <ion-label position="floating">Nome completo:</ion-label>
-              <ion-input></ion-input>
-            </ion-item><br>
-            <ion-item>
-              <ion-label position="floating">E-Mail:</ion-label>
-              <ion-input></ion-input>
-            </ion-item><br>
-            <ion-item>
-              <ion-label position="floating">Senha:</ion-label>
-              <ion-input type="password"></ion-input>
-            </ion-item><br>
-            <ion-item>
-              <ion-label position="floating">Repita a Senha:</ion-label>
-              <ion-input type="password"></ion-input>
-            </ion-item><br>
-            <ion-button expand="block" color="success" (click)="navegar('dashboard')">
-              <ion-icon slot="start" name="push-outline"></ion-icon>
-              Cadastre-se Agora
-            </ion-button>
-            <ion-button expand="block" color="primary" (click)="navegar('dashboard')">
-              <ion-icon slot="start" name="enter-outline"></ion-icon>
-              Já possuo conta
-            </ion-button>
-          </div>
-        </ion-slide>
-      </ion-slides>
-    </ion-content>
+  <div class="slide">
+    <ion-item>
+      <ion-label position="floating">Username:</ion-label>
+      <ion-input [(ngModel)]="login.username"></ion-input>
+    </ion-item><br>
+    <ion-item>
+      <ion-label position="floating">Password:</ion-label>
+      <ion-input [(ngModel)]="login.pass" type="password"></ion-input>
+    </ion-item><br>
+  </div>
+  <div class="bottom-item-2">
+    <ion-button expand="block" color="primary" (click)="submitLogin()">
+      <ion-icon slot="start" name="enter-outline"></ion-icon>
+      Login
+    </ion-button><br>
+  </div>
+  <div class="bottom-item-1">
+    <ion-button expand="block" color="success" (click)="navigate('register')">
+      <ion-icon slot="start" name="push-outline"></ion-icon>
+      Register Now
+    </ion-button>
+
+  </div>
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-content>
+  <ion-slides #slides pager="true" [options]="slideOpts">
+
+    <!-- First page-->
+    <ion-slide>
+      <div class="slide">
+        <ion-item>
+          <ion-label position="floating">First Name:</ion-label>
+          <ion-input [(ngModel)]="user.firstName"></ion-input>
+        </ion-item><br>
+        <ion-item>
+          <ion-label position="floating">Last Name:</ion-label>
+          <ion-input [(ngModel)]="user.lastName"></ion-input>
+        </ion-item><br>
+        <ion-item>
+          <ion-label position="floating">Username:</ion-label>
+          <ion-input [(ngModel)]="user.username" maxlength="50"></ion-input>
+        </ion-item><br>
+      </div>
+      <div class="bottom-item" *ngIf="user.firstName && user.lastName && user.username" (click)="next(slides)">
+        <ion-icon name="chevron-forward-outline" color="white"></ion-icon>
+      </div>
+    </ion-slide>
+
+    <!-- Final page-->
+    <ion-slide>
+      <div class="slide">
+        <ion-item>
+          <ion-label position="floating">E-Mail:</ion-label>
+          <ion-input [(ngModel)]="user.email" type="email"></ion-input>
+        </ion-item><br>
+        <ion-item>
+          <ion-label position="floating">Password:</ion-label>
+          <ion-input [(ngModel)]="user.pass" type="password"></ion-input>
+        </ion-item><br>
+        <ion-item>
+          <ion-label position="floating">Confirm Password:</ion-label>
+          <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
+        </ion-item><br>
+      </div>
+      <div class="bottom-item">
+        <ion-button expand="block" color="success" (click)="registerUser()">
+          <ion-icon slot="start" name="push-outline"></ion-icon>
+          Create Account
+        </ion-button>
+      </div>
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>

@@ -1,5 +1,5 @@
 import { Image } from "./image.model";
-import { User } from "./user.model";
+import { User } from "./user/user.model";
 
 export interface Training {
     id: number;

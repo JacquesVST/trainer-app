@@ -1,5 +1,4 @@
-import { Image } from "./image.model";
-import { UserType } from "./userType.model";
+import { Image } from "../image.model";
 
 export interface User {
     id: number;
@@ -10,7 +9,7 @@ export interface User {
     email: string;
     phoneNumber: string;
     birth: Date;
-    type: UserType;
+    type: string;
     active: boolean;
     picture: Image;
 }

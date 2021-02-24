@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Login } from '../model/form/login.model';
-import { User } from '../model/entity/user.model';
+import { Login } from '../model/user/login.model';
+import { UserRegisterDTO } from '../model/user/user-register-dto.model';
+import { User } from '../model/user/user.model';
 import { ServerService } from './server.service';
 
 @Injectable({
@@ -21,8 +22,8 @@ export class UserService {
         return this.http.post<User>(`${this.url}/login`, login);
     }
 
-    public register(user: User): Observable<void> {
-        return this.http.post<void>(this.url, user);
+    public registerUser(userRegisterDTO: UserRegisterDTO): Observable<void> {
+        return this.http.post<void>(this.url, userRegisterDTO);
     }
 
     public getAllUsers(): Observable<User[]> {

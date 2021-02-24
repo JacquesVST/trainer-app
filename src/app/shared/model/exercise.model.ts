@@ -1,4 +1,4 @@
-import { User } from "./user.model";
+import { User } from "./user/user.model";
 import { Video } from "./video.model";
 
 export interface Exercise {
