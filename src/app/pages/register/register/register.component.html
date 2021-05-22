@@ -17,8 +17,15 @@
           <ion-input [(ngModel)]="user.username" maxlength="50"></ion-input>
         </ion-item><br>
       </div>
-      <div class="bottom-item" *ngIf="user.firstName && user.lastName && user.username" (click)="next(slides)">
-        <ion-icon name="chevron-forward-outline" color="white"></ion-icon>
+      <div class="bottom-item">
+        <ion-button expand="block" color="light" (click)="navigate('login')">
+          <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+          Return to Login
+        </ion-button>
+        <ion-button expand="block" color="light" (click)="next(slides)" [disabled]="!user.firstName || !user.lastName || !user.username">
+          <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          Next
+        </ion-button>
       </div>
     </ion-slide>
 
@@ -39,6 +46,10 @@
         </ion-item><br>
       </div>
       <div class="bottom-item">
+        <ion-button expand="block" color="light" (click)="prev(slides)">
+          <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+          Previous
+        </ion-button>
         <ion-button expand="block" color="success" (click)="registerUser()">
           <ion-icon slot="start" name="push-outline"></ion-icon>
           Create Account

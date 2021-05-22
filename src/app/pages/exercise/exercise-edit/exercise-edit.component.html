@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Edit exercise
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row *ngIf="spinnerTags">
+      <ion-col class="ion-text-center">
+        <ion-spinner  name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-item>
+            <ion-label position="floating">Title:</ion-label>
+            <ion-input [(ngModel)]="exercise.title"></ion-input>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Description:</ion-label>
+          <ion-textarea [(ngModel)]="exercise.description" rows="3"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Material:</ion-label>
+          <ion-textarea [(ngModel)]="exercise.material" rows="3"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="success" [routerLink]="'/'">
+          <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
+          Upload Video
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Tags:</ion-label>
+          <ion-select [(ngModel)]="selectedTags" multiple="true" cancelText="Cancelar" okText="Ok" [disabled]="spinnerTags">
+            <ion-select-option *ngFor="let tag of tags" [value]="tag">{{tag.description}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" color="primary" (click)="prepareModel()" [disabled]="spinnerTags || spinnerRequest">
+      <ion-icon slot="start" name="save-outline"></ion-icon>
+      Save
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

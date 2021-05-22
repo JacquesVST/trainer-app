@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule)
   },
   {
+    path: 'exercise',
+    loadChildren: () => import('./pages/exercise/exercise.module').then(m => m.ExerciseModule)
+  },
+  {
     path: '**',
     redirectTo: '/login',
     pathMatch: 'full'
@@ -26,4 +30,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

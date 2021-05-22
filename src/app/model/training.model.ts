@@ -1,7 +1,7 @@
 import { Image } from "./image.model";
 import { User } from "./user/user.model";
-
-export interface Training {
+import { Tag } from "./tag.model";
+export class Training {
     id: number;
     title: string;
     description: string;
@@ -10,4 +10,5 @@ export interface Training {
     published: Date;
     creator: User;
     cover: Image;
+    tags: Tag[]
 }

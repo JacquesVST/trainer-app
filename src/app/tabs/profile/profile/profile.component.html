@@ -13,17 +13,70 @@
   </ion-header>
   <ion-grid>
 
-    <ion-row>
+    <!-- lista do trainer -->
+    <ion-row *ngIf="user.type==='TRAINER'">
       <ion-col class="ion-text-center">
         <ion-spinner name="crescent" *ngIf="spinnerRequest"></ion-spinner>
-
-        <ion-list *ngIf="!spinnerRequest && users.length">
-          <ion-radio-group [value]="selectedUser">
-          <ion-item *ngFor="let user of users">
-            <ion-label>{{user.id + ' - ' + user.firstName + ' - ' + user.email}}</ion-label>
-            <ion-radio slot="start" [value]="user"></ion-radio>
+        <ion-list>
+          <ion-item (click)="redirect('/exercise')">
+            <ion-label>Exercises</ion-label>
+            <ion-icon slot="start" name="body-outline"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           </ion-item>
-        </ion-radio-group>
+          <ion-item>
+            <ion-label>Training</ion-label>
+            <ion-icon slot="start" name="barbell-outline"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Reports</ion-label>
+            <ion-icon slot="start" name="bar-chart-outline"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Settings</ion-label>
+            <ion-icon slot="start" name="settings-outline"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Exit</ion-label>
+            <ion-icon slot="start" name="exit-outline"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <!-- lista do aluno -->
+    <ion-row *ngIf="user.type==='GYM_STUDENT'">
+      <ion-col class="ion-text-center">
+        <ion-spinner name="crescent" *ngIf="spinnerRequest"></ion-spinner>
+        <ion-list>
+          <ion-item (click)="redirect('/exercise')">
+            <ion-label>Exercises</ion-label>
+            <ion-icon slot="start" name="accessibility-outline"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Training</ion-label>
+            <ion-icon slot="start" name="barbell-outline"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Reports</ion-label>
+            <ion-icon slot="start" name="bar-chart-outline"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Settings</ion-label>
+            <ion-icon slot="start" name="settings-outline"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Exit</ion-label>
+            <ion-icon slot="start" name="exit-outline"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>

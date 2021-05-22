@@ -26,10 +26,16 @@ ion-slides {
 }
 
 .bottom-item {
+    display: flex;
+    justify-content: space-between;
     position: absolute;
     left: 0;
     right: 0;
     bottom: 5%;
     padding: 0 5%;
+}
+
+ion-button {
+    width: 100%;
 }
 

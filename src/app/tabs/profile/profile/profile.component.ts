@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/model/user/user.model';
-import { ToastService } from 'src/app/shared/service/toast.service';
-import { UserService } from 'src/app/shared/service/user.service';
+import { Router } from '@angular/router';
+import { User } from 'src/app/model/user/user.model';
+import { ToastService } from 'src/app/service/toast.service';
+import { UserService } from 'src/app/service/user.service';
+import { getUser } from 'src/app/util/user-util';
 
 @Component({
   selector: 'app-profile',
@@ -10,13 +12,16 @@ import { UserService } from 'src/app/shared/service/user.service';
 })
 export class ProfileComponent implements OnInit{
 
+  public user: User;
+
   constructor(
     private userService: UserService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-
+    this.user = getUser();
   }
 
   public spinnerRequest: boolean;
@@ -37,6 +42,10 @@ export class ProfileComponent implements OnInit{
         this.spinnerRequest = false;
       }
     );
+  }
+
+  public redirect(url: string): void{
+    this.router.navigate([url]);
   }
 
 }
