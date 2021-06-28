@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/dashboard/profile"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Exercises
+      Trainings
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,19 +16,14 @@
         <ion-spinner name="crescent"></ion-spinner>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="exercises && exercises.length">
+    <ion-row *ngIf="trainings && trainings.length">
       <ion-col>
         <ion-list>
-          <ion-item *ngFor="let exercise of exercises">
+          <ion-item *ngFor="let training of trainings">
             <ion-label>
-              <h2><b>{{exercise.title}}</b></h2>
-              <h3>{{exercise.description}}</h3>
+              <h2><b>{{training.title}}</b></h2>
+              <h3>{{training.description}}</h3>
             </ion-label>
-
-            <ion-icon *ngIf="exercise.files && exercise.files.length" slot="end" name="image-outline"></ion-icon> {{
-            exercise.files?.lenght}}
-            <ion-icon slot="start" name="create-outline" (click)="goTo('/exercise/edit', exercise.id)"></ion-icon>
-
           </ion-item>
         </ion-list>
       </ion-col>
@@ -39,7 +34,7 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="success" (click)="goTo('/exercise/new')" [disabled]="spinnerRequest">
+    <ion-button expand="block" color="success" (click)="goTo('/training/new')" [disabled]="spinnerRequest">
       <ion-icon slot="start" name="add-outline"></ion-icon>
       New
     </ion-button>

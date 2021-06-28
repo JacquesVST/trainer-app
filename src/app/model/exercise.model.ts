@@ -1,13 +1,13 @@
 import { MediaFile } from "./media-file.model";
+import { Tag } from "./tag.model";
 import { User } from "./user.model";
 
-export class Training {
+export class Exercise {
     id: number;
     title: string;
     description: string;
-    price: number;
-    duration: number;
-    published: Date;
+    material: string;
     creator: User;
-    picture: MediaFile;
+    files: MediaFile[];
+    tags: Tag[];
 }

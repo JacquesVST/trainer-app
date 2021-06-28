@@ -1,4 +1,4 @@
-import { User } from "../model/user/user.model";
+import { User } from "../model/user.model";
 
 export function setUser(user: User): void {
     localStorage.setItem('user', JSON.stringify(user))
@@ -14,5 +14,9 @@ export function getUser(): User {
     } catch (error) {
         return null;
     }
+}
+
+export function unsetUser(): void {
+    localStorage.removeItem('user')
 }
 

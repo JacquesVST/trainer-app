@@ -1,8 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserRegisterDTO } from 'src/app/model/user/user-register-dto.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { UserService } from 'src/app/service/user.service';
+import { UserRequestDTO } from './../../../model/user/user-request-dto.model';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +12,7 @@ import { UserService } from 'src/app/service/user.service';
 export class RegisterComponent {
 
   @ViewChild('slides') private slides: ElementRef;
-  public user: UserRegisterDTO = new UserRegisterDTO();
+  public user: UserRequestDTO = new UserRequestDTO();
   public confirmPassword: string;
   public slideOptions: any
 
@@ -25,9 +25,9 @@ export class RegisterComponent {
       speed: 400
     };
     this.user.type = "GYM_STUDENT";
-   }
+  }
 
-  public navigate(url: string): void{
+  public navigate(url: string): void {
     this.router.navigate([url]);
   }
 
@@ -41,15 +41,15 @@ export class RegisterComponent {
         console.error(error)
         this.toastService.error('Something went wrong');
       },
-      () => {},
+      () => { },
     )
   }
 
-  public next(slides: any){
+  public next(slides: any) {
     slides.slideNext();
   }
 
-  public prev(slides: any){
+  public prev(slides: any) {
     slides.slidePrev();
   }
 }

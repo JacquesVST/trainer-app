@@ -1,4 +1,4 @@
-import { Exercise } from "./exercise/exercise.model";
+import { Exercise } from "./exercise.model";
 import { Training } from "./training.model";
 
 export class Activity {
@@ -7,7 +7,7 @@ export class Activity {
     repeats: number;
     sets: number
     comments: string;
-    order: number;
+    sequentialOrder: number;
     exercise: Exercise;
     training: Training;
 }

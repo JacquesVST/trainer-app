@@ -1,41 +1,41 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getUser } from 'src/app/util/user-util';
-import { Exercise } from '../../../model/exercise.model';
+import { Training } from '../../../model/training.model';
 import { User } from '../../../model/user.model';
-import { ExerciseService } from '../../../service/exercise.service';
 import { ToastService } from '../../../service/toast.service';
+import { TrainingService } from '../../../service/training.service';
+import { getUser } from '../../../util/user-util';
 
 @Component({
-  selector: 'app-exercise-list',
-  templateUrl: './exercise-list.component.html',
-  styleUrls: ['./exercise-list.component.scss'],
+  selector: 'app-training-list',
+  templateUrl: './training-list.component.html',
+  styleUrls: ['./training-list.component.scss'],
 })
-export class ExerciseListComponent implements OnInit {
+export class TrainingListComponent implements OnInit {
 
-  @Input() public exerciseId: number;
+  @Input() public trainingId: number;
 
   public user: User;
-  public exercises: Exercise[] = [];
+  public trainings: Training[] = [];
   public spinnerRequest: boolean;
 
   constructor(
     private toastService: ToastService,
-    private exerciseService: ExerciseService,
+    private trainingService: TrainingService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.user = getUser();
-    this.findAllExercises();
+    this.findAllTrainings();
   }
 
-  public findAllExercises(): void {
+  public findAllTrainings(): void {
     this.spinnerRequest = true;
-    this.exercises = [];
-    this.exerciseService.findAllByCreator(this.user.id).subscribe(
-      (exercises: Exercise[]) => {
-        this.exercises = exercises;
+    this.trainings = [];
+    this.trainingService.findAllByCreator(this.user.id).subscribe(
+      (trainings: Training[]) => {
+        this.trainings = trainings;
       }, (err) => {
         this.toastService.error('Error while retrieving items!');
         console.log(err);

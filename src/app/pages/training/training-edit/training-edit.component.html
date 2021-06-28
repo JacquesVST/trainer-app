@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/dashboard/profile"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Edit Exercise
+      Edit Training
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -20,7 +20,7 @@
       <ion-col>
         <ion-item>
           <ion-label position="floating">Title:</ion-label>
-          <ion-input [(ngModel)]="exercise.title"></ion-input>
+          <ion-input></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -29,29 +29,7 @@
       <ion-col>
         <ion-item>
           <ion-label position="floating">Description:</ion-label>
-          <ion-textarea [(ngModel)]="exercise.description" rows="3"></ion-textarea>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label position="floating">Material:</ion-label>
-          <ion-textarea [(ngModel)]="exercise.material" rows="3"></ion-textarea>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>Tags:</ion-label>
-          <ion-select [(ngModel)]="selectedTags" multiple="true" cancelText="Cancelar" okText="Ok"
-            [disabled]="spinnerTags">
-            <ion-select-option *ngFor="let tag of tags" [value]="tag">{{tag.description}}
-            </ion-select-option>
-          </ion-select>
+          <ion-textarea rows="3"></ion-textarea>
         </ion-item>
       </ion-col>
     </ion-row>

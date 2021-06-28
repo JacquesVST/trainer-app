@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ExerciseCreateDTO } from 'src/app/model/exercise/exercise-create-dto.model';
-import { Exercise } from 'src/app/model/exercise/exercise.model';
-import { Image } from 'src/app/model/image.model';
+import { Exercise } from 'src/app/model/exercise.model';
+import { ExerciseRequestDTO } from 'src/app/model/exercise/exercise-request-dto.model';
+import { MediaFile } from 'src/app/model/media-file.model';
 import { Tag } from 'src/app/model/tag.model';
-import { User } from 'src/app/model/user/user.model';
-import { Video } from 'src/app/model/video.model';
+import { User } from 'src/app/model/user.model';
 import { ExerciseService } from 'src/app/service/exercise.service';
 import { TagService } from 'src/app/service/tag.service';
 import { ToastService } from 'src/app/service/toast.service';
@@ -19,20 +18,15 @@ import { getUser } from 'src/app/util/user-util';
 export class ExerciseEditComponent implements OnInit {
 
   public user: User;
-  public videoId = 1;
   public exerciseId: number;
-  public exercise: ExerciseCreateDTO = new ExerciseCreateDTO();
+  public exercise: ExerciseRequestDTO = new ExerciseRequestDTO();
 
-  public tags: Tag[] = [];
-  public selectedTags: Tag[] = [];
+  public tags: Tag[];
+  public selectedTags: Tag[];
 
-  public images: Image[] = [];
-  public selectedImages: Image[] = [];
+  public selectedFiles: MediaFile[];
 
-  public video: Video;
-
-  public spinnerRequest: boolean;
-  public spinnerTags: boolean;
+  public loading: boolean;
 
   constructor(
     private tagService: TagService,
@@ -47,42 +41,39 @@ export class ExerciseEditComponent implements OnInit {
     this.user = getUser();
     this.getAllTags();
     if (this.exerciseId) {
-      this.spinnerRequest = true;
       this.getExercise();
     }
   }
 
   public getExercise(): void {
+    this.loading = true;
     this.exerciseService.findById(this.exerciseId).subscribe(
       (response: Exercise) => {
         this.convertToEdit(response);
       }, (err) => {
         console.log(err);
-        this.toastService.error('Erro ao buscar tags!');
+        this.toastService.error('Erro while getting exercise data!');
       }, () => {
-        this.spinnerRequest = false;
-      })
-
+        this.loading = false;
+      });
   }
 
   public getAllTags(): void {
-    this.spinnerTags = true;
-    this.tags = [];
-    this.tagService.getAllTags().subscribe(
+    this.loading = true;
+    this.tagService.findAll().subscribe(
       (tags: Tag[]) => {
         this.tags = tags;
       }, (err) => {
-        this.toastService.error('Erro ao buscar tags!');
+        this.toastService.error('Error while retrieving tags!');
         console.log(err);
       }, () => {
-        this.spinnerTags = false;
-      }
-    );
+        this.loading = false;
+      });
   }
 
   public createExercise() {
-    this.spinnerRequest = true;
-    this.exerciseService.createExercise(this.exercise).subscribe(
+    this.loading = true;
+    this.exerciseService.persistExercise(this.exercise).subscribe(
       (request) => {
         this.toastService.success('Exercise successfully registered!');
       },
@@ -91,15 +82,14 @@ export class ExerciseEditComponent implements OnInit {
         this.toastService.error('Error while processing your request!');
       },
       () => {
-        this.spinnerRequest = false
-        this.exercise = new ExerciseCreateDTO();
+        this.exercise = new ExerciseRequestDTO();
+        this.loading = false;
       }
     );
   }
 
   public updateExercise() {
-    this.spinnerRequest = true;
-    this.exerciseService.updateExercise(this.exercise, this.exerciseId).subscribe(
+    this.exerciseService.persistExercise(this.exercise).subscribe(
       (request) => {
         this.toastService.success('Exercise successfully altered!');
         this.router.navigate(['/dashboard/profile']);
@@ -109,15 +99,13 @@ export class ExerciseEditComponent implements OnInit {
         this.toastService.error('Error while processing your request!');
       },
       () => {
-        this.spinnerRequest = false
-      }
-    );
+        this.loading = false;
+      });
   }
 
   public prepareModel(): void {
     this.exercise.tagIds = this.selectedTags.map(tag => tag.id);
-    this.exercise.imageIds = this.selectedImages.map(image => image.id);
-    this.exercise.videoId = this.video?.id || null;
+    this.exercise.fileIds = this.selectedFiles.map(file => file.id);
     this.exercise.creatorId = this.user?.id;
     this.exerciseId ? this.updateExercise() : this.createExercise();
   }
@@ -126,15 +114,8 @@ export class ExerciseEditComponent implements OnInit {
     this.exercise.title = exercise.title;
     this.exercise.description = exercise.description;
     this.exercise.material = exercise.material;
-    this.video = exercise.video;
-
-    for (const tag of exercise.tags) {
-      this.selectedTags.push(this.tags.find(t => t.id === tag.id))
-    }
-
-    for (const image of exercise.images) {
-      this.selectedImages.push(this.images.find(i => i.id === image.id))
-    }
+    this.selectedFiles = exercise.files;
+    this.selectedTags = exercise.tags;
   }
 
 }

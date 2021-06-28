@@ -14,15 +14,14 @@ export class TagService {
         private http: HttpClient
     ) { }
 
-    private url: string = `${this.serverService.getServer()}/tag/`;
+    private url: string = `${this.serverService.getServer()}/tag`;
 
-
-    public getAllTags(): Observable<Tag[]> {
+    public findAll(): Observable<Tag[]> {
         return this.http.get<Tag[]>(this.url);
     }
 
-    public newTag(tag: Tag): Observable<void> {
-        return this.http.post<void>(this.url, tag);
+    public persistTag(tag: Tag): Observable<Tag> {
+        return this.http.post<Tag>(this.url, tag);
     }
 
 }
