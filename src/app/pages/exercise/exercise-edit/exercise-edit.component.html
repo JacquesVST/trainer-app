@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/dashboard/profile"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Edit Exercise
+      {{pageTitle}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -45,16 +45,21 @@
 
     <ion-row>
       <ion-col>
-        <ion-item>
-          <ion-label>Tags:</ion-label>
-          <ion-select [(ngModel)]="selectedTags" multiple="true" cancelText="Cancelar" okText="Ok"
-            [disabled]="spinnerTags">
-            <ion-select-option *ngFor="let tag of tags" [value]="tag">{{tag.description}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
+        <ion-button expand="block" color="light" (click)="openTagSelection()">
+          <ion-icon slot="start" name="pricetag-outline"></ion-icon>
+          Select Tags
+        </ion-button>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col>
+          <ion-chip [style]="{'color':tag.color, 'border-color':tag.color}" *ngFor="let tag of selectedTags" outline>
+            <ion-label>{{tag.description}}</ion-label>
+          </ion-chip>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
 </ion-content>
 

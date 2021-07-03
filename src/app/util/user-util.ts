@@ -9,7 +9,6 @@ export function getUser(): User {
 
     try {
         const user: User = JSON.parse(userString);
-        console.log(user);
         return user
     } catch (error) {
         return null;

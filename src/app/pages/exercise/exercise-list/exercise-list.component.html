@@ -11,23 +11,20 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row *ngIf="spinnerRequest">
-      <ion-col class="ion-text-center">
-        <ion-spinner name="crescent"></ion-spinner>
-      </ion-col>
-    </ion-row>
     <ion-row *ngIf="exercises && exercises.length">
       <ion-col>
         <ion-list>
           <ion-item *ngFor="let exercise of exercises">
             <ion-label>
-              <h2><b>{{exercise.title}}</b></h2>
+              <h1><b>{{exercise.title}}</b></h1>
               <h3>{{exercise.description}}</h3>
+              <br *ngIf="exercise?.tags?.length">
+              <ion-chip *ngFor="let tag of exercise?.tags"  [style]="{'color':tag.color, 'border-color':tag.color}" outline>
+                <ion-label>{{tag.description}}</ion-label>
+              </ion-chip>
             </ion-label>
 
-            <ion-icon *ngIf="exercise.files && exercise.files.length" slot="end" name="image-outline"></ion-icon> {{
-            exercise.files?.lenght}}
-            <ion-icon slot="start" name="create-outline" (click)="goTo('/exercise/edit', exercise.id)"></ion-icon>
+            <ion-icon slot="end" name="create-outline" (click)="goTo('/exercise/edit', exercise.id)"></ion-icon>
 
           </ion-item>
         </ion-list>
