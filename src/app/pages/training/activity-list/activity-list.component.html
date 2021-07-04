@@ -1,0 +1,56 @@
+<ion-row *ngIf="activities && activities.length">
+  <ion-col>
+    <ion-list>
+      <div *ngFor="let activities of activities">
+        <ion-item>
+
+          <ion-label>
+            <h1><b>{{activities?.exercise?.title}}</b></h1>
+            <h3>{{activities?.exercise?.description}}</h3>
+            <br *ngIf="activities?.exercise?.tags?.length">
+            <ion-chip *ngFor="let tag of activities?.exercise?.tags"
+              [style]="{'color':tag.color, 'border-color':tag.color}" outline>
+              <ion-label>{{tag.description}}</ion-label>
+            </ion-chip>
+
+          </ion-label>
+
+          <ion-icon slot="end" name="create-outline" (click)="goTo('/training/activity/edit', exercise.id)"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-grid class="activity-grid">
+            <ion-row>
+              <ion-col>
+                <h2><b>Duration: </b>{{activities?.duration}}</h2>
+              </ion-col>
+              <ion-col class="middle-col">
+                <h2><b>Repeats: </b>{{activities?.repeats}}</h2>
+              </ion-col>
+              <ion-col>
+                <h2><b>Sets: </b>{{activities?.sets}}</h2>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2><b>Comments: </b>{{activities?.comments}}</h2>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col>
+    <ion-button expand="block" color="primary" (click)="goTo('/training/activity/new')" [disabled]="loading">
+      <ion-icon slot="start" name="add-outline"></ion-icon>
+      New Activity
+    </ion-button>
+  </ion-col>
+</ion-row>

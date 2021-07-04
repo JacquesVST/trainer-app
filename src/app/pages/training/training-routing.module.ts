@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ActivityEditComponent } from './activity-edit/activity-edit.component';
 import { TrainingEditComponent } from './training-edit/training-edit.component';
 import { TrainingListComponent } from './training-list/training-list.component';
 
@@ -15,6 +16,14 @@ const routes: Routes = [
   {
     path: 'new',
     component: TrainingEditComponent,
+  },
+  {
+    path: 'activity/edit/:id',
+    component: ActivityEditComponent,
+  },
+  {
+    path: 'activity/new',
+    component: ActivityEditComponent,
   }
 ];
 

@@ -22,7 +22,7 @@ export class TrainingService {
     }
 
     public findByTrainingId(trainingId: number): Observable<Training> {
-        return this.http.get<Training>(`${this.url}/trainingId=${trainingId}`)
+        return this.http.get<Training>(`${this.url}?trainingId=${trainingId}`)
     }
 
     public persistTraining(trainingRequestDTO: TrainingRequestDTO): Observable<Training> {

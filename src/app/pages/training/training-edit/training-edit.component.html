@@ -4,23 +4,18 @@
       <ion-back-button defaultHref="/dashboard/profile"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Edit Training
+      {{pageTitle}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row *ngIf="spinnerTags">
-      <ion-col class="ion-text-center">
-        <ion-spinner name="crescent"></ion-spinner>
-      </ion-col>
-    </ion-row>
     <ion-row>
       <ion-col>
         <ion-item>
           <ion-label position="floating">Title:</ion-label>
-          <ion-input></ion-input>
+          <ion-input [(ngModel)]="training.title"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -29,16 +24,24 @@
       <ion-col>
         <ion-item>
           <ion-label position="floating">Description:</ion-label>
-          <ion-textarea rows="3"></ion-textarea>
+          <ion-textarea [(ngModel)]="training.description" rows="3"></ion-textarea>
         </ion-item>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-activity-list [trainingId]="trainingId"></app-activity-list>
+      </ion-col>
+    </ion-row>
+
+    
   </ion-grid>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="primary" (click)="prepareModel()" [disabled]="spinnerTags || spinnerRequest">
+    <ion-button expand="block" color="primary" (click)="prepareModel()" [disabled]="loading">
       <ion-icon slot="start" name="save-outline"></ion-icon>
       Save
     </ion-button>

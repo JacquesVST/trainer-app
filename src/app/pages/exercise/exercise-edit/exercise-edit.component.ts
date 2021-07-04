@@ -43,7 +43,7 @@ export class ExerciseEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => this.exerciseId = params['id']);
-    this.pageTitle = this.exerciseId ? 'Edit exercise' : 'New exercise'
+    this.pageTitle = this.exerciseId ? 'Edit exercise' : 'New exercise';
     this.user = getUser();
     this.getAllTags();
     if (this.exerciseId) {
@@ -77,11 +77,12 @@ export class ExerciseEditComponent implements OnInit {
       });
   }
 
-  public createExercise() {
+  public persistExercise() {
     this.loading = true;
     this.exerciseService.persistExercise(this.exercise).subscribe(
       (request) => {
-        this.toastService.success('Exercise successfully registered!');
+        this.router.navigate(['dashboard/profile']);
+        this.toastService.success('Exercise successfully saved!');
       },
       (error) => {
         console.error(error)
@@ -94,26 +95,11 @@ export class ExerciseEditComponent implements OnInit {
     );
   }
 
-  public updateExercise() {
-    this.exerciseService.persistExercise(this.exercise).subscribe(
-      (request) => {
-        this.toastService.success('Exercise successfully altered!');
-        this.router.navigate(['/dashboard/profile']);
-      },
-      (error) => {
-        console.error(error)
-        this.toastService.error('Error while processing your request!');
-      },
-      () => {
-        this.loading = false;
-      });
-  }
-
   public prepareModel(): void {
     this.exercise.tagIds = this.selectedTags.map(tag => tag.id);
     this.exercise.fileIds = this.selectedFiles.map(file => file.id);
     this.exercise.creatorId = this.user?.id;
-    this.exerciseId ? this.updateExercise() : this.createExercise();
+    this.persistExercise();
   }
 
   public convertToEdit(exercise: Exercise): void {
@@ -123,10 +109,6 @@ export class ExerciseEditComponent implements OnInit {
     this.exercise.material = exercise.material;
     this.selectedFiles = exercise.files;
     this.selectedTags = exercise.tags;
-  }
-
-  public compareWith(t1: Tag, t2: Tag): boolean {
-    return t1 && t2 ? t1.id == t2.id : t1 == t2;
   }
 
   public async openTagSelection() {
@@ -142,7 +124,7 @@ export class ExerciseEditComponent implements OnInit {
         if (data.data) {
           this.selectedTags = data.data;
         }
-    });
+      });
 
     return await modal.present();
   }

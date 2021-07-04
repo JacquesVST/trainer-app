@@ -17,8 +17,13 @@ export class ActivityService {
 
     private url: string = `${this.serverService.getServer()}/activity`;
 
+    
+    public findById(activityId: number): Observable<Activity> {
+        return this.http.get<Activity>(`${this.url}/?activityId=${activityId}`);
+    }
+
     public findAllByTraining(trainingId: number): Observable<Activity[]> {
-        return this.http.get<Activity[]>(`${this.url}/?trainingId=${trainingId}`);
+        return this.http.get<Activity[]>(`${this.url}/training?trainingId=${trainingId}`);
     }
 
     public persistActivity(activityRequestDTO: ActivityRequestDTO): Observable<Activity> {

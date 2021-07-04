@@ -13,11 +13,9 @@ import { ToastService } from '../../../service/toast.service';
 })
 export class ExerciseListComponent implements OnInit {
 
-  @Input() public exerciseId: number;
-
   public user: User;
   public exercises: Exercise[] = [];
-  public spinnerRequest: boolean;
+  public loading: boolean;
 
   constructor(
     private toastService: ToastService,
@@ -31,16 +29,16 @@ export class ExerciseListComponent implements OnInit {
   }
 
   public findAllExercises(): void {
-    this.spinnerRequest = true;
+    this.loading = true;
     this.exercises = [];
     this.exerciseService.findAllByCreator(this.user.id).subscribe(
       (exercises: Exercise[]) => {
         this.exercises = exercises;
-      }, (err) => {
+      }, (error) => {
         this.toastService.error('Error while retrieving items!');
-        console.log(err);
+        console.log(error);
       }, () => {
-        this.spinnerRequest = false;
+        this.loading = false;
       }
     );
   }
