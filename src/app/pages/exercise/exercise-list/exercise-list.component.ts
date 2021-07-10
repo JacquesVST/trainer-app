@@ -36,7 +36,7 @@ export class ExerciseListComponent implements OnInit {
         this.exercises = exercises;
       }, (error) => {
         this.toastService.error('Error while retrieving items!');
-        console.log(error);
+        console.error(error);
       }, () => {
         this.loading = false;
       }

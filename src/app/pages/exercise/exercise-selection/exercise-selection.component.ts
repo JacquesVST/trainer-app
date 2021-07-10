@@ -39,7 +39,7 @@ export class ExerciseSelectionComponent implements OnInit {
         this.exercises = exercises;
       }, (error) => {
         this.toastService.error('Error while retrieving items!');
-        console.log(error);
+        console.error(error);
       }, () => {
         this.loading = false;
       }
@@ -47,7 +47,6 @@ export class ExerciseSelectionComponent implements OnInit {
   }
 
   public dismiss() {
-    console.log(this.selectedExercise)
     this.modalController.dismiss(this.selectedExercise);
   }
 

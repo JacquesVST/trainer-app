@@ -40,12 +40,12 @@
 
     <ion-row>
       <ion-col>
-          <ion-chip [style]="{'color':tag.color, 'border-color':tag.color}" *ngFor="let tag of selectedTags" outline>
-            <ion-label>{{tag.description}}</ion-label>
-          </ion-chip>
+        <ion-chip [style]="{'color':tag.color, 'border-color':tag.color}" *ngFor="let tag of selectedTags" outline>
+          <ion-label>{{tag.description}}</ion-label>
+        </ion-chip>
       </ion-col>
     </ion-row>
-    
+
     <ion-item-divider>
       <ion-label>
         Activities
@@ -53,7 +53,7 @@
     </ion-item-divider>
     <app-activity-list *ngIf="trainingId" [trainingId]="trainingId"></app-activity-list>
     <ion-row>
-      <ion-col> 
+      <ion-col>
         <ion-item *ngIf="!trainingId" class="no-activities">
           <ion-icon name="information-circle-outline" color="warning" slot="start"></ion-icon>
           <ion-label color="warning">You must save an empty training before adding activities to it!</ion-label>
@@ -61,13 +61,13 @@
       </ion-col>
     </ion-row>
 
-    
+
   </ion-grid>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="primary" (click)="prepareModel()" [disabled]="loading">
+    <ion-button expand="block" color="success" (click)="prepareModel()" [disabled]="loading">
       <ion-icon slot="start" name="save-outline"></ion-icon>
       Save
     </ion-button>

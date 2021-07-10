@@ -33,11 +33,10 @@ export class TrainingListComponent implements OnInit {
     this.trainings = [];
     this.trainingService.findAllByCreator(this.user.id).subscribe(
       (trainings: Training[]) => {
-        console.log(trainings);
         this.trainings = trainings;
       }, (error) => {
         this.toastService.error('Error while retrieving items!');
-        console.log(error);
+        console.error(error);
       }, () => {
         this.loading = false;
       }

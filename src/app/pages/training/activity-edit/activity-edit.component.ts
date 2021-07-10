@@ -40,7 +40,7 @@ export class ActivityEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.activityId = params['id'];
-      this.selectedTrainingId = params['trainingId'];
+      this.selectedTrainingId = params['training'];
     });
     this.pageTitle = this.activityId ? 'Edit activity' : 'New activity';
     if (this.activityId) {
@@ -97,7 +97,6 @@ export class ActivityEditComponent implements OnInit {
 
   public prepareModel(): void {
     this.activity.exerciseId = this.selectedExercise.id;
-    this.activity.exerciseId = 1;
     this.activity.trainingId = this.selectedTrainingId;
     this.persistActivity();
   }

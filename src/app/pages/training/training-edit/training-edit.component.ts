@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/model/tag.model';
 import { Training } from 'src/app/model/training.model';
 import { User } from 'src/app/model/user.model';
-import { TagService } from 'src/app/service/tag.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
 import { getUser } from 'src/app/util/user-util';
@@ -27,7 +26,6 @@ export class TrainingEditComponent implements OnInit {
 
   public selectedTags: Tag[];
   public selectedPicture: File;
-  public selectedPictureId: number;
   public loading: boolean;
 
   constructor(
