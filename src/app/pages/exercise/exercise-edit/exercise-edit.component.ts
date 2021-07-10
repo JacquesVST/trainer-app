@@ -81,8 +81,8 @@ export class ExerciseEditComponent implements OnInit {
   }
 
   public prepareModel(): void {
-    this.exercise.tagIds = this.selectedTags.map(tag => tag.id);
-    this.exercise.fileIds = this.selectedFiles.map(file => file.id);
+    this.exercise.tagIds = this.selectedTags ? this.selectedTags.map(tag => tag.id) : [];
+    this.exercise.fileIds =  this.selectedFiles ? this.selectedFiles.map(file => file.id) : [];
     this.exercise.creatorId = this.user?.id;
     this.persistExercise();
   }

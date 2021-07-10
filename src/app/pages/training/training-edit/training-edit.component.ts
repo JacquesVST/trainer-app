@@ -79,7 +79,7 @@ export class TrainingEditComponent implements OnInit {
 
   public prepareModel(): void {
     this.training.creatorId = this.user?.id;
-    this.training.tagIds = this.selectedTags.map(tag => tag.id);
+    this.training.tagIds = this.selectedTags ? this.selectedTags.map(tag => tag.id) : [];
     this.persistTraining();
   }
 

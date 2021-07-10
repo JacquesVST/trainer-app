@@ -82,8 +82,12 @@ export class ActivityEditComponent implements OnInit {
   public persistActivity() {
     this.loading = true;
     this.activityService.persistActivity(this.activity).subscribe(
-      (request) => {
+      (response: Activity) => {
         this.toastService.success('Activity successfully saved!');
+        if(!this.activityId){
+          this.activityId = response.id;
+          this.activity.id =  this.activityId;
+        }
       },
       (error) => {
         console.error(error)
