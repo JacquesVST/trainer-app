@@ -83,7 +83,6 @@ export class ActivityEditComponent implements OnInit {
     this.loading = true;
     this.activityService.persistActivity(this.activity).subscribe(
       (request) => {
-        //this.router.navigate(['dashboard/profile']);
         this.toastService.success('Activity successfully saved!');
       },
       (error) => {
@@ -91,7 +90,6 @@ export class ActivityEditComponent implements OnInit {
         this.toastService.error('Error while processing your request!');
       },
       () => {
-        // this.activity = new ActivityRequestDTO();
         this.loading = false;
       }
     );

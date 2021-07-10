@@ -7,4 +7,5 @@ export class TrainingRequestDTO {
     published: Date;
     creatorId: number;
     pictureId: number;
+    tagIds: number[];
 }

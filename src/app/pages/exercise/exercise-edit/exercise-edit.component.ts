@@ -26,7 +26,6 @@ export class ExerciseEditComponent implements OnInit {
   public exerciseId: number;
   public exercise: ExerciseRequestDTO = new ExerciseRequestDTO();
 
-  public tags: Tag[] = [];
   public selectedTags: Tag[];
   public selectedFiles: MediaFile[] = [];
 
@@ -34,10 +33,8 @@ export class ExerciseEditComponent implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private tagService: TagService,
     private toastService: ToastService,
     private exerciseService: ExerciseService,
-    private router: Router,
     private route: ActivatedRoute
   ) { }
 
@@ -45,7 +42,6 @@ export class ExerciseEditComponent implements OnInit {
     this.route.params.subscribe((params: Params) => this.exerciseId = params['id']);
     this.pageTitle = this.exerciseId ? 'Edit exercise' : 'New exercise';
     this.user = getUser();
-    this.getAllTags();
     if (this.exerciseId) {
       this.getExercise();
     }
@@ -64,24 +60,14 @@ export class ExerciseEditComponent implements OnInit {
       });
   }
 
-  public getAllTags(): void {
-    this.loading = true;
-    this.tagService.findAll().subscribe(
-      (tags: Tag[]) => {
-        this.tags = tags;
-      }, (error) => {
-        console.error(error);
-        this.toastService.error('Error while retrieving tags!');
-      }, () => {
-        this.loading = false;
-      });
-  }
-
   public persistExercise() {
     this.loading = true;
     this.exerciseService.persistExercise(this.exercise).subscribe(
-      (request) => {
-        //this.router.navigate(['dashboard/profile']);
+      (response: Exercise) => {
+        if (!this.exerciseId) {
+          this.exerciseId = response?.id;
+          this.exercise.id = this.exerciseId;
+        }
         this.toastService.success('Exercise successfully saved!');
       },
       (error) => {

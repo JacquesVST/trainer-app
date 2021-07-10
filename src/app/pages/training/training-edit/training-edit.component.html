@@ -28,6 +28,24 @@
         </ion-item>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="light" (click)="openTagSelection()">
+          <ion-icon slot="start" name="pricetag-outline"></ion-icon>
+          Select Tags
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+          <ion-chip [style]="{'color':tag.color, 'border-color':tag.color}" *ngFor="let tag of selectedTags" outline>
+            <ion-label>{{tag.description}}</ion-label>
+          </ion-chip>
+      </ion-col>
+    </ion-row>
+    
     <ion-item-divider>
       <ion-label>
         Activities

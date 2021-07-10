@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { Tag } from 'src/app/model/tag.model';
 import { Training } from 'src/app/model/training.model';
 import { User } from 'src/app/model/user.model';
 import { TagService } from 'src/app/service/tag.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
 import { getUser } from 'src/app/util/user-util';
+import { TagSelectionComponent } from '../../exercise/tag-selection/tag-selection.component';
 import { TrainingRequestDTO } from './../../../model/training/training-request-dto.model';
 
 
@@ -23,14 +25,15 @@ export class TrainingEditComponent implements OnInit {
   public trainingId: number;
   public training: TrainingRequestDTO = new TrainingRequestDTO();
 
-  public picture: File;
-  public pictureId: number;
+  public selectedTags: Tag[];
+  public selectedPicture: File;
+  public selectedPictureId: number;
   public loading: boolean;
 
   constructor(
+    private modalController: ModalController,
     private toastService: ToastService,
     private trainingService: TrainingService,
-    private router: Router,
     private route: ActivatedRoute
   ) { }
 
@@ -78,6 +81,7 @@ export class TrainingEditComponent implements OnInit {
 
   public prepareModel(): void {
     this.training.creatorId = this.user?.id;
+    this.training.tagIds = this.selectedTags.map(tag => tag.id);
     this.persistTraining();
   }
 
@@ -85,6 +89,24 @@ export class TrainingEditComponent implements OnInit {
     this.training.id = training.id;
     this.training.title = training.title;
     this.training.description = training.description;
+  }
+
+  public async openTagSelection() {
+    const modal = await this.modalController.create({
+      component: TagSelectionComponent,
+      componentProps: {
+        selectedTags: this.selectedTags
+      }
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        if (data.data) {
+          this.selectedTags = data.data;
+        }
+      });
+
+    return await modal.present();
   }
 
 }

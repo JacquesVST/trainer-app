@@ -21,6 +21,10 @@
             <ion-label>
               <h1><b>{{training.title}}</b></h1>
               <h3>{{training.description}}</h3>
+              <br *ngIf="training?.tags?.length">
+              <ion-chip *ngFor="let tag of training?.tags"  [style]="{'color':tag.color, 'border-color':tag.color}" outline>
+                <ion-label>{{tag.description}}</ion-label>
+              </ion-chip>
             </ion-label>
           </ion-item>
         </ion-list>

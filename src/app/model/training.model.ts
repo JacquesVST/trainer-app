@@ -1,4 +1,5 @@
 import { MediaFile } from "./media-file.model";
+import { Tag } from "./tag.model";
 import { User } from "./user.model";
 
 export class Training {
@@ -10,4 +11,5 @@ export class Training {
     published: Date;
     creator: User;
     picture: MediaFile;
+    tags: Tag[];
 }
