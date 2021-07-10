@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/service/toast.service';
 import { UserService } from 'src/app/service/user.service';
-import { UserRequestDTO } from './../../../model/user/user-request-dto.model';
+import { UserRequestDTO } from '../../../model/user/user-request-dto.model';
 
 @Component({
   selector: 'app-register',

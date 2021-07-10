@@ -28,10 +28,18 @@
         </ion-item>
       </ion-col>
     </ion-row>
-
+    <ion-item-divider>
+      <ion-label>
+        Activities
+      </ion-label>
+    </ion-item-divider>
+    <app-activity-list *ngIf="trainingId" [trainingId]="trainingId"></app-activity-list>
     <ion-row>
-      <ion-col>
-        <app-activity-list [trainingId]="trainingId"></app-activity-list>
+      <ion-col> 
+        <ion-item *ngIf="!trainingId" class="no-activities">
+          <ion-icon name="information-circle-outline" color="warning" slot="start"></ion-icon>
+          <ion-label color="warning">You must save an empty training before adding activities to it!</ion-label>
+        </ion-item>
       </ion-col>
     </ion-row>
 

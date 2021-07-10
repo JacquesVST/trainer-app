@@ -4,6 +4,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from '../register/register/register.component';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -12,6 +13,6 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     FormsModule,
     LoginRoutingModule
-  ]
+  ],
 })
 export class LoginModule { }

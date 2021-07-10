@@ -22,7 +22,7 @@ const routes: Routes = [
     component: ActivityEditComponent,
   },
   {
-    path: 'activity/new',
+    path: 'activity/new/:training',
     component: ActivityEditComponent,
   }
 ];

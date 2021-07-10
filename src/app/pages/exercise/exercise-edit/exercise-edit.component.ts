@@ -81,7 +81,7 @@ export class ExerciseEditComponent implements OnInit {
     this.loading = true;
     this.exerciseService.persistExercise(this.exercise).subscribe(
       (request) => {
-        this.router.navigate(['dashboard/profile']);
+        //this.router.navigate(['dashboard/profile']);
         this.toastService.success('Exercise successfully saved!');
       },
       (error) => {
@@ -89,7 +89,6 @@ export class ExerciseEditComponent implements OnInit {
         this.toastService.error('Error while processing your request!');
       },
       () => {
-        this.exercise = new ExerciseRequestDTO();
         this.loading = false;
       }
     );

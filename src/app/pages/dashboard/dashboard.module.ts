@@ -1,3 +1,6 @@
+import { ProfileComponent } from './profile/profile.component';
+import { LibraryComponent } from './library/library.component';
+import { ExploreComponent } from './explore/explore.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +17,6 @@ import { DashboardPage } from './dashboard/dashboard.page';
     FormsModule,
     DashboardPageRoutingModule
   ],
-  declarations: [DashboardPage]
+  declarations: [DashboardPage, ExploreComponent, LibraryComponent, ProfileComponent]
 })
 export class DashboardPageModule {}

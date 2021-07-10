@@ -1,11 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard/profile"></ion-back-button>
-    </ion-buttons>
-    <ion-title>
-      Exercises
-    </ion-title>
+    <ion-title>Exercises</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +9,9 @@
     <ion-row *ngIf="exercises && exercises.length">
       <ion-col>
         <ion-list>
-          <ion-item *ngFor="let exercise of exercises" (click)="goTo('/exercise/edit', exercise.id)">
+          <ion-radio-group [(ngModel)]="selectedExercise">
+          <ion-item *ngFor="let exercise of exercises">
+            <ion-radio slot="start" [value]="exercise"></ion-radio>
             <ion-thumbnail slot="end">
               <img src="https://picsum.photos/200">
             </ion-thumbnail>
@@ -27,6 +24,7 @@
               </ion-chip>
             </ion-label>
           </ion-item>
+        </ion-radio-group>
         </ion-list>
       </ion-col>
     </ion-row>
@@ -35,9 +33,9 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="success" (click)="goTo('/exercise/new')" [disabled]="spinnerRequest">
-      <ion-icon slot="start" name="add-outline"></ion-icon>
-      New
+    <ion-button expand="block" color="primary" (click)="dismiss()" [disabled]="spinnerTags || spinnerRequest">
+      <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+      Ok
     </ion-button>
   </ion-toolbar>
 </ion-footer>

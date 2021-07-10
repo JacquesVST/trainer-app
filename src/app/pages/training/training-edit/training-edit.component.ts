@@ -25,7 +25,6 @@ export class TrainingEditComponent implements OnInit {
 
   public picture: File;
   public pictureId: number;
-
   public loading: boolean;
 
   constructor(
@@ -60,8 +59,11 @@ export class TrainingEditComponent implements OnInit {
   public persistTraining() {
     this.loading = true;
     this.trainingService.persistTraining(this.training).subscribe(
-      (request) => {
-        this.router.navigate(['dashboard/profile']);
+      (response: Training) => {
+        if (!this.trainingId) {
+          this.trainingId = response?.id;
+          this.training.id = this.trainingId;
+        }
         this.toastService.success('Training successfully saved!');
       },
       (error) => {
@@ -69,7 +71,6 @@ export class TrainingEditComponent implements OnInit {
         this.toastService.error('Error while processing your request!');
       },
       () => {
-        this.training = new TrainingRequestDTO();
         this.loading = false;
       }
     );

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/model/user.model';
+import { ToastService } from 'src/app/service/toast.service';
+import { UserService } from 'src/app/service/user.service';
 import { getUser, unsetUser } from 'src/app/util/user-util';
-import { User } from '../../../model/user.model';
-import { ToastService } from '../../../service/toast.service';
-import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-profile',

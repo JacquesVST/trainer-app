@@ -4,18 +4,88 @@
       <ion-back-button defaultHref="/dashboard/profile"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Edit Activity
+      {{pageTitle}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row *ngIf="selectedExercise">
+      <ion-col>
+        <ion-item (click)="goTo('/exercise/edit', selectedExercise.id)" exercise Item>
+          <ion-thumbnail slot="end">
+            <img src="https://picsum.photos/200">
+          </ion-thumbnail>
+          <ion-label>
+            <h1><b>{{selectedExercise?.title}}</b></h1>
+            <h3>{{selectedExercise?.description}}</h3>
+            <br *ngIf="selectedExercise?.tags?.length">
+            <ion-chip *ngFor="let tag of selectedExercise?.tags"  [style]="{'color':tag.color, 'border-color':tag.color}" outline>
+              <ion-label>{{tag.description}}</ion-label>
+            </ion-chip>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="light" [disabled]="loading" (click)="openExerciseSelection()">
+          <ion-icon slot="start" name="accessibility-outline"></ion-icon>
+          Select Exercise
+        </ion-button>
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Duration (seconds):</ion-label>
+          <ion-badge color="primary" slot="end">{{activity.duration}}</ion-badge>
+          <ion-range [(ngModel)]="activity.duration" [min]="durationRange.min" [max]="durationRange.max"
+            [step]="durationRange.step" snaps="true" ticks="true" color="primary"></ion-range>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Repeats:</ion-label>
+          <ion-badge color="primary" slot="end">{{activity.repeats}}</ion-badge>
+          <ion-range [(ngModel)]="activity.repeats" [min]="repeatsRange.min" [max]="repeatsRange.max"
+            [step]="repeatsRange.step" snaps="true" ticks="true" color="primary"></ion-range>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Sets:</ion-label>
+          <ion-badge color="primary" slot="end">{{activity.sets}}</ion-badge>
+          <ion-range [(ngModel)]="activity.sets" [min]="setsRange.min" [max]="setsRange.max"
+            [step]="setsRange.step" snaps="true" ticks="true" color="primary"></ion-range>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Comments:</ion-label>
+          <ion-textarea [(ngModel)]="activity.comments" rows="3"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    
+  </ion-grid>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="success" [disabled]="loading">
+    <ion-button expand="block" color="success" [disabled]="loading" (click)="prepareModel()">
       <ion-icon slot="start" name="save-outline"></ion-icon>
       Save
     </ion-button>

@@ -1,3 +1,6 @@
+import { ProfileComponent } from './profile/profile.component';
+import { LibraryComponent } from './library/library.component';
+import { ExploreComponent } from './explore/explore.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardPage } from './dashboard/dashboard.page';
@@ -9,15 +12,15 @@ const routes: Routes = [
     children: [
       {
         path: 'explore',
-        loadChildren: () => import('./explore/explore.module').then(m => m.ExploreModule)
+        component: ExploreComponent
       },
       {
         path: 'library',
-        loadChildren: () => import('./library/library.module').then(m => m.LibraryModule)
+        component: LibraryComponent
       },
       {
         path: 'profile',
-        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+        component: ProfileComponent
       },
       {
         path: '',

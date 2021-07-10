@@ -1,61 +1,72 @@
 <ion-content>
-  <ion-slides #slides pager="true" [options]="slideOpts">
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">First Name:</ion-label>
+            <ion-input [(ngModel)]="user.firstName"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
-    <!-- First page-->
-    <ion-slide>
-      <div class="slide">
-        <ion-item>
-          <ion-label position="floating">First Name:</ion-label>
-          <ion-input [(ngModel)]="user.firstName"></ion-input>
-        </ion-item><br>
-        <ion-item>
-          <ion-label position="floating">Last Name:</ion-label>
-          <ion-input [(ngModel)]="user.lastName"></ion-input>
-        </ion-item><br>
-        <ion-item>
-          <ion-label position="floating">Username:</ion-label>
-          <ion-input [(ngModel)]="user.username" maxlength="50"></ion-input>
-        </ion-item><br>
-      </div>
-      <div class="bottom-item">
-        <ion-button expand="block" color="light" (click)="navigate('login')">
-          <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
-          Return to Login
-        </ion-button>
-        <ion-button expand="block" color="light" (click)="next(slides)" [disabled]="!user.firstName || !user.lastName || !user.username">
-          <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
-          Next
-        </ion-button>
-      </div>
-    </ion-slide>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Last Name:</ion-label>
+            <ion-input [(ngModel)]="user.lastName"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
-    <!-- Final page-->
-    <ion-slide>
-      <div class="slide">
-        <ion-item>
-          <ion-label position="floating">E-Mail:</ion-label>
-          <ion-input [(ngModel)]="user.email" type="email"></ion-input>
-        </ion-item><br>
-        <ion-item>
-          <ion-label position="floating">Password:</ion-label>
-          <ion-input [(ngModel)]="user.pass" type="password"></ion-input>
-        </ion-item><br>
-        <ion-item>
-          <ion-label position="floating">Confirm Password:</ion-label>
-          <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
-        </ion-item><br>
-      </div>
-      <div class="bottom-item">
-        <ion-button expand="block" color="light" (click)="prev(slides)">
-          <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
-          Previous
-        </ion-button>
-        <ion-button expand="block" color="success" (click)="registerUser()">
-          <ion-icon slot="start" name="push-outline"></ion-icon>
-          Create Account
-        </ion-button>
-      </div>
-    </ion-slide>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Username:</ion-label>
+            <ion-input [(ngModel)]="user.username" maxlength="50"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
-  </ion-slides>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">E-Mail:</ion-label>
+            <ion-input [(ngModel)]="user.email" type="email"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Password:</ion-label>
+            <ion-input [(ngModel)]="user.pass" type="password"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Confirm Password:</ion-label>
+            <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" color="light" (click)="navigate('login')">
+      <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+      Return to Login
+    </ion-button>
+    <ion-button expand="block" color="success" (click)="registerUser()">
+      <ion-icon slot="start" name="push-outline"></ion-icon>
+      Create Account
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
