@@ -27,6 +27,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/training/training.module').then(m => m.TrainingModule)
   },
   {
+    path: 'tag',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/tag/tag.module').then(m => m.TagModule)
+  },
+  {
     path: '**',
     redirectTo: '/login',
     pathMatch: 'full'

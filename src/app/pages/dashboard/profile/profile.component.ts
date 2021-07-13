@@ -24,12 +24,12 @@ export class ProfileComponent implements OnInit {
     this.user = getUser();
   }
 
-  public spinnerRequest: boolean;
+  public loading: boolean;
   public users: User[] = [];
   public selectedUser: User;
 
   public getAllUsers() {
-    this.spinnerRequest = true;
+    this.loading = true;
     this.userService.getAllUsers().subscribe(
       (response) => {
         this.users = response;
@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit {
         this.toastService.error('Failed to fetch users!')
       },
       () => {
-        this.spinnerRequest = false;
+        this.loading = false;
       }
     );
   }

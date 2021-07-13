@@ -17,6 +17,10 @@ export class TrainingService {
 
     private url: string = `${this.serverService.getServer()}/training`;
 
+    public findAll(): Observable<Training[]> {
+        return this.http.get<Training[]>(`${this.url}/all`);
+    }
+
     public findAllByCreator(creatorId: number): Observable<Training[]> {
         return this.http.get<Training[]>(`${this.url}/creator?creatorId=${creatorId}`);
     }

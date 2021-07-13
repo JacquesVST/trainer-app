@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>New Tag</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Description:</ion-label>
+          <ion-input [(ngModel)]="newTag.description"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="fixed">Color:</ion-label>
+          <i slot="end" class="color-sample" [style]="{'background-color':newTag.color}"></i>
+          <input id="color-input" type="color" slot="end" [(ngModel)]="newTag.color">
+          <ion-button color="light" (click)="openColorPicker()" slot="end">
+            <ion-icon slot="end" name="brush-outline"></ion-icon>
+            Pick Color
+          </ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" color="success" (click)="persistTag()" [disabled]="loading">
+      <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+      Ok
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

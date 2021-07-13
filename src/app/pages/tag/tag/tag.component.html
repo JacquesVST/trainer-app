@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Tags
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row *ngIf="tags && tags.length">
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let tag of tags">
+            <ion-chip [style]="{'color':tag.color, 'border-color':tag.color}" outline>
+              <ion-label>{{tag.description}}</ion-label>
+            </ion-chip>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" color="success" (click)="newTag()">
+      <ion-icon slot="start" name="add-outline"></ion-icon>
+      New
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

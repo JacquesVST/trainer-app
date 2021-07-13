@@ -22,7 +22,8 @@
               <h1><b>{{exercise.title}}</b></h1>
               <h3>{{exercise.description}}</h3>
               <br *ngIf="exercise?.tags?.length">
-              <ion-chip *ngFor="let tag of exercise?.tags"  [style]="{'color':tag.color, 'border-color':tag.color}" outline>
+              <ion-chip *ngFor="let tag of exercise?.tags" [style]="{'color':tag.color, 'border-color':tag.color}"
+                outline>
                 <ion-label>{{tag.description}}</ion-label>
               </ion-chip>
             </ion-label>
@@ -35,7 +36,7 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="success" (click)="goTo('/exercise/new')" [disabled]="spinnerRequest">
+    <ion-button expand="block" color="success" (click)="goTo('/exercise/new')" [disabled]="loading">
       <ion-icon slot="start" name="add-outline"></ion-icon>
       New
     </ion-button>

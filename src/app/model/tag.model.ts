@@ -1,5 +1,5 @@
-export interface Tag {
+export class Tag {
     id: number;
-    description: string;
+    description: string = '';
     color: string;
 }

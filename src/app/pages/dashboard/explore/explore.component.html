@@ -1,12 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-      <ion-title>Explore</ion-title>
+    <ion-title>Explore</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div id="container">
-    <strong>Home Page</strong>
-    <p>Browse through the tabs below!</p>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card *ngFor="let training of trainings">
+          <img src="https://picsum.photos/800/600">
+          <ion-card-header>
+            <ion-card-subtitle>{{training?.creator?.firstName}}</ion-card-subtitle>
+            <ion-card-title>{{training.title}}</ion-card-title>
+          </ion-card-header>
+          <ion-item *ngIf="training?.tags?.length">
+            <ion-chip *ngFor="let tag of training?.tags" [style]="{'color':tag.color, 'border-color':tag.color}"
+              outline>
+              <ion-label>{{tag.description}}</ion-label>
+            </ion-chip>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

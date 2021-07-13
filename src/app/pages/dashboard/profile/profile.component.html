@@ -9,7 +9,6 @@
     <!-- lista do trainer -->
     <ion-row *ngIf="user.type">
       <ion-col class="ion-text-center">
-        <ion-spinner name="crescent" *ngIf="spinnerRequest"></ion-spinner>
         <ion-list>
           <ion-item (click)="redirect('/training')">
             <ion-label>Training</ion-label>
@@ -19,6 +18,11 @@
           <ion-item (click)="redirect('/exercise')">
             <ion-label>Exercises</ion-label>
             <ion-icon slot="start" name="accessibility-outline"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+          </ion-item>
+          <ion-item (click)="redirect('/tag')">
+            <ion-label>Tags</ion-label>
+            <ion-icon slot="start" name="pricetag-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           </ion-item>
           <ion-item>
