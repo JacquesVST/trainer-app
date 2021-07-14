@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Exercises</ion-title>
+    <ion-title>{{literals?.common?.select_exercise}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -36,7 +36,7 @@
   <ion-toolbar>
     <ion-button expand="block" color="success" (click)="dismiss()" [disabled]="loading">
       <ion-icon slot="start" name="checkmark-outline"></ion-icon>
-      Ok
+      {{literals?.common?.ok}}
     </ion-button>
   </ion-toolbar>
 </ion-footer>

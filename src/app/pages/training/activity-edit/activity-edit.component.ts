@@ -8,6 +8,7 @@ import { ActivityService } from './../../../service/activity.service';
 import { Exercise } from 'src/app/model/exercise.model';
 import { ModalController } from '@ionic/angular';
 import { ExerciseSelectionComponent } from '../../exercise/exercise-selection/exercise-selection.component';
+import { getLiterals } from 'src/app/util/literal-util';
 
 @Component({
   selector: 'app-activity-edit',
@@ -16,6 +17,7 @@ import { ExerciseSelectionComponent } from '../../exercise/exercise-selection/ex
 })
 export class ActivityEditComponent implements OnInit {
 
+  public literals: any = getLiterals();
   public pageTitle: string;
 
   public activityId: number;
@@ -42,7 +44,7 @@ export class ActivityEditComponent implements OnInit {
       this.activityId = params['id'];
       this.selectedTrainingId = params['training'];
     });
-    this.pageTitle = this.activityId ? 'Edit activity' : 'New activity';
+    this.pageTitle = this.literals.common[this.activityId ? 'edit_activity' : 'new_activity'];
     if (this.activityId) {
       this.getActivity();
     }
@@ -73,7 +75,7 @@ export class ActivityEditComponent implements OnInit {
         this.convertToEdit(response);
       }, (error) => {
         console.error(error);
-        this.toastService.error('Erro while getting activity data!');
+        this.toastService.error('retrieving_items');
       }, () => {
         this.loading = false;
       });
@@ -83,7 +85,7 @@ export class ActivityEditComponent implements OnInit {
     this.loading = true;
     this.activityService.persistActivity(this.activity).subscribe(
       (response: Activity) => {
-        this.toastService.success('Activity successfully saved!');
+        this.toastService.success('activity');
         if(!this.activityId){
           this.activityId = response.id;
           this.activity.id =  this.activityId;
@@ -91,7 +93,7 @@ export class ActivityEditComponent implements OnInit {
       },
       (error) => {
         console.error(error)
-        this.toastService.error('Error while processing your request!');
+        this.toastService.error('processing_request');
       },
       () => {
         this.loading = false;

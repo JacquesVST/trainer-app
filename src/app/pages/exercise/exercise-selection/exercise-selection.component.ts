@@ -6,6 +6,7 @@ import { Exercise } from '../../../model/exercise.model';
 import { User } from '../../../model/user.model';
 import { ExerciseService } from '../../../service/exercise.service';
 import { ToastService } from '../../../service/toast.service';
+import { getLiterals } from 'src/app/util/literal-util';
 
 @Component({
   selector: 'app-exercise-selection',
@@ -14,6 +15,7 @@ import { ToastService } from '../../../service/toast.service';
 })
 export class ExerciseSelectionComponent implements OnInit {
 
+  public literals: any = getLiterals();
   public user: User;
   public exercises: Exercise[] = [];
   public selectedExercise: Exercise;
@@ -38,7 +40,7 @@ export class ExerciseSelectionComponent implements OnInit {
       (exercises: Exercise[]) => {
         this.exercises = exercises;
       }, (error) => {
-        this.toastService.error('Error while retrieving items!');
+        this.toastService.error('retrieving_items');
         console.error(error);
       }, () => {
         this.loading = false;

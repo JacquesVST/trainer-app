@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/model/user.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { UserService } from 'src/app/service/user.service';
+import { getLiterals } from 'src/app/util/literal-util';
 import { getUser, unsetUser } from 'src/app/util/user-util';
 
 @Component({
@@ -12,36 +13,16 @@ import { getUser, unsetUser } from 'src/app/util/user-util';
 })
 export class ProfileComponent implements OnInit {
 
+  public literals: any = getLiterals();
   public user: User;
+  public loading: boolean;
 
   constructor(
-    private userService: UserService,
-    private toastService: ToastService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.user = getUser();
-  }
-
-  public loading: boolean;
-  public users: User[] = [];
-  public selectedUser: User;
-
-  public getAllUsers() {
-    this.loading = true;
-    this.userService.getAllUsers().subscribe(
-      (response) => {
-        this.users = response;
-      },
-      (error) => {
-        console.error(error);
-        this.toastService.error('Failed to fetch users!')
-      },
-      () => {
-        this.loading = false;
-      }
-    );
   }
 
   public redirect(url: string): void {

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { getLiterals } from 'src/app/util/literal-util';
 import { getUser } from 'src/app/util/user-util';
 import { Exercise } from '../../../model/exercise.model';
 import { User } from '../../../model/user.model';
@@ -13,6 +14,7 @@ import { ToastService } from '../../../service/toast.service';
 })
 export class ExerciseListComponent implements OnInit {
 
+  public literals: any = getLiterals();
   public user: User;
   public exercises: Exercise[] = [];
   public loading: boolean;
@@ -35,7 +37,7 @@ export class ExerciseListComponent implements OnInit {
       (exercises: Exercise[]) => {
         this.exercises = exercises;
       }, (error) => {
-        this.toastService.error('Error while retrieving items!');
+        this.toastService.error('retrieving_items');
         console.error(error);
       }, () => {
         this.loading = false;

@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>New Tag</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tag" (click)="dismiss()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{literals?.common?.new_tag}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +12,7 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label position="floating">Description:</ion-label>
+          <ion-label position="floating">{{literals?.common?.description}}:</ion-label>
           <ion-input [(ngModel)]="newTag.description"></ion-input>
         </ion-item>
       </ion-col>
@@ -17,12 +20,12 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label position="fixed">Color:</ion-label>
+          <ion-label position="fixed">{{literals?.common?.color}}:</ion-label>
           <i slot="end" class="color-sample" [style]="{'background-color':newTag.color}"></i>
           <input id="color-input" type="color" slot="end" [(ngModel)]="newTag.color">
           <ion-button color="light" (click)="openColorPicker()" slot="end">
             <ion-icon slot="end" name="brush-outline"></ion-icon>
-            Pick Color
+            {{literals?.common?.pick_color}}
           </ion-button>
         </ion-item>
       </ion-col>
@@ -34,8 +37,8 @@
 <ion-footer>
   <ion-toolbar>
     <ion-button expand="block" color="success" (click)="persistTag()" [disabled]="loading">
-      <ion-icon slot="start" name="checkmark-outline"></ion-icon>
-      Ok
+      <ion-icon slot="start" name="save-outline"></ion-icon>
+      {{literals?.common?.save}}
     </ion-button>
   </ion-toolbar>
 </ion-footer>

@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/model/tag.model';
 import { TagService } from 'src/app/service/tag.service';
 import { ToastService } from 'src/app/service/toast.service';
+import { getLiterals } from 'src/app/util/literal-util';
 
 @Component({
   selector: 'app-tag-selection',
@@ -14,6 +15,7 @@ export class TagSelectionComponent implements OnInit {
   @Input() selectedTags: Tag[];
   public availableTags: Tag[] = [];
   public loading: boolean;
+  public literals: any = getLiterals();
 
   constructor(
     private modalController: ModalController,
@@ -43,7 +45,7 @@ export class TagSelectionComponent implements OnInit {
 
       }, (error) => {
         console.error(error);
-        this.toastService.error('Error while retrieving tags!');
+        this.toastService.error('retrieving_items');
       }, () => {
         this.loading = false;
       });

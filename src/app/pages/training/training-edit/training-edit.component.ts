@@ -6,6 +6,7 @@ import { Training } from 'src/app/model/training.model';
 import { User } from 'src/app/model/user.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
+import { getLiterals } from 'src/app/util/literal-util';
 import { getUser } from 'src/app/util/user-util';
 import { TagSelectionComponent } from '../../exercise/tag-selection/tag-selection.component';
 import { TrainingRequestDTO } from './../../../model/training/training-request-dto.model';
@@ -18,6 +19,7 @@ import { TrainingRequestDTO } from './../../../model/training/training-request-d
 })
 export class TrainingEditComponent implements OnInit {
 
+  public literals: any = getLiterals();
   public pageTitle: string;
 
   public user: User;
@@ -27,6 +29,7 @@ export class TrainingEditComponent implements OnInit {
   public selectedTags: Tag[];
   public selectedPicture: File;
   public loading: boolean;
+  public publish: boolean = true;
 
   constructor(
     private modalController: ModalController,
@@ -37,7 +40,7 @@ export class TrainingEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => this.trainingId = params['id']);
-    this.pageTitle = this.trainingId ? 'Edit training' : 'New training';
+    this.pageTitle = this.literals.common[this.trainingId ? 'edit_training' : 'new_training'];
     this.user = getUser();
     if (this.trainingId) {
       this.getTraining();
@@ -51,7 +54,7 @@ export class TrainingEditComponent implements OnInit {
         this.convertToEdit(response);
       }, (error) => {
         console.error(error);
-        this.toastService.error('Erro while getting training data!');
+        this.toastService.error('retrieving_itens');
       }, () => {
         this.loading = false;
       });
@@ -65,11 +68,11 @@ export class TrainingEditComponent implements OnInit {
           this.trainingId = response?.id;
           this.training.id = this.trainingId;
         }
-        this.toastService.success('Training successfully saved!');
+        this.toastService.success('training');
       },
       (error) => {
         console.error(error)
-        this.toastService.error('Error while processing your request!');
+        this.toastService.error('processing_request');
       },
       () => {
         this.loading = false;
@@ -87,6 +90,7 @@ export class TrainingEditComponent implements OnInit {
     this.training.id = training.id;
     this.training.title = training.title;
     this.training.description = training.description;
+    this.training.published = !!training.published;
   }
 
   public async openTagSelection() {

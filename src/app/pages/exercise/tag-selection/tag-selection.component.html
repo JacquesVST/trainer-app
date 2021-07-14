@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Tag Selection</ion-title>
+    <ion-title>{{literals?.common?.tag_selection}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +9,7 @@
 
     <ion-item-divider>
       <ion-label>
-        Selected tags:
+        {{literals?.common?.selected_tags}}
       </ion-label>
     </ion-item-divider>
     <ion-row>
@@ -26,7 +26,7 @@
 
     <ion-item-divider>
       <ion-label>
-        Available tags:
+        {{literals?.common?.available_tags}}
       </ion-label>
     </ion-item-divider>
     <ion-row>
@@ -46,7 +46,7 @@
   <ion-toolbar>
     <ion-button expand="block" color="success" (click)="dismiss()" [disabled]="loading">
       <ion-icon slot="start" name="checkmark-outline"></ion-icon>
-      Ok
+      {{literals?.common?.ok}}
     </ion-button>
   </ion-toolbar>
 </ion-footer>

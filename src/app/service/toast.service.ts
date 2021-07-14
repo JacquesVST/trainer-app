@@ -1,3 +1,4 @@
+import { getLiterals } from 'src/app/util/literal-util';
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 
@@ -5,12 +6,16 @@ import { ToastController } from '@ionic/angular';
   providedIn: 'root',
 })
 export class ToastService {
+
+  public literals = getLiterals();
+
   constructor(private toastController: ToastController) { }
 
   public success(message: string): void {
+    const finalMessage = this.literals.success_messages[message] ? this.literals.success_messages[message] : message;
     this.toastController
       .create({
-        message: message,
+        message: finalMessage,
         duration: 2000,
         position: 'top',
         color: 'success'
@@ -21,9 +26,10 @@ export class ToastService {
   }
 
   public error(message: string): void {
+    const finalMessage = this.literals.error_messages[message] ? this.literals.error_messages[message] : message;
     this.toastController
       .create({
-        message: message,
+        message: finalMessage,
         duration: 2000,
         position: 'top',
         color: 'danger'

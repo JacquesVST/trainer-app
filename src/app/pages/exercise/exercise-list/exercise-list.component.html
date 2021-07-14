@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/dashboard/profile"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Exercises
+      {{literals?.common?.exercises}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -38,7 +38,7 @@
   <ion-toolbar>
     <ion-button expand="block" color="success" (click)="goTo('/exercise/new')" [disabled]="loading">
       <ion-icon slot="start" name="add-outline"></ion-icon>
-      New
+      {{literals?.common?.add}}
     </ion-button>
   </ion-toolbar>
 </ion-footer>

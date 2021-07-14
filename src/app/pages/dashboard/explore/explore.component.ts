@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Training } from 'src/app/model/training.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
+import { getLiterals } from 'src/app/util/literal-util';
 
 @Component({
   selector: 'app-explore',
@@ -10,6 +11,7 @@ import { TrainingService } from 'src/app/service/training.service';
 })
 export class ExploreComponent implements OnInit {
 
+  public literals: any = getLiterals();
   public trainings: Training[] = []
   public loading: boolean = false;
 
@@ -22,19 +24,25 @@ export class ExploreComponent implements OnInit {
     this.getTrainings();
   }
 
-  public getTrainings() {
+  public getTrainings(refresh?) {
     this.loading = true;
     this.trainingService.findAll().subscribe(
       (trainings: Training[]) => {
-        console.log(trainings)
         this.trainings = trainings;
       }, (error) => {
         console.error(error);
-        this.toastService.error('Error while retrieving items!');
+        this.toastService.error('retrieving_items');
       }, () => {
         this.loading = false;
+        if (refresh) {
+          setTimeout(() => refresh.target.complete(), 0);
+        }
       }
     );
+  }
+
+  public doRefresh(event) {
+    this.getTrainings(event);
   }
 
 }

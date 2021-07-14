@@ -4,7 +4,7 @@ export class TrainingRequestDTO {
     description: string;
     price: number;
     duration: number;
-    published: Date;
+    published: boolean;
     creatorId: number;
     pictureId: number;
     tagIds: number[];

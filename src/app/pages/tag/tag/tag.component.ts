@@ -45,7 +45,7 @@ export class TagComponent implements OnInit {
 
     modal.onDidDismiss()
       .then((data) => {
-        if (data.data) {
+        if (data?.data?.id) {
           this.tags.push(data.data);
         }
       });

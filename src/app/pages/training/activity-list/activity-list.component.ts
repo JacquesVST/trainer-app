@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Activity } from 'src/app/model/activity.model';
 import { Router } from '@angular/router';
 import { ActivityService } from 'src/app/service/activity.service';
+import { getLiterals } from 'src/app/util/literal-util';
 
 @Component({
   selector: 'app-activity-list',
@@ -14,6 +15,7 @@ export class ActivityListComponent implements OnInit {
   @Input() public trainingId: number;
   public activities: Activity[] = [];
   public loading: boolean;
+  public literals: any = getLiterals();
 
   constructor(
     private toastService: ToastService,
@@ -34,7 +36,7 @@ export class ActivityListComponent implements OnInit {
         this.activities = activities;
       }, (error) => {
         console.error(error);
-        this.toastService.error('Error while retrieving activities!');
+        this.toastService.error('retrieving_items');
       }, () => {
         this.loading = false;
       });

@@ -4,7 +4,7 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-label position="floating">First Name:</ion-label>
+            <ion-label position="floating">{{literals?.login?.first_name}}:</ion-label>
             <ion-input [(ngModel)]="user.firstName"></ion-input>
           </ion-item>
         </ion-col>
@@ -13,7 +13,7 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-label position="floating">Last Name:</ion-label>
+            <ion-label position="floating">{{literals?.login?.last_name}}:</ion-label>
             <ion-input [(ngModel)]="user.lastName"></ion-input>
           </ion-item>
         </ion-col>
@@ -22,7 +22,7 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-label position="floating">Username:</ion-label>
+            <ion-label position="floating">{{literals?.login?.username}}:</ion-label>
             <ion-input [(ngModel)]="user.username" maxlength="50"></ion-input>
           </ion-item>
         </ion-col>
@@ -31,7 +31,7 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-label position="floating">E-Mail:</ion-label>
+            <ion-label position="floating">{{literals?.login?.email}}:</ion-label>
             <ion-input [(ngModel)]="user.email" type="email"></ion-input>
           </ion-item>
         </ion-col>
@@ -40,7 +40,7 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-label position="floating">Password:</ion-label>
+            <ion-label position="floating">{{literals?.login?.password}}:</ion-label>
             <ion-input [(ngModel)]="user.pass" type="password"></ion-input>
           </ion-item>
         </ion-col>
@@ -49,7 +49,7 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-label position="floating">Confirm Password:</ion-label>
+            <ion-label position="floating">{{literals?.login?.confirm}}:</ion-label>
             <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
           </ion-item>
         </ion-col>
@@ -62,11 +62,11 @@
   <ion-toolbar>
     <ion-button expand="block" color="light" (click)="navigate('login')">
       <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
-      Return to Login
+      {{literals?.login?.return}}
     </ion-button>
     <ion-button expand="block" color="success" (click)="registerUser()">
       <ion-icon slot="start" name="push-outline"></ion-icon>
-      Create Account
+      {{literals?.login?.create}}
     </ion-button>
   </ion-toolbar>
 </ion-footer>

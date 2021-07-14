@@ -10,6 +10,7 @@ import { User } from 'src/app/model/user.model';
 import { ExerciseService } from 'src/app/service/exercise.service';
 import { TagService } from 'src/app/service/tag.service';
 import { ToastService } from 'src/app/service/toast.service';
+import { getLiterals } from 'src/app/util/literal-util';
 import { getUser } from 'src/app/util/user-util';
 import { TagSelectionComponent } from '../tag-selection/tag-selection.component';
 
@@ -20,6 +21,7 @@ import { TagSelectionComponent } from '../tag-selection/tag-selection.component'
 })
 export class ExerciseEditComponent implements OnInit {
 
+  public literals: any = getLiterals();
   public pageTitle: string;
 
   public user: User;
@@ -40,7 +42,7 @@ export class ExerciseEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => this.exerciseId = params['id']);
-    this.pageTitle = this.exerciseId ? 'Edit exercise' : 'New exercise';
+    this.pageTitle = this.literals.common[this.exerciseId ? 'edit_exercise' : 'new_exercise'];
     this.user = getUser();
     if (this.exerciseId) {
       this.getExercise();
@@ -54,7 +56,7 @@ export class ExerciseEditComponent implements OnInit {
         this.convertToEdit(response);
       }, (error) => {
         console.error(error);
-        this.toastService.error('Erro while getting exercise data!');
+        this.toastService.error('retrieving_items');
       }, () => {
         this.loading = false;
       });
@@ -68,11 +70,11 @@ export class ExerciseEditComponent implements OnInit {
           this.exerciseId = response?.id;
           this.exercise.id = this.exerciseId;
         }
-        this.toastService.success('Exercise successfully saved!');
+        this.toastService.success('exercise');
       },
       (error) => {
         console.error(error)
-        this.toastService.error('Error while processing your request!');
+        this.toastService.error('processing_request');
       },
       () => {
         this.loading = false;
@@ -82,7 +84,7 @@ export class ExerciseEditComponent implements OnInit {
 
   public prepareModel(): void {
     this.exercise.tagIds = this.selectedTags ? this.selectedTags.map(tag => tag.id) : [];
-    this.exercise.fileIds =  this.selectedFiles ? this.selectedFiles.map(file => file.id) : [];
+    this.exercise.fileIds = this.selectedFiles ? this.selectedFiles.map(file => file.id) : [];
     this.exercise.creatorId = this.user?.id;
     this.persistExercise();
   }

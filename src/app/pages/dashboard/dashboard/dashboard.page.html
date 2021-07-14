@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Trainer App
+      {{literals?.app?.name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,17 +10,17 @@
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="explore">
       <ion-icon name="bag-outline"></ion-icon>
-      <ion-label>Explore</ion-label>
+      <ion-label>{{literals?.menu?.explore}}</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="library">
       <ion-icon name="library-outline"></ion-icon>
-      <ion-label>Library</ion-label>
+      <ion-label>{{literals?.menu?.library}}</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="profile">
       <ion-icon name="person-outline"></ion-icon>
-      <ion-label>My Profile</ion-label>
+      <ion-label>{{literals?.menu?.profile}}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

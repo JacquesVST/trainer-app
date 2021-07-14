@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/model/tag.model';
 import { TagService } from 'src/app/service/tag.service';
 import { ToastService } from 'src/app/service/toast.service';
+import { getLiterals } from 'src/app/util/literal-util';
 
 @Component({
   selector: 'app-tag-edit',
@@ -11,6 +12,7 @@ import { ToastService } from 'src/app/service/toast.service';
 })
 export class TagEditComponent implements OnInit {
 
+  public literals: any = getLiterals();
   public newTag: Tag = new Tag();
   public loading: boolean;
 
@@ -32,12 +34,12 @@ export class TagEditComponent implements OnInit {
     this.tagService.persistTag(this.newTag).subscribe(
       (response: Tag) => {
         this.newTag = response;
-        this.toastService.success('Tag successfully saved!');
+        this.toastService.success('tag');
         this.dismiss();
       },
       (error) => {
         console.error(error)
-        this.toastService.error('Error while processing your request!');
+        this.toastService.error('processing_request');
       },
       () => {
         this.loading = false;
