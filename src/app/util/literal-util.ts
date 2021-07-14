@@ -1,11 +1,11 @@
-import { getEnLiterals } from "../config/literals/en-us";
-import { getPtLiterals } from "../config/literals/pt-br";
+import { enUs } from './../config/literals/en-us';
+import { ptBr } from "../config/literals/pt-br";
 
 export function getLiterals() {
     const navigatorLanguage = navigator.language.substring(0, 2);
     if (navigatorLanguage.toLowerCase() === 'pt') {
-        return getPtLiterals();
+        return ptBr;
     } else {
-        return getEnLiterals();
+        return enUs;
     }
 }

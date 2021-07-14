@@ -42,7 +42,7 @@ export class ExerciseEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => this.exerciseId = params['id']);
-    this.pageTitle = this.literals.common[this.exerciseId ? 'edit_exercise' : 'new_exercise'];
+    this.pageTitle = this.literals.pages[this.exerciseId ? 'edit_exercise' : 'new_exercise'];
     this.user = getUser();
     if (this.exerciseId) {
       this.getExercise();
@@ -70,7 +70,7 @@ export class ExerciseEditComponent implements OnInit {
           this.exerciseId = response?.id;
           this.exercise.id = this.exerciseId;
         }
-        this.toastService.success('exercise');
+        this.toastService.success('item_saved');
       },
       (error) => {
         console.error(error)

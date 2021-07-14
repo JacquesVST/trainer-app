@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{literals?.menu?.profile}}</ion-title>
+    <ion-title>{{literals.menu.profile}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,37 +10,37 @@
       <ion-col class="ion-text-center">
         <ion-list>
           <ion-item (click)="redirect('/training')">
-            <ion-label>{{literals?.common?.trainings}}</ion-label>
+            <ion-label>{{literals.common.trainings}}</ion-label>
             <ion-icon slot="start" name="barbell-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           </ion-item>
 
           <ion-item (click)="redirect('/exercise')">
-            <ion-label>{{literals?.common?.exercises}}</ion-label>
+            <ion-label>{{literals.common.exercises}}</ion-label>
             <ion-icon slot="start" name="accessibility-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           </ion-item>
 
           <ion-item (click)="redirect('/tag')">
-            <ion-label>{{literals?.common?.tags}}</ion-label>
+            <ion-label>{{literals.common.tags}}</ion-label>
             <ion-icon slot="start" name="pricetag-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           </ion-item>
 
           <ion-item>
-            <ion-label>{{literals?.menu?.reports}}</ion-label>
+            <ion-label>{{literals.menu.reports}}</ion-label>
             <ion-icon slot="start" name="bar-chart-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           </ion-item>
 
           <ion-item>
-            <ion-label>{{literals?.menu?.settings}}</ion-label>
+            <ion-label>{{literals.menu.settings}}</ion-label>
             <ion-icon slot="start" name="settings-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           </ion-item>
           
           <ion-item (click)="logout()">
-            <ion-label>{{literals?.menu?.exit}}</ion-label>
+            <ion-label>{{literals.menu.exit}}</ion-label>
             <ion-icon slot="start" name="exit-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           </ion-item>

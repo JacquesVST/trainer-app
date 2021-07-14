@@ -34,7 +34,7 @@ export class TagEditComponent implements OnInit {
     this.tagService.persistTag(this.newTag).subscribe(
       (response: Tag) => {
         this.newTag = response;
-        this.toastService.success('tag');
+        this.toastService.success('item_saved');
         this.dismiss();
       },
       (error) => {

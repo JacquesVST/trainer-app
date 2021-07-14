@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{literals?.common?.tag_selection}}</ion-title>
+    <ion-title>{{literals.pages.select_tags}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +9,7 @@
 
     <ion-item-divider>
       <ion-label>
-        {{literals?.common?.selected_tags}}
+        {{literals.form.selected_tags}}
       </ion-label>
     </ion-item-divider>
     <ion-row>
@@ -26,7 +26,7 @@
 
     <ion-item-divider>
       <ion-label>
-        {{literals?.common?.available_tags}}
+        {{literals.form.available_tags}}
       </ion-label>
     </ion-item-divider>
     <ion-row>
@@ -46,7 +46,7 @@
   <ion-toolbar>
     <ion-button expand="block" color="success" (click)="dismiss()" [disabled]="loading">
       <ion-icon slot="start" name="checkmark-outline"></ion-icon>
-      {{literals?.common?.ok}}
+      {{literals.common.ok}}
     </ion-button>
   </ion-toolbar>
 </ion-footer>

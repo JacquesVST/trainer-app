@@ -14,7 +14,7 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label position="floating">{{literals?.common?.title}}:</ion-label>
+          <ion-label position="floating">{{literals.form.title}}:</ion-label>
           <ion-input [(ngModel)]="training.title"></ion-input>
         </ion-item>
       </ion-col>
@@ -23,7 +23,7 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label position="floating">{{literals?.common?.description}}:</ion-label>
+          <ion-label position="floating">{{literals.form.description}}:</ion-label>
           <ion-textarea [(ngModel)]="training.description" rows="3"></ion-textarea>
         </ion-item>
       </ion-col>
@@ -32,7 +32,7 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label position="fixed">{{literals?.common?.publish}}:</ion-label>
+          <ion-label position="fixed">{{literals.form.publish}}:</ion-label>
           <ion-toggle [(ngModel)]="training.published" slot="end"></ion-toggle>
         </ion-item>
       </ion-col>
@@ -43,7 +43,7 @@
       <ion-col>
         <ion-button expand="block" color="light" (click)="openTagSelection()">
           <ion-icon slot="start" name="pricetag-outline"></ion-icon>
-          {{literals?.common?.select_tags}}
+          {{literals.pages.select_tags}}
         </ion-button>
       </ion-col>
     </ion-row>
@@ -58,7 +58,7 @@
 
     <ion-item-divider>
       <ion-label>
-        {{literals?.common?.activities}}
+        {{literals.common.activities}}
       </ion-label>
     </ion-item-divider>
     <app-activity-list *ngIf="trainingId" [trainingId]="trainingId"></app-activity-list>
@@ -66,7 +66,7 @@
       <ion-col>
         <ion-item *ngIf="!trainingId" class="no-activities">
           <ion-icon name="information-circle-outline" color="warning" slot="start"></ion-icon>
-          <ion-label color="warning">{{literals?.messages?.warn_adding_activities}}</ion-label>
+          <ion-label color="warning">{{literals.messages.warn_adding_activities}}</ion-label>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -79,7 +79,7 @@
   <ion-toolbar>
     <ion-button expand="block" color="success" (click)="prepareModel()" [disabled]="loading">
       <ion-icon slot="start" name="save-outline"></ion-icon>
-      {{literals?.common?.save}}
+      {{literals.commonsave}}
     </ion-button>
   </ion-toolbar>
 </ion-footer>

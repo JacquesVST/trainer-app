@@ -44,7 +44,7 @@ export class ActivityEditComponent implements OnInit {
       this.activityId = params['id'];
       this.selectedTrainingId = params['training'];
     });
-    this.pageTitle = this.literals.common[this.activityId ? 'edit_activity' : 'new_activity'];
+    this.pageTitle = this.literals.pages[this.activityId ? 'edit_activity' : 'new_activity'];
     if (this.activityId) {
       this.getActivity();
     }
@@ -85,7 +85,7 @@ export class ActivityEditComponent implements OnInit {
     this.loading = true;
     this.activityService.persistActivity(this.activity).subscribe(
       (response: Activity) => {
-        this.toastService.success('activity');
+        this.toastService.success('item_saved');
         if(!this.activityId){
           this.activityId = response.id;
           this.activity.id =  this.activityId;

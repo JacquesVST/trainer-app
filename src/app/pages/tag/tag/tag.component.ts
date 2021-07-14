@@ -1,3 +1,4 @@
+import { getLiterals } from 'src/app/util/literal-util';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/model/tag.model';
@@ -12,6 +13,7 @@ import { TagEditComponent } from '../tag-edit/tag-edit.component';
 })
 export class TagComponent implements OnInit {
 
+  public literals: any = getLiterals();
   public tags: Tag[] = []
   public loading: boolean = false;
 
@@ -32,7 +34,7 @@ export class TagComponent implements OnInit {
         this.tags = tags
       }, (error) => {
         console.error(error);
-        this.toastService.error('Error while retrieving tags!');
+        this.toastService.error('retrieving_items');
       }, () => {
         this.loading = false;
       });
