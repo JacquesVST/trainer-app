@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { MediaFile } from 'src/app/model/media-file.model';
+import { SanitizedMediaFile } from 'src/app/model/media-file/sanitized-media-file.model';
 import { User } from 'src/app/model/user/user.model';
-import { FileService } from 'src/app/service/file.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
+import { ImageService } from './../../../service/image.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,38 +16,28 @@ export class ProfileComponent implements OnInit {
   public literals: any = Literals.getLiterals();
   public user: User;
   public loading: boolean;
+  public profilePicture: SanitizedMediaFile;
 
   constructor(
     private router: Router,
-    private fileService: FileService,
-    private domSanitizer: DomSanitizer
+    private imageService: ImageService
   ) { }
 
   ngOnInit() {
     this.user = UserUtil.getUser();
-    if (this.user?.picture?.id && !this.user.picture.data) {
-      this.getUserPicture();
+    this.getImage();
+  }
+
+  public async getImage() {
+    if (this.user?.picture?.id) {
+      this.profilePicture = await this.imageService.getSanitizedImage(this.user?.picture?.id);
+    } else {
+      this.profilePicture = {
+        sanitized: this.imageService.getDefaultImage(),
+        original: null
+      }
     }
-  }
 
-  public getUserPicture() {
-    this.loading = true;
-    this.fileService.findById(this.user.picture.id).subscribe(
-      (response: MediaFile) => {
-        this.user.picture = response;
-      }, (error) => {
-        console.error(error);
-      }, () => {
-        this.loading = false;
-      });
-  }
-
-  public getImage(media: MediaFile): SafeResourceUrl {
-    let mediaData: string = 'data:image/';
-    mediaData += media.type;
-    mediaData += ';base64, ';
-    mediaData += media.data;
-    return this.domSanitizer.bypassSecurityTrustUrl(mediaData);
   }
 
   public redirect(url: string): void {

@@ -1,11 +1,11 @@
-import { MediaFile } from "../model/media-file.model";
+import { MediaFile } from "../model/media-file/media-file.model";
 import { User } from "../model/user/user.model";
 import { StorageUtil } from "./storage-util";
 
 export class UserUtil {
     public static setUser(user: User): void {
         const picture = new MediaFile();
-        picture.id = user.picture.id;
+        picture.id = user?.picture?.id;
         user.picture = picture;
         return StorageUtil.setLocalItem('user', user);
     }

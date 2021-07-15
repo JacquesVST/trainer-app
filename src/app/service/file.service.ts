@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MediaFile } from '../model/media-file.model';
+import { MediaFile } from '../model/media-file/media-file.model';
 import { ServerService } from './server.service';
 
 @Injectable({

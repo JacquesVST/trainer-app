@@ -4,7 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Exercise } from 'src/app/model/exercise/exercise.model';
 import { ExerciseRequestDTO } from 'src/app/model/exercise/exercise-request-dto.model';
-import { MediaFile } from 'src/app/model/media-file.model';
+import { MediaFile } from 'src/app/model/media-file/media-file.model';
 import { Tag } from 'src/app/model/tag.model';
 import { User } from 'src/app/model/user/user.model';
 import { ExerciseService } from 'src/app/service/exercise.service';

@@ -8,10 +8,9 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-item>
+        <ion-item lines="none">
           <ion-thumbnail slot="start">
-            <img
-              [src]="user?.picture?.data ? getImage(user.picture) : 'https://picsum.photos/200'">
+            <img [src]="profilePicture?.sanitized">
           </ion-thumbnail>
         </ion-item>
       </ion-col>

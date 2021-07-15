@@ -1,4 +1,4 @@
-import { MediaFile } from "../media-file.model";
+import { MediaFile } from "../media-file/media-file.model";
 import { Tag } from "../tag.model";
 import { User } from "../user/user.model";
 
