@@ -1,4 +1,4 @@
-export interface MediaFile {
+export class MediaFile {
     id: number;
     url: string;
     size: number;

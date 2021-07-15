@@ -1,12 +1,12 @@
 import { ModalController } from '@ionic/angular';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getUser } from 'src/app/util/user-util';
+import { UserUtil } from 'src/app/util/user-util';
 import { Exercise } from '../../../model/exercise/exercise.model';
 import { User } from '../../../model/user/user.model';
 import { ExerciseService } from '../../../service/exercise.service';
 import { ToastService } from '../../../service/toast.service';
-import { getLiterals } from 'src/app/util/literal-util';
+import { Literals} from 'src/app/util/literal-util';
 
 @Component({
   selector: 'app-exercise-selection',
@@ -15,7 +15,7 @@ import { getLiterals } from 'src/app/util/literal-util';
 })
 export class ExerciseSelectionComponent implements OnInit {
 
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
   public user: User;
   public exercises: Exercise[] = [];
   public selectedExercise: Exercise;
@@ -29,7 +29,7 @@ export class ExerciseSelectionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user = getUser();
+    this.user = UserUtil.getUser();
     this.findAllExercises();
   }
 

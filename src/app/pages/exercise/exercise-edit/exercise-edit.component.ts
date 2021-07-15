@@ -9,8 +9,8 @@ import { Tag } from 'src/app/model/tag.model';
 import { User } from 'src/app/model/user/user.model';
 import { ExerciseService } from 'src/app/service/exercise.service';
 import { ToastService } from 'src/app/service/toast.service';
-import { getLiterals } from 'src/app/util/literal-util';
-import { getUser } from 'src/app/util/user-util';
+import { Literals} from 'src/app/util/literal-util';
+import { UserUtil } from 'src/app/util/user-util';
 import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.component';
 
 @Component({
@@ -20,7 +20,7 @@ import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.com
 })
 export class ExerciseEditComponent implements OnInit {
 
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
   public pageTitle: string;
 
   public user: User;
@@ -42,7 +42,7 @@ export class ExerciseEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => this.exerciseId = params['id']);
     this.pageTitle = this.literals.pages[this.exerciseId ? 'edit_exercise' : 'new_exercise'];
-    this.user = getUser();
+    this.user = UserUtil.getUser();
     if (this.exerciseId) {
       this.getExercise();
     }

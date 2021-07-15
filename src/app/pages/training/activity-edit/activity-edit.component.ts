@@ -8,7 +8,7 @@ import { ActivityService } from './../../../service/activity.service';
 import { Exercise } from 'src/app/model/exercise/exercise.model';
 import { ModalController } from '@ionic/angular';
 import { ExerciseSelectionComponent } from '../../exercise/exercise-selection/exercise-selection.component';
-import { getLiterals } from 'src/app/util/literal-util';
+import { Literals} from 'src/app/util/literal-util';
 
 @Component({
   selector: 'app-activity-edit',
@@ -17,7 +17,7 @@ import { getLiterals } from 'src/app/util/literal-util';
 })
 export class ActivityEditComponent implements OnInit {
 
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
   public pageTitle: string;
 
   public activityId: number;

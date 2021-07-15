@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Activity } from 'src/app/model/activity/activity.model';
 import { ActivityService } from 'src/app/service/activity.service';
-import { getLiterals } from 'src/app/util/literal-util';
+import { Literals} from 'src/app/util/literal-util';
 import { ActivityRequestDTO } from './../../../model/activity/activity-request-dto.mode';
 import { ToastService } from './../../../service/toast.service';
 
@@ -19,7 +19,7 @@ export class ActivityListComponent implements OnInit {
   public reorder: boolean = false;
   public reorderButton: string;
   public loading: boolean;
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
 
   constructor(
     private toastService: ToastService,

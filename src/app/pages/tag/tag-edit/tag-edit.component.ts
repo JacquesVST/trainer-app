@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/model/tag.model';
 import { TagService } from 'src/app/service/tag.service';
 import { ToastService } from 'src/app/service/toast.service';
-import { getLiterals } from 'src/app/util/literal-util';
+import { Literals} from 'src/app/util/literal-util';
 
 @Component({
   selector: 'app-tag-edit',
@@ -12,7 +12,7 @@ import { getLiterals } from 'src/app/util/literal-util';
 })
 export class TagEditComponent implements OnInit {
 
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
   public newTag: Tag = new Tag();
   public loading: boolean;
 

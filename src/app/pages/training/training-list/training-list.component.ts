@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getLiterals } from 'src/app/util/literal-util';
+import { Literals} from 'src/app/util/literal-util';
 import { Training } from '../../../model/training/training.model';
 import { User } from '../../../model/user/user.model';
 import { ToastService } from '../../../service/toast.service';
 import { TrainingService } from '../../../service/training.service';
-import { getUser } from '../../../util/user-util';
+import { UserUtil } from '../../../util/user-util';
 
 @Component({
   selector: 'app-training-list',
@@ -14,7 +14,7 @@ import { getUser } from '../../../util/user-util';
 })
 export class TrainingListComponent implements OnInit {
 
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
   public user: User;
   public trainings: Training[] = [];
   public loading: boolean;
@@ -26,7 +26,7 @@ export class TrainingListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user = getUser();
+    this.user = UserUtil.getUser();
     this.findAllTrainings();
   }
 

@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/service/toast.service';
 import { UserService } from 'src/app/service/user.service';
-import { getLiterals } from 'src/app/util/literal-util';
+import { Literals} from 'src/app/util/literal-util';
 import { UserRequestDTO } from '../../../model/user/user-request-dto.model';
 
 @Component({
@@ -14,7 +14,7 @@ export class RegisterComponent {
 
   public user: UserRequestDTO = new UserRequestDTO();
   public confirmPassword: string;
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
 
   constructor(
     private router: Router,

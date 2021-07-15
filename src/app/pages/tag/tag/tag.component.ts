@@ -1,4 +1,4 @@
-import { getLiterals } from 'src/app/util/literal-util';
+import { Literals} from 'src/app/util/literal-util';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/model/tag.model';
@@ -13,7 +13,7 @@ import { TagEditComponent } from '../tag-edit/tag-edit.component';
 })
 export class TagComponent implements OnInit {
 
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
   public tags: Tag[] = []
   public loading: boolean = false;
 

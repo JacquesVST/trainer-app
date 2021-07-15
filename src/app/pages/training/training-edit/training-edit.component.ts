@@ -7,8 +7,8 @@ import { TrainingRequestDTO } from 'src/app/model/training/training-request-dto.
 import { User } from 'src/app/model/user/user.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
-import { getLiterals } from 'src/app/util/literal-util';
-import { getUser } from 'src/app/util/user-util';
+import { Literals} from 'src/app/util/literal-util';
+import { UserUtil } from 'src/app/util/user-util';
 import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.component';
 
 
@@ -19,7 +19,7 @@ import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.com
 })
 export class TrainingEditComponent implements OnInit {
 
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
   public pageTitle: string;
 
   public user: User;
@@ -41,7 +41,7 @@ export class TrainingEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => this.trainingId = params['id']);
     this.pageTitle = this.literals.pages[this.trainingId ? 'edit_training' : 'new_training'];
-    this.user = getUser();
+    this.user = UserUtil.getUser();
     if (this.trainingId) {
       this.getTraining();
     }

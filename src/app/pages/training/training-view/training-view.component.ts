@@ -5,8 +5,8 @@ import { Training } from 'src/app/model/training/training.model';
 import { User } from 'src/app/model/user/user.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
-import { getLiterals } from 'src/app/util/literal-util';
-import { getUser } from 'src/app/util/user-util';
+import { Literals} from 'src/app/util/literal-util';
+import { UserUtil } from 'src/app/util/user-util';
 
 @Component({
   selector: 'app-training-view',
@@ -15,7 +15,7 @@ import { getUser } from 'src/app/util/user-util';
 })
 export class TrainingViewComponent implements OnInit {
 
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
   public pageTitle: string;
 
   public user: User;
@@ -33,7 +33,7 @@ export class TrainingViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => this.trainingId = params['id']);
-    this.user = getUser();
+    this.user = UserUtil.getUser();
     if (this.trainingId) {
       this.getTraining();
     }

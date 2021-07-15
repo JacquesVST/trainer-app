@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getLiterals } from 'src/app/util/literal-util';
+import { Literals} from 'src/app/util/literal-util';
 
 @Component({
   selector: 'app-library',
@@ -8,7 +8,7 @@ import { getLiterals } from 'src/app/util/literal-util';
 })
 export class LibraryComponent implements OnInit {
 
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
   
   constructor() { }
 

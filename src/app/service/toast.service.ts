@@ -1,4 +1,4 @@
-import { getLiterals } from 'src/app/util/literal-util';
+import { Literals} from 'src/app/util/literal-util';
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 
@@ -7,7 +7,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class ToastService {
 
-  public literals = getLiterals();
+  public literals = Literals.getLiterals();
   public possibleColors = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'danger', 'light', 'medium', 'dark'];
 
   constructor(private toastController: ToastController) { }

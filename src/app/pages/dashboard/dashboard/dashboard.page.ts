@@ -1,4 +1,4 @@
-import { getLiterals } from 'src/app/util/literal-util';
+import { Literals} from 'src/app/util/literal-util';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPage implements OnInit {
 
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
 
   constructor() { }
 

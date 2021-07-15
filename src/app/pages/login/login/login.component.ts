@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Login } from 'src/app/model/user/login.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { UserService } from 'src/app/service/user.service';
-import { getLiterals } from 'src/app/util/literal-util';
-import { setUser } from 'src/app/util/user-util';
+import { Literals} from 'src/app/util/literal-util';
+import { UserUtil } from 'src/app/util/user-util';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   public login: Login = new Login();
   public slideOptions: any;
-  public literals: any = getLiterals();
+  public literals: any = Literals.getLiterals();
 
   constructor(
     private router: Router,
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   public submitLogin(): void {
     this.userService.login(this.login).subscribe(
       (response) => {
-        setUser(response);
+        UserUtil.setUser(response);
         this.toastService.success('welcome')
         this.navigate('dashboard');
       },

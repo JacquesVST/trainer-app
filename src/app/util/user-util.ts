@@ -1,15 +1,22 @@
+import { MediaFile } from "../model/media-file.model";
 import { User } from "../model/user/user.model";
-import { getLocalItem, setLocalItem } from "./storage-util";
+import { StorageUtil } from "./storage-util";
 
-export function setUser(user: User): void {
-    return setLocalItem('user', user);
-}
+export class UserUtil {
+    public static setUser(user: User): void {
+        const picture = new MediaFile();
+        picture.id = user.picture.id;
+        user.picture = picture;
+        return StorageUtil.setLocalItem('user', user);
+    }
 
-export function getUser(): User {
-    return getLocalItem('user');
-}
+    public static getUser(): User {
+        return StorageUtil.getLocalItem('user');
+    }
 
-export function unsetUser(): void {
-    localStorage.removeItem('user')
+    public static unsetUser(): void {
+        localStorage.removeItem('user')
+    }
+
 }
 
