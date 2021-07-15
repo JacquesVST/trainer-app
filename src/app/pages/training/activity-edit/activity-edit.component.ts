@@ -1,11 +1,11 @@
 import { ActivityRequestDTO } from './../../../model/activity/activity-request-dto.mode';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Activity } from 'src/app/model/activity.model';
-import { User } from 'src/app/model/user.model';
+import { Activity } from 'src/app/model/activity/activity.model';
+import { User } from 'src/app/model/user/user.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { ActivityService } from './../../../service/activity.service';
-import { Exercise } from 'src/app/model/exercise.model';
+import { Exercise } from 'src/app/model/exercise/exercise.model';
 import { ModalController } from '@ionic/angular';
 import { ExerciseSelectionComponent } from '../../exercise/exercise-selection/exercise-selection.component';
 import { getLiterals } from 'src/app/util/literal-util';

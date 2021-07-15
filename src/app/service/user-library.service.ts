@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserLibrary } from './../model/user-library.model';
+import { UserLibrary } from '../model/user-library/user-library.model';
 import { UserLibraryRequestDTO } from './../model/user-library/user-library-request-dto.model';
 import { ServerService } from './server.service';
 

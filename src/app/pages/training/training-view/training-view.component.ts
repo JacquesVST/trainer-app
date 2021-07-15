@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { Training } from 'src/app/model/training.model';
-import { User } from 'src/app/model/user.model';
+import { Training } from 'src/app/model/training/training.model';
+import { User } from 'src/app/model/user/user.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
 import { getLiterals } from 'src/app/util/literal-util';

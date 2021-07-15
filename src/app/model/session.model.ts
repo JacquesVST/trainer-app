@@ -1,4 +1,4 @@
-import { UserLibrary } from "./user-library.model";
+import { UserLibrary } from "./user-library/user-library.model";
 
 export class Session {
     id: number;

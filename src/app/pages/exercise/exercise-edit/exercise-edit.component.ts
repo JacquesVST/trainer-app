@@ -2,11 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { Exercise } from 'src/app/model/exercise.model';
+import { Exercise } from 'src/app/model/exercise/exercise.model';
 import { ExerciseRequestDTO } from 'src/app/model/exercise/exercise-request-dto.model';
 import { MediaFile } from 'src/app/model/media-file.model';
 import { Tag } from 'src/app/model/tag.model';
-import { User } from 'src/app/model/user.model';
+import { User } from 'src/app/model/user/user.model';
 import { ExerciseService } from 'src/app/service/exercise.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { getLiterals } from 'src/app/util/literal-util';

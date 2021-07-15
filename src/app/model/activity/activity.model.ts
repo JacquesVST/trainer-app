@@ -1,5 +1,5 @@
-import { Exercise } from "./exercise.model";
-import { Training } from "./training.model";
+import { Exercise } from "../exercise/exercise.model";
+import { Training } from "../training/training.model";
 
 export class Activity {
     id: number;

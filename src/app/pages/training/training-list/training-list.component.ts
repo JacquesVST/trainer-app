@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { getLiterals } from 'src/app/util/literal-util';
-import { Training } from '../../../model/training.model';
-import { User } from '../../../model/user.model';
+import { Training } from '../../../model/training/training.model';
+import { User } from '../../../model/user/user.model';
 import { ToastService } from '../../../service/toast.service';
 import { TrainingService } from '../../../service/training.service';
 import { getUser } from '../../../util/user-util';

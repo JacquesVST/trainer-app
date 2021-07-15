@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Training } from '../model/training.model';
+import { Training } from '../model/training/training.model';
 import { TrainingRequestDTO } from '../model/training/training-request-dto.model';
 import { ServerService } from './server.service';
 

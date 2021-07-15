@@ -1,4 +1,4 @@
-import { MediaFile } from "./media-file.model";
+import { MediaFile } from "../media-file.model";
 
 export interface User {
     id: number;

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Activity } from './../model/activity.model';
+import { Activity } from '../model/activity/activity.model';
 import { ActivityRequestDTO } from './../model/activity/activity-request-dto.mode';
 import { ServerService } from './server.service';
 

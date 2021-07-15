@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Training } from 'src/app/model/training.model';
+import { Training } from 'src/app/model/training/training.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
 import { getLiterals } from 'src/app/util/literal-util';
