@@ -6,18 +6,18 @@ import { ExerciseEditComponent } from './exercise-edit/exercise-edit.component';
 import { ExerciseListComponent } from './exercise-list/exercise-list.component';
 import { ExerciseSelectionComponent } from './exercise-selection/exercise-selection.component';
 import { ExerciseRoutingModule } from './exercise-routing.module';
-import { TagSelectionComponent } from './tag-selection/tag-selection.component';
+import { TagSelectionComponent } from '../tag/tag-selection/tag-selection.component';
 
 
 
 @NgModule({
-  declarations: [ExerciseEditComponent, ExerciseListComponent, ExerciseSelectionComponent, TagSelectionComponent],
+  declarations: [ExerciseEditComponent, ExerciseListComponent, ExerciseSelectionComponent],
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
     ExerciseRoutingModule
   ],
-  exports: [ExerciseEditComponent, ExerciseListComponent, ExerciseSelectionComponent, TagSelectionComponent]
+  exports: [ExerciseEditComponent, ExerciseListComponent, ExerciseSelectionComponent]
 })
 export class ExerciseModule { }

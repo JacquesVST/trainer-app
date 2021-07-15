@@ -38,7 +38,8 @@ export const enUs = {
         seconds: 'Seconds',
         repeats: 'Repeats',
         sets: 'Sets',
-        comments: 'Comments'
+        comments: 'Comments',
+        reorder: 'Reorder'
     },
 
     login: {
@@ -65,7 +66,8 @@ export const enUs = {
 
     messages: {
         warn_adding_activities: 'You must save this training before adding activities to it!',
-        library_description: 'All your available trainings will appear here!'
+        library_description: 'All your available trainings will appear here!',
+        save_reorder: 'Note: the activity list order must be saved apart from the training'
     },
 
     pages: {

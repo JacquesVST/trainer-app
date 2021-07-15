@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Exercise } from 'src/app/model/exercise.model';
 import { ExerciseRequestDTO } from 'src/app/model/exercise/exercise-request-dto.model';
@@ -8,11 +8,10 @@ import { MediaFile } from 'src/app/model/media-file.model';
 import { Tag } from 'src/app/model/tag.model';
 import { User } from 'src/app/model/user.model';
 import { ExerciseService } from 'src/app/service/exercise.service';
-import { TagService } from 'src/app/service/tag.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { getLiterals } from 'src/app/util/literal-util';
 import { getUser } from 'src/app/util/user-util';
-import { TagSelectionComponent } from '../tag-selection/tag-selection.component';
+import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.component';
 
 @Component({
   selector: 'app-exercise-edit',

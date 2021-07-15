@@ -38,7 +38,8 @@ export const ptBr = {
         seconds: 'Segundos',
         repeats: 'Repetições',
         sets: 'Séries',
-        comments: 'Comentários'
+        comments: 'Comentários',
+        reorder: 'Reordenar'
     },
 
     login: {
@@ -65,7 +66,8 @@ export const ptBr = {
 
     messages: {
         warn_adding_activities: 'Você deve salvar esta aula antes de adicionar atividades a ela!',
-        library_description: 'Todas as aulas disponíveis para praticar aparecerão aqui!'
+        library_description: 'Todas as aulas disponíveis para praticar aparecerão aqui!',
+        save_reorder: 'Observação: a ordem da lista de atividades deve ser salva a parte'
     },
 
     pages: {
@@ -81,11 +83,8 @@ export const ptBr = {
     },
 
     success_messages: {
-        exercise: 'Exercício salvo com sucesso!',
+        item_saved: 'Item salvo com sucesso!',
         welcome: 'Bem vindo de volta!',
         register: 'Registrado com sucesso!',
-        tag: 'Tag salva com sucesso!',
-        activity: 'Atividade salva com sucesso!',
-        training: 'Aula salva com sucesso!'
     }
 }

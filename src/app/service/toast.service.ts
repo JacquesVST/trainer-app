@@ -8,6 +8,7 @@ import { ToastController } from '@ionic/angular';
 export class ToastService {
 
   public literals = getLiterals();
+  public possibleColors = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'danger', 'light', 'medium', 'dark'];
 
   constructor(private toastController: ToastController) { }
 
@@ -33,6 +34,20 @@ export class ToastService {
         duration: 2000,
         position: 'top',
         color: 'danger'
+      })
+      .then((toast) => {
+        toast.present();
+      });
+  }
+
+  public custom(message: string, duration: number = 2000, color: string = 'light', header?: string): void {
+    this.toastController
+      .create({
+        header,
+        message,
+        duration,
+        position: 'top',
+        color
       })
       .then((toast) => {
         toast.present();

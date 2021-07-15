@@ -3,13 +3,13 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/model/tag.model';
 import { Training } from 'src/app/model/training.model';
+import { TrainingRequestDTO } from 'src/app/model/training/training-request-dto.model';
 import { User } from 'src/app/model/user.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
 import { getLiterals } from 'src/app/util/literal-util';
 import { getUser } from 'src/app/util/user-util';
-import { TagSelectionComponent } from '../../exercise/tag-selection/tag-selection.component';
-import { TrainingRequestDTO } from './../../../model/training/training-request-dto.model';
+import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.component';
 
 
 @Component({

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Training } from 'src/app/model/training.model';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
@@ -17,7 +18,8 @@ export class ExploreComponent implements OnInit {
 
   constructor(
     private trainingService: TrainingService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -43,6 +45,10 @@ export class ExploreComponent implements OnInit {
 
   public doRefresh(event) {
     this.getTrainings(event);
+  }
+
+  public goTo(url, param?): void {
+    param ? this.router.navigate([url, param]) : this.router.navigate([url]);
   }
 
 }

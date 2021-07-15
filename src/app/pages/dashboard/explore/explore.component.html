@@ -11,7 +11,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-card *ngFor="let training of trainings">
+        <ion-card *ngFor="let training of trainings" (click)="goTo('training/view', training.id)">
           <img src="https://picsum.photos/800/600">
           <ion-card-header>
             <ion-card-subtitle>

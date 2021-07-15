@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      {{pageTitle}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <img src="https://picsum.photos/800/600">
+  <ion-grid>
+
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="fixed">{{literals.form.description}}:</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            <ion-text>
+              {{training.description}}
+            </ion-text>
+          </ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-chip [style]="{'color':tag.color, 'border-color':tag.color}" *ngFor="let tag of selectedTags" outline>
+          <ion-label>{{tag.description}}</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+
+    <ion-item-divider>
+      <ion-label>
+        {{literals.common.exercises}}
+      </ion-label>
+    </ion-item-divider>
+    <app-activity-list *ngIf="trainingId" [trainingId]="trainingId" [readMode]="true"></app-activity-list>
+    <ion-row>
+      <ion-col>
+        <ion-item *ngIf="!trainingId" class="no-activities">
+          <ion-icon name="information-circle-outline" color="warning" slot="start"></ion-icon>
+          <ion-label color="warning">{{literals.messages.warn_adding_activities}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</ion-content>

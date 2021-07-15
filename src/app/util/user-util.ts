@@ -1,18 +1,12 @@
 import { User } from "../model/user.model";
+import { getLocalItem, setLocalItem } from "./storage-util";
 
 export function setUser(user: User): void {
-    localStorage.setItem('user', JSON.stringify(user))
+    return setLocalItem('user', user);
 }
 
 export function getUser(): User {
-    const userString: string = localStorage.getItem('user');
-
-    try {
-        const user: User = JSON.parse(userString);
-        return user
-    } catch (error) {
-        return null;
-    }
+    return getLocalItem('user');
 }
 
 export function unsetUser(): void {
