@@ -12,6 +12,9 @@
           <ion-thumbnail slot="start">
             <img [src]="profilePicture?.sanitized">
           </ion-thumbnail>
+          <ion-label>
+            {{user.firstName + ' ' + user.lastName}}
+          </ion-label>
         </ion-item>
       </ion-col>
     </ion-row>

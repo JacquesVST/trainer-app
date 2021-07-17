@@ -8,7 +8,7 @@ export class StorageUtil {
         try {
             return JSON.parse(atob(itemString));
         } catch (error) {
-            console.error(error)
+            console.error(error);
             return null;
         }
     }

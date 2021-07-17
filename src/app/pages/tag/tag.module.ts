@@ -8,12 +8,7 @@ import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 import { TagComponent } from './tag/tag.component';
 
 @NgModule({
-  declarations: [TagComponent, TagEditComponent, TagSelectionComponent],
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    TagRoutingModule
-  ]
+    declarations: [TagComponent, TagEditComponent, TagSelectionComponent],
+    imports: [IonicModule, CommonModule, FormsModule, TagRoutingModule]
 })
-export class TagModule { }
+export class TagModule {}

@@ -21,7 +21,8 @@
             <h1><b>{{selectedExercise?.title}}</b></h1>
             <h3>{{selectedExercise?.description}}</h3>
             <br *ngIf="selectedExercise?.tags?.length">
-            <ion-chip *ngFor="let tag of selectedExercise?.tags"  [style]="{'color':tag.color, 'border-color':tag.color}" outline>
+            <ion-chip *ngFor="let tag of selectedExercise?.tags" [style]="{'color':tag.color, 'border-color':tag.color}"
+              outline>
               <ion-label>{{tag.description}}</ion-label>
             </ion-chip>
           </ion-label>
@@ -64,8 +65,8 @@
         <ion-item>
           <ion-label>{{literals.form.sets}}:</ion-label>
           <ion-badge color="primary" slot="end">{{activity.sets}}</ion-badge>
-          <ion-range [(ngModel)]="activity.sets" [min]="setsRange.min" [max]="setsRange.max"
-            [step]="setsRange.step" snaps="true" ticks="true" color="primary"></ion-range>
+          <ion-range [(ngModel)]="activity.sets" [min]="setsRange.min" [max]="setsRange.max" [step]="setsRange.step"
+            snaps="true" ticks="true" color="primary"></ion-range>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -79,7 +80,7 @@
       </ion-col>
     </ion-row>
 
-    
+
   </ion-grid>
 </ion-content>
 

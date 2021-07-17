@@ -7,14 +7,10 @@ import { UserRequestDTO } from './../model/user/user-request-dto.model';
 import { ServerService } from './server.service';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class UserService {
-
-    constructor(
-        private serverService: ServerService,
-        private http: HttpClient
-    ) { }
+    constructor(private serverService: ServerService, private http: HttpClient) {}
 
     private url: string = `${this.serverService.getServer()}/user`;
 
@@ -29,5 +25,4 @@ export class UserService {
     public getAllUsers(): Observable<User[]> {
         return this.http.get<User[]>(this.url);
     }
-
 }

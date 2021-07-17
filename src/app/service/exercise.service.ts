@@ -6,14 +6,10 @@ import { ExerciseRequestDTO } from './../model/exercise/exercise-request-dto.mod
 import { ServerService } from './server.service';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class ExerciseService {
-
-    constructor(
-        private serverService: ServerService,
-        private http: HttpClient
-    ) { }
+    constructor(private serverService: ServerService, private http: HttpClient) {}
 
     private url: string = `${this.serverService.getServer()}/exercise`;
 
@@ -28,5 +24,4 @@ export class ExerciseService {
     public persistExercise(exerciseRequestDTO: ExerciseRequestDTO): Observable<Exercise> {
         return this.http.post<Exercise>(`${this.url}`, exerciseRequestDTO);
     }
-
 }

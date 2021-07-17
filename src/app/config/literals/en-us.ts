@@ -14,7 +14,9 @@ export const enUs = {
         activity: 'Activity',
         activities: 'Activities',
         ok: 'Ok',
-        save: 'Save'
+        save: 'Save',
+        add_library: 'Add to my library',
+        owner: 'Creator'
     },
 
     error_messages: {
@@ -67,7 +69,12 @@ export const enUs = {
     messages: {
         warn_adding_activities: 'You must save this training before adding activities to it!',
         library_description: 'All your available trainings will appear here!',
-        save_reorder: 'Note: the activity list order must be saved apart from the training'
+        save_reorder: 'Note: the activity list order must be saved apart from the training',
+        already_in_library: 'Already part of your library',
+        date_published: 'Published',
+        date_added: 'Added',
+        add_favorite: 'Added to favorites!',
+        remove_favorite: 'Removed from favorites!'
     },
 
     pages: {
@@ -86,5 +93,6 @@ export const enUs = {
         item_saved: 'Item successfully saved!',
         welcome: 'Welcome back!',
         register: 'Successfully registered!',
+        added_to_library: 'Successfully added item to library!'
     }
-}
+};

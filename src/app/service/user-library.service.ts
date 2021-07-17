@@ -6,14 +6,10 @@ import { UserLibraryRequestDTO } from './../model/user-library/user-library-requ
 import { ServerService } from './server.service';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class UserLibraryService {
-
-    constructor(
-        private serverService: ServerService,
-        private http: HttpClient
-    ) { }
+    constructor(private serverService: ServerService, private http: HttpClient) {}
 
     private url: string = `${this.serverService.getServer()}/user-library`;
 
@@ -33,4 +29,7 @@ export class UserLibraryService {
         return this.http.post<UserLibrary>(this.url, userLibraryRequestDTO);
     }
 
+    public findByEndUserAndTraining(userId: number, trainingId: number): Observable<UserLibrary> {
+        return this.http.get<UserLibrary>(`${this.url}/match?userId=${userId}&trainingId=${trainingId}`);
+    }
 }

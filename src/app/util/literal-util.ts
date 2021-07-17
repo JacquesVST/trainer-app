@@ -1,5 +1,5 @@
 import { enUs } from './../config/literals/en-us';
-import { ptBr } from "../config/literals/pt-br";
+import { ptBr } from '../config/literals/pt-br';
 
 export class Literals {
     public static getLiterals() {

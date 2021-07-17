@@ -6,18 +6,13 @@ import { ActivityRequestDTO } from './../model/activity/activity-request-dto.mod
 import { ServerService } from './server.service';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class ActivityService {
-
-    constructor(
-        private serverService: ServerService,
-        private http: HttpClient
-    ) { }
+    constructor(private serverService: ServerService, private http: HttpClient) {}
 
     private url: string = `${this.serverService.getServer()}/activity`;
 
-    
     public findById(activityId: number): Observable<Activity> {
         return this.http.get<Activity>(`${this.url}/?activityId=${activityId}`);
     }
@@ -37,5 +32,4 @@ export class ActivityService {
     public deleteActivity(activityId: number): Observable<void> {
         return this.http.delete<void>(`${this.url}/?activityId=${activityId}`);
     }
-
 }

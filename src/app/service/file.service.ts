@@ -5,14 +5,10 @@ import { MediaFile } from '../model/media-file/media-file.model';
 import { ServerService } from './server.service';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class FileService {
-
-    constructor(
-        private serverService: ServerService,
-        private http: HttpClient
-    ) { }
+    constructor(private serverService: ServerService, private http: HttpClient) {}
 
     private url: string = `${this.serverService.getServer()}/file`;
 
@@ -35,5 +31,4 @@ export class FileService {
     public persistFils(files: File[]): Observable<MediaFile[]> {
         return this.http.post<MediaFile[]>(`${this.url}/uploads`, files);
     }
-
 }

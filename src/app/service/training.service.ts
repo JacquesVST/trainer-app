@@ -6,14 +6,10 @@ import { TrainingRequestDTO } from '../model/training/training-request-dto.model
 import { ServerService } from './server.service';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class TrainingService {
-
-    constructor(
-        private serverService: ServerService,
-        private http: HttpClient
-    ) { }
+    constructor(private serverService: ServerService, private http: HttpClient) {}
 
     private url: string = `${this.serverService.getServer()}/training`;
 
@@ -26,11 +22,10 @@ export class TrainingService {
     }
 
     public findByTrainingId(trainingId: number): Observable<Training> {
-        return this.http.get<Training>(`${this.url}?trainingId=${trainingId}`)
+        return this.http.get<Training>(`${this.url}?trainingId=${trainingId}`);
     }
 
     public persistTraining(trainingRequestDTO: TrainingRequestDTO): Observable<Training> {
-        return this.http.post<Training>(this.url, trainingRequestDTO)
+        return this.http.post<Training>(this.url, trainingRequestDTO);
     }
-
 }

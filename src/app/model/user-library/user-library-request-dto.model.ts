@@ -1,8 +1,6 @@
-
-export interface UserLibraryRequestDTO {
+export class UserLibraryRequestDTO {
     id: number;
     userId: number;
     trainingId: number;
-    obtained: string;
     favorite: boolean;
 }

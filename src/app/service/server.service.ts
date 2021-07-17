@@ -2,17 +2,14 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-
 export class ServerService {
+    private urlServer = environment.API_URL;
 
-  private urlServer = environment.API_URL;
+    constructor() {}
 
-  constructor() { }
-
-  public getServer(): string {
-    return this.urlServer;
-  }
-
+    public getServer(): string {
+        return this.urlServer;
+    }
 }

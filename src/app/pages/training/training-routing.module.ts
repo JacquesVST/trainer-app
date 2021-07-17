@@ -6,34 +6,34 @@ import { TrainingListComponent } from './training-list/training-list.component';
 import { TrainingViewComponent } from './training-view/training-view.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: TrainingListComponent,
-  },
-  {
-    path: 'edit/:id',
-    component: TrainingEditComponent,
-  },
-  {
-    path: 'new',
-    component: TrainingEditComponent,
-  },
-  {
-    path: 'view/:id',
-    component: TrainingViewComponent,
-  },
-  {
-    path: 'activity/edit/:id',
-    component: ActivityEditComponent,
-  },
-  {
-    path: 'activity/new/:training',
-    component: ActivityEditComponent,
-  }
+    {
+        path: '',
+        component: TrainingListComponent
+    },
+    {
+        path: 'edit/:id',
+        component: TrainingEditComponent
+    },
+    {
+        path: 'new',
+        component: TrainingEditComponent
+    },
+    {
+        path: 'view/:id',
+        component: TrainingViewComponent
+    },
+    {
+        path: 'activity/edit/:id',
+        component: ActivityEditComponent
+    },
+    {
+        path: 'activity/new/:training',
+        component: ActivityEditComponent
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class TrainingRoutingModule { }
+export class TrainingRoutingModule {}

@@ -5,14 +5,10 @@ import { Tag } from '../model/tag.model';
 import { ServerService } from './server.service';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class TagService {
-
-    constructor(
-        private serverService: ServerService,
-        private http: HttpClient
-    ) { }
+    constructor(private serverService: ServerService, private http: HttpClient) {}
 
     private url: string = `${this.serverService.getServer()}/tag`;
 
@@ -23,5 +19,4 @@ export class TagService {
     public persistTag(tag: Tag): Observable<Tag> {
         return this.http.post<Tag>(this.url, tag);
     }
-
 }

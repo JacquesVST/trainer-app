@@ -9,16 +9,21 @@ import { TrainingListComponent } from './training-list/training-list.component';
 import { TrainingRoutingModule } from './training-routing.module';
 import { TrainingViewComponent } from './training-view/training-view.component';
 
-
-
 @NgModule({
-  declarations: [TrainingEditComponent, TrainingListComponent, TrainingViewComponent, ActivityEditComponent, ActivityListComponent],
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    TrainingRoutingModule
-  ],
-  exports: [TrainingEditComponent, TrainingListComponent, TrainingViewComponent, ActivityEditComponent, ActivityListComponent]
+    declarations: [
+        TrainingEditComponent,
+        TrainingListComponent,
+        TrainingViewComponent,
+        ActivityEditComponent,
+        ActivityListComponent
+    ],
+    imports: [IonicModule, CommonModule, FormsModule, TrainingRoutingModule],
+    exports: [
+        TrainingEditComponent,
+        TrainingListComponent,
+        TrainingViewComponent,
+        ActivityEditComponent,
+        ActivityListComponent
+    ]
 })
-export class TrainingModule { }
+export class TrainingModule {}

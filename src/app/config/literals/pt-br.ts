@@ -14,7 +14,9 @@ export const ptBr = {
         activity: 'Atividade',
         activities: 'Atividades',
         ok: 'Ok',
-        save: 'Salvar'
+        save: 'Salvar',
+        add_library: 'Adicionar à minha biblioteca',
+        owner: 'Criador'
     },
 
     error_messages: {
@@ -67,7 +69,12 @@ export const ptBr = {
     messages: {
         warn_adding_activities: 'Você deve salvar esta aula antes de adicionar atividades a ela!',
         library_description: 'Todas as aulas disponíveis para praticar aparecerão aqui!',
-        save_reorder: 'Observação: a ordem da lista de atividades deve ser salva a parte'
+        save_reorder: 'Observação: a ordem da lista de atividades deve ser salva a parte',
+        already_in_library: 'Disponível na sua biblioteca',
+        date_published: 'Publicado',
+        date_added: 'Adquirido',
+        add_favorite: 'Adicionado aos favoritos!',
+        remove_favorite: 'Removido dos favoritos!'
     },
 
     pages: {
@@ -79,12 +86,13 @@ export const ptBr = {
         edit_activity: 'Editar Atividade',
         new_tag: 'Nova tag',
         select_tags: 'Selecionar Tags',
-        select_exercise: 'Selecionar Exercício',
+        select_exercise: 'Selecionar Exercício'
     },
 
     success_messages: {
         item_saved: 'Item salvo com sucesso!',
         welcome: 'Bem vindo de volta!',
         register: 'Registrado com sucesso!',
+        added_to_library: 'Item adicionado a biblioteca com sucesso!'
     }
-}
+};

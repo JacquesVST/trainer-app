@@ -1,6 +1,6 @@
-import { MediaFile } from "../model/media-file/media-file.model";
-import { User } from "../model/user/user.model";
-import { StorageUtil } from "./storage-util";
+import { MediaFile } from '../model/media-file/media-file.model';
+import { User } from '../model/user/user.model';
+import { StorageUtil } from './storage-util';
 
 export class UserUtil {
     public static setUser(user: User): void {
@@ -15,8 +15,6 @@ export class UserUtil {
     }
 
     public static unsetUser(): void {
-        localStorage.removeItem('user')
+        localStorage.removeItem('user');
     }
-
 }
-

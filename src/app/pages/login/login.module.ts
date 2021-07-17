@@ -7,12 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from '../register/register/register.component';
 
 @NgModule({
-  declarations: [LoginComponent],
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    LoginRoutingModule
-  ],
+    declarations: [LoginComponent],
+    imports: [IonicModule, CommonModule, FormsModule, LoginRoutingModule]
 })
-export class LoginModule { }
+export class LoginModule {}

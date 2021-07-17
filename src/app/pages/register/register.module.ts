@@ -6,12 +6,7 @@ import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [RegisterComponent],
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    RegisterRoutingModule
-  ]
+    declarations: [RegisterComponent],
+    imports: [IonicModule, CommonModule, FormsModule, RegisterRoutingModule]
 })
-export class RegisterModule { }
+export class RegisterModule {}

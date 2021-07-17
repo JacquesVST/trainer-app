@@ -7,46 +7,40 @@ import { UserUtil } from 'src/app/util/user-util';
 import { ImageService } from './../../../service/image.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+    public literals: any = Literals.getLiterals();
+    public user: User;
+    public loading: boolean;
+    public profilePicture: SanitizedMediaFile;
 
-  public literals: any = Literals.getLiterals();
-  public user: User;
-  public loading: boolean;
-  public profilePicture: SanitizedMediaFile;
+    constructor(private router: Router, private imageService: ImageService) {}
 
-  constructor(
-    private router: Router,
-    private imageService: ImageService
-  ) { }
-
-  ngOnInit() {
-    this.user = UserUtil.getUser();
-    this.getImage();
-  }
-
-  public async getImage() {
-    if (this.user?.picture?.id) {
-      this.profilePicture = await this.imageService.getSanitizedImage(this.user?.picture?.id);
-    } else {
-      this.profilePicture = {
-        sanitized: this.imageService.getDefaultImage(),
-        original: null
-      }
+    ngOnInit() {
+        this.user = UserUtil.getUser();
+        this.getImage();
     }
 
-  }
+    public async getImage() {
+        if (this.user?.picture?.id) {
+            this.profilePicture = await this.imageService.getSanitizedImage(this.user?.picture?.id);
+        } else {
+            this.profilePicture = {
+                sanitized: this.imageService.getDefaultImage(),
+                original: null
+            };
+        }
+    }
 
-  public redirect(url: string): void {
-    this.router.navigate([url]);
-  }
+    public redirect(url: string): void {
+        this.router.navigate([url]);
+    }
 
-  public logout(): void {
-    this.router.navigateByUrl('/login');
-    UserUtil.unsetUser();
-  }
-
+    public logout(): void {
+        this.router.navigateByUrl('/login');
+        UserUtil.unsetUser();
+    }
 }

@@ -11,12 +11,7 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 import { DashboardPage } from './dashboard/dashboard.page';
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    DashboardPageRoutingModule
-  ],
-  declarations: [DashboardPage, ExploreComponent, LibraryComponent, ProfileComponent]
+    imports: [IonicModule, CommonModule, FormsModule, DashboardPageRoutingModule],
+    declarations: [DashboardPage, ExploreComponent, LibraryComponent, ProfileComponent]
 })
 export class DashboardPageModule {}

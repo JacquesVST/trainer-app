@@ -8,18 +8,22 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
   <ion-grid>
     <ion-row>
       <ion-col>
         <ion-card *ngFor="let training of trainings" (click)="goTo('training/view', training.id)">
+
           <img src="https://picsum.photos/800/600">
           <ion-card-header>
             <ion-card-subtitle>
-              {{training?.creator?.firstName + (training?.published ? ' - ' : '')}}
-              {{training?.published | date: 'dd/MM/yyyy'}}
+              {{literals.messages.date_published}}: {{training?.published | date: 'dd/MM/yyyy'}}
             </ion-card-subtitle>
-            <ion-card-title>{{training.title}}</ion-card-title>
+            <ion-card-title>
+              {{training.title}}
+            </ion-card-title>
           </ion-card-header>
+
           <ion-item *ngIf="training?.tags?.length">
             <ion-chip *ngFor="let tag of training?.tags" [style]="{'color':tag.color, 'border-color':tag.color}"
               outline>

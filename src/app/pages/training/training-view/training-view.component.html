@@ -13,18 +13,32 @@
   <img src="https://picsum.photos/800/600">
   <ion-grid>
 
-
     <ion-row>
       <ion-col>
         <ion-item>
           <ion-label position="fixed">{{literals.form.description}}:</ion-label>
         </ion-item>
-        <ion-item>
-          <ion-text>
-            <ion-text>
-              {{training.description}}
-            </ion-text>
+        <ion-item lines="none">
+          <ion-text class="ion-margin">
+            {{training.description}}
           </ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="fixed">{{literals.common.owner}}:</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-thumbnail slot="start">
+            <img [src]="profilePicture">
+          </ion-thumbnail>
+          <ion-label>
+            {{training?.creator?.firstName + ' ' + training?.creator?.lastName}}
+          </ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -37,11 +51,6 @@
       </ion-col>
     </ion-row>
 
-    <ion-item-divider>
-      <ion-label>
-        {{literals.common.exercises}}
-      </ion-label>
-    </ion-item-divider>
     <app-activity-list *ngIf="trainingId" [trainingId]="trainingId" [readMode]="true"></app-activity-list>
     <ion-row>
       <ion-col>
@@ -51,7 +60,15 @@
         </ion-item>
       </ion-col>
     </ion-row>
-
-
   </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" [color]="userLibrary ? 'light' : 'success'" (click)="addToLibrary()"
+      [disabled]="userLibrary || loading">
+      <ion-icon *ngIf="!userLibrary" slot="start" name="add-outline"></ion-icon>
+      {{libraryButton}}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

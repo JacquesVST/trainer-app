@@ -56,11 +56,6 @@
       </ion-col>
     </ion-row>
 
-    <ion-item-divider>
-      <ion-label>
-        {{literals.common.activities}}
-      </ion-label>
-    </ion-item-divider>
     <app-activity-list *ngIf="trainingId" [trainingId]="trainingId" [readMode]="false"></app-activity-list>
     <ion-row>
       <ion-col>
