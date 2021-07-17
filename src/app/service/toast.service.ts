@@ -1,6 +1,7 @@
 import { Literals } from 'src/app/util/literal-util';
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { ToastOptions } from '@ionic/core';
 
 @Injectable({
     providedIn: 'root'
@@ -54,11 +55,19 @@ export class ToastService {
     public custom(message: string, duration: number = 2000, color: string = 'light'): void {
         this.toastController
             .create({
-                message : message,
+                message: message,
                 duration: duration,
                 position: 'top',
                 color: color
             })
+            .then((toast) => {
+                toast.present();
+            });
+    }
+
+    public original(options: ToastOptions): void {
+        this.toastController
+            .create(options)
             .then((toast) => {
                 toast.present();
             });

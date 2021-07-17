@@ -96,7 +96,6 @@ export class ActivityListComponent implements OnInit {
     public doReorder(event) {
         const itemMove = this.activities.splice(event.detail.from, 1)[0];
         this.activities.splice(event.detail.to, 0, itemMove);
-        console.log(this.activities);
         event.detail.complete();
     }
 

@@ -72,9 +72,12 @@ export class LibraryViewComponent implements OnInit {
         this.userLibraryService.persistUserLibrary(this.userLibraryRequestDTO).subscribe(
             (response: UserLibrary) => {
                 this.userLibrary = response;
-                this.toastService.custom(
-                    this.literals.messages[response.favorite ? 'added_favorite' : 'removed_favorite']
-                );
+                this.toastService.original({
+                    message: this.literals.messages[response.favorite ? 'added_favorite' : 'removed_favorite'],
+                    duration: 2000,
+                    color: response.favorite ? 'success' : 'light',
+                    position: 'bottom'
+                });
             },
             (error) => {
                 console.error(error);

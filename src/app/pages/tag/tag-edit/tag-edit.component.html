@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tag" (click)="dismiss()"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{literals.common.new_tag}}</ion-title>
+    <ion-title>{{literals.pages.new_tag}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +12,7 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label position="floating">{{literals.common.description}}:</ion-label>
+          <ion-label position="floating">{{literals.form.description}}:</ion-label>
           <ion-input [(ngModel)]="newTag.description"></ion-input>
         </ion-item>
       </ion-col>
@@ -20,12 +20,12 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label position="fixed">{{literals.common.color}}:</ion-label>
+          <ion-label position="fixed">{{literals.form.color}}:</ion-label>
           <i slot="end" class="color-sample" [style]="{'background-color':newTag.color}"></i>
           <input id="color-input" type="color" slot="end" [(ngModel)]="newTag.color">
           <ion-button color="light" (click)="openColorPicker()" slot="end">
             <ion-icon slot="end" name="brush-outline"></ion-icon>
-            {{literals.common.pick_color}}
+            {{literals.form.pick_color}}
           </ion-button>
         </ion-item>
       </ion-col>

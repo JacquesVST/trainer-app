@@ -17,7 +17,8 @@ export const ptBr = {
         save: 'Salvar',
         add_library: 'Adicionar à minha biblioteca',
         owner: 'Criador',
-        favorites: 'Favoritos'
+        favorites: 'Favoritos',
+        favorite_action: 'Favoritar'
     },
 
     error_messages: {

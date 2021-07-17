@@ -17,7 +17,8 @@ export const enUs = {
         save: 'Save',
         add_library: 'Add to my library',
         owner: 'Creator',
-        favorites: 'Favorites'
+        favorites: 'Favorites',
+        favorite_action: 'Favorite'
     },
 
     error_messages: {

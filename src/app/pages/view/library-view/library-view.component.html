@@ -10,7 +10,8 @@
 
     <ion-buttons slot="end" *ngIf="userLibrary">
       <ion-button (click)="updateFavorite()">
-        <ion-icon [name]="userLibrary.favorite ? 'star' : 'star-outline' "></ion-icon>
+        <ion-icon [name]="userLibrary.favorite ? 'star' : 'star-outline' " slot="start"></ion-icon>
+        {{literals.common.favorite_action}}
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

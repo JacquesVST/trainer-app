@@ -20,11 +20,15 @@ export class ProfileComponent implements OnInit {
     constructor(private router: Router, private imageService: ImageService) {}
 
     ngOnInit() {
-        this.user = UserUtil.getUser();
-        this.getImage();
+        this.initPage();
     }
 
-    public async getImage() {
+    public initPage(refresh?): void {
+        this.user = UserUtil.getUser();
+        this.getImage(refresh);
+    }
+
+    public async getImage(refresh?) {
         if (this.user?.picture?.id) {
             this.profilePicture = await this.imageService.getSanitizedImage(this.user?.picture?.id);
         } else {
@@ -32,6 +36,9 @@ export class ProfileComponent implements OnInit {
                 sanitized: this.imageService.getDefaultImage(),
                 original: null
             };
+        }
+        if (refresh) {
+            setTimeout(() => refresh.target.complete(), 0);
         }
     }
 
@@ -42,5 +49,9 @@ export class ProfileComponent implements OnInit {
     public logout(): void {
         this.router.navigateByUrl('/login');
         UserUtil.unsetUser();
+    }
+
+    public doRefresh(event) {
+        this.initPage(event);
     }
 }
