@@ -5,13 +5,11 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-import { DashboardPageRoutingModule } from './dashboard-routing.module';
-
-import { DashboardPage } from './dashboard/dashboard.page';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 
 @NgModule({
-    imports: [IonicModule, CommonModule, FormsModule, DashboardPageRoutingModule],
-    declarations: [DashboardPage, ExploreComponent, LibraryComponent, ProfileComponent]
+    imports: [IonicModule, CommonModule, FormsModule, DashboardRoutingModule],
+    declarations: [DashboardComponent, ExploreComponent, LibraryComponent, ProfileComponent]
 })
-export class DashboardPageModule {}
+export class DashboardModule {}

@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-dashboard',
-    templateUrl: 'dashboard.page.html',
-    styleUrls: ['dashboard.page.scss']
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardPage implements OnInit {
+export class DashboardComponent implements OnInit {
     public literals: any = Literals.getLiterals();
 
     constructor() {}

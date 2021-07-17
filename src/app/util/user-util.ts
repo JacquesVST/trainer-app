@@ -4,9 +4,11 @@ import { StorageUtil } from './storage-util';
 
 export class UserUtil {
     public static setUser(user: User): void {
-        const picture = new MediaFile();
-        picture.id = user?.picture?.id;
-        user.picture = picture;
+        if (user?.picture?.id) {
+            const picture = new MediaFile();
+            picture.id = user?.picture?.id;
+            user.picture = picture;
+        }
         return StorageUtil.setLocalItem('user', user);
     }
 

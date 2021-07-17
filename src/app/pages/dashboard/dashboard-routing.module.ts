@@ -3,12 +3,12 @@ import { LibraryComponent } from './library/library.component';
 import { ExploreComponent } from './explore/explore.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardPage } from './dashboard/dashboard.page';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
     {
         path: 'dashboard',
-        component: DashboardPage,
+        component: DashboardComponent,
         children: [
             {
                 path: 'explore',
@@ -40,4 +40,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class DashboardPageRoutingModule {}
+export class DashboardRoutingModule {}

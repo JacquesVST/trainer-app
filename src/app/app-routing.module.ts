@@ -6,7 +6,7 @@ const routes: Routes = [
     {
         path: '',
         canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/dashboard/dashboard.module').then((m) => m.DashboardPageModule)
+        loadChildren: () => import('./pages/dashboard/dashboard.module').then((m) => m.DashboardModule)
     },
     {
         path: 'login',
@@ -32,13 +32,18 @@ const routes: Routes = [
         loadChildren: () => import('./pages/tag/tag.module').then((m) => m.TagModule)
     },
     {
+        path: 'view',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/view/view.module').then((m) => m.ViewModule)
+    },
+    {
         path: '**',
         redirectTo: '/login',
         pathMatch: 'full'
     }
 ];
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
 export class AppRoutingModule {}

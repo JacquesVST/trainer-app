@@ -13,8 +13,8 @@ export class UserLibraryService {
 
     private url: string = `${this.serverService.getServer()}/user-library`;
 
-    public findAll(): Observable<UserLibrary[]> {
-        return this.http.get<UserLibrary[]>(this.url);
+    public findById(userLibraryId: number): Observable<UserLibrary> {
+        return this.http.get<UserLibrary>(`${this.url}?userLibraryId=${userLibraryId}`);
     }
 
     public findAllByUser(userId: number): Observable<UserLibrary[]> {
