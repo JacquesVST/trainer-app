@@ -12,6 +12,35 @@
   <ion-grid>
     <ion-row>
       <ion-col>
+        <ion-item-divider>
+          <ion-label>
+            {{literals.common.favorites}}
+          </ion-label>
+        </ion-item-divider>
+
+        <ion-card *ngFor="let item of favorites" (click)="goTo('view/library', item.id)">
+          <img src="https://picsum.photos/800/450" />
+          <ion-card-header>
+            <ion-card-subtitle>
+              {{ literals.messages.date_added }}: {{ item.obtained | date: "dd/MM/yyyy" }}
+            </ion-card-subtitle>
+            <ion-card-title>{{ item.training.title }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-item *ngIf="item.training?.tags?.length">
+            <ion-chip *ngFor="let tag of item.training?.tags" [style]="{ color: tag.color, 'border-color': tag.color }"
+              outline>
+              <ion-label>{{ tag.description }}</ion-label>
+            </ion-chip>
+          </ion-item>
+        </ion-card>
+
+        <ion-item-divider>
+          <ion-label>
+            {{literals.common.trainings}}
+          </ion-label>
+        </ion-item-divider>
+
         <ion-card *ngFor="let item of library" (click)="goTo('view/library', item.id)">
           <img src="https://picsum.photos/800/450" />
           <ion-card-header>

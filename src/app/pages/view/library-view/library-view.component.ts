@@ -1,6 +1,8 @@
+import { UserViewComponent } from './../user-view/user-view.component';
+import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Training } from 'src/app/model/training/training.model';
 import { UserLibraryRequestDTO } from 'src/app/model/user-library/user-library-request-dto.model';
 import { UserLibrary } from 'src/app/model/user-library/user-library.model';
@@ -34,7 +36,8 @@ export class LibraryViewComponent implements OnInit {
         private userLibraryService: UserLibraryService,
         private toastService: ToastService,
         private imageService: ImageService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private modalController: ModalController
     ) {}
 
     ngOnInit() {
@@ -69,6 +72,9 @@ export class LibraryViewComponent implements OnInit {
         this.userLibraryService.persistUserLibrary(this.userLibraryRequestDTO).subscribe(
             (response: UserLibrary) => {
                 this.userLibrary = response;
+                this.toastService.custom(
+                    this.literals.messages[response.favorite ? 'added_favorite' : 'removed_favorite']
+                );
             },
             (error) => {
                 console.error(error);
@@ -94,5 +100,16 @@ export class LibraryViewComponent implements OnInit {
         } else {
             this.trainingPicture = this.imageService.getDefaultImage();
         }
+    }
+
+    public async openUserModal() {
+        const modal = await this.modalController.create({
+            component: UserViewComponent,
+            componentProps: {
+                user: this.training.creator
+            }
+        });
+
+        return await modal.present();
     }
 }

@@ -51,14 +51,13 @@ export class ToastService {
             });
     }
 
-    public custom(message: string, duration: number = 2000, color: string = 'light', header?: string): void {
+    public custom(message: string, duration: number = 2000, color: string = 'light'): void {
         this.toastController
             .create({
-                header,
-                message,
-                duration,
+                message : message,
+                duration: duration,
                 position: 'top',
-                color
+                color: color
             })
             .then((toast) => {
                 toast.present();

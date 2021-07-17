@@ -1,6 +1,7 @@
+import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Training } from 'src/app/model/training/training.model';
 import { User } from 'src/app/model/user/user.model';
 import { ToastService } from 'src/app/service/toast.service';
@@ -8,9 +9,10 @@ import { TrainingService } from 'src/app/service/training.service';
 import { UserLibraryService } from 'src/app/service/user-library.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
-import { UserLibraryRequestDTO } from './../../../model/user-library/user-library-request-dto.model';
-import { UserLibrary } from './../../../model/user-library/user-library.model';
-import { ImageService } from './../../../service/image.service';
+import { UserLibraryRequestDTO } from '../../../model/user-library/user-library-request-dto.model';
+import { UserLibrary } from '../../../model/user-library/user-library.model';
+import { ImageService } from '../../../service/image.service';
+import { UserViewComponent } from '../user-view/user-view.component';
 
 @Component({
     selector: 'app-training-view',
@@ -37,7 +39,8 @@ export class TrainingViewComponent implements OnInit {
         private toastService: ToastService,
         private trainingService: TrainingService,
         private imageService: ImageService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private modalController: ModalController
     ) {}
 
     ngOnInit() {
@@ -117,5 +120,16 @@ export class TrainingViewComponent implements OnInit {
         } else {
             this.trainingPicture = this.imageService.getDefaultImage();
         }
+    }
+
+    public async openUserModal() {
+        const modal = await this.modalController.create({
+            component: UserViewComponent,
+            componentProps: {
+                user: this.training.creator
+            }
+        });
+
+        return await modal.present();
     }
 }

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ActivityEditComponent } from './activity-edit/activity-edit.component';
 import { TrainingEditComponent } from './training-edit/training-edit.component';
 import { TrainingListComponent } from './training-list/training-list.component';
-import { TrainingViewComponent } from './training-view/training-view.component';
+import { TrainingViewComponent } from '../view/training-view/training-view.component';
 
 const routes: Routes = [
     {
@@ -17,10 +17,6 @@ const routes: Routes = [
     {
         path: 'new',
         component: TrainingEditComponent
-    },
-    {
-        path: 'view/:id',
-        component: TrainingViewComponent
     },
     {
         path: 'activity/edit/:id',

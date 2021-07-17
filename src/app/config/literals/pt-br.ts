@@ -16,7 +16,8 @@ export const ptBr = {
         ok: 'Ok',
         save: 'Salvar',
         add_library: 'Adicionar à minha biblioteca',
-        owner: 'Criador'
+        owner: 'Criador',
+        favorites: 'Favoritos'
     },
 
     error_messages: {
@@ -73,8 +74,8 @@ export const ptBr = {
         already_in_library: 'Disponível na sua biblioteca',
         date_published: 'Publicado',
         date_added: 'Adquirido',
-        add_favorite: 'Adicionado aos favoritos!',
-        remove_favorite: 'Removido dos favoritos!'
+        added_favorite: 'Adicionado aos favoritos!',
+        removed_favorite: 'Removido dos favoritos!'
     },
 
     pages: {
@@ -86,7 +87,8 @@ export const ptBr = {
         edit_activity: 'Editar Atividade',
         new_tag: 'Nova tag',
         select_tags: 'Selecionar Tags',
-        select_exercise: 'Selecionar Exercício'
+        select_exercise: 'Selecionar Exercício',
+        user_info: 'Informações do Usuário'
     },
 
     success_messages: {

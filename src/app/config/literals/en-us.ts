@@ -16,7 +16,8 @@ export const enUs = {
         ok: 'Ok',
         save: 'Save',
         add_library: 'Add to my library',
-        owner: 'Creator'
+        owner: 'Creator',
+        favorites: 'Favorites'
     },
 
     error_messages: {
@@ -73,8 +74,8 @@ export const enUs = {
         already_in_library: 'Already part of your library',
         date_published: 'Published',
         date_added: 'Added',
-        add_favorite: 'Added to favorites!',
-        remove_favorite: 'Removed from favorites!'
+        added_favorite: 'Added to favorites!',
+        removed_favorite: 'Removed from favorites!'
     },
 
     pages: {
@@ -86,7 +87,8 @@ export const enUs = {
         edit_activity: 'Edit activity',
         new_tag: 'New tag',
         select_tags: 'Select Tags',
-        select_exercise: 'Select Exercise'
+        select_exercise: 'Select Exercise',
+        user_info: 'User Info'
     },
 
     success_messages: {

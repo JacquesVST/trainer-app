@@ -1,3 +1,25 @@
-<p>
-  user-view works!
-</p>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="dismiss()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{literals.pages.user_info}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-thumbnail slot="start">
+            <img [src]="profilePicture">
+          </ion-thumbnail>
+          <ion-label class="ion-text-center">
+            {{user.firstName + ' ' + user.lastName}}
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

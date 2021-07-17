@@ -15,6 +15,7 @@ import { UserUtil } from 'src/app/util/user-util';
 export class LibraryComponent implements OnInit {
     public literals: any = Literals.getLiterals();
     public library: UserLibrary[] = [];
+    public favorites: UserLibrary[] = [];
     public loading: boolean = false;
 
     public user: User;
@@ -35,6 +36,7 @@ export class LibraryComponent implements OnInit {
         this.userLibraryService.findAllByUser(this.user.id).subscribe(
             (library: UserLibrary[]) => {
                 this.library = library;
+                this.processFavorites();
             },
             (error) => {
                 console.error(error);
@@ -47,6 +49,14 @@ export class LibraryComponent implements OnInit {
                 }
             }
         );
+    }
+
+    public processFavorites(): void {
+        for (const lib of this.library) {
+            if (lib.favorite) {
+                this.favorites.push(this.library.shift());
+            }
+        }
     }
 
     public doRefresh(event) {

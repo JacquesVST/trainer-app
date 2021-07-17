@@ -7,13 +7,11 @@ import { ActivityListComponent } from './activity-list/activity-list.component';
 import { TrainingEditComponent } from './training-edit/training-edit.component';
 import { TrainingListComponent } from './training-list/training-list.component';
 import { TrainingRoutingModule } from './training-routing.module';
-import { TrainingViewComponent } from './training-view/training-view.component';
 
 @NgModule({
     declarations: [
         TrainingEditComponent,
         TrainingListComponent,
-        TrainingViewComponent,
         ActivityEditComponent,
         ActivityListComponent
     ],
@@ -21,7 +19,6 @@ import { TrainingViewComponent } from './training-view/training-view.component';
     exports: [
         TrainingEditComponent,
         TrainingListComponent,
-        TrainingViewComponent,
         ActivityEditComponent,
         ActivityListComponent
     ]

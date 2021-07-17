@@ -34,7 +34,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row (click)="openUserModal()">
       <ion-col>
         <ion-item>
           <ion-label position="fixed">{{literals.common.owner}}:</ion-label>
@@ -45,7 +45,7 @@
             <img [src]="trainingPicture">
           </ion-thumbnail>
 
-          <ion-label>
+          <ion-label class="ion-text-center">
             {{training?.creator?.firstName + ' ' + training?.creator?.lastName}}
           </ion-label>
           <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
