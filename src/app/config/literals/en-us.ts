@@ -43,7 +43,8 @@ export const enUs = {
         repeats: 'Repeats',
         sets: 'Sets',
         comments: 'Comments',
-        reorder: 'Reorder'
+        reorder: 'Reorder',
+        total: 'Total'
     },
 
     login: {

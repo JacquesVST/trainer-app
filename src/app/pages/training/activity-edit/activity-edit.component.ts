@@ -1,14 +1,15 @@
-import { ActivityRequestDTO } from './../../../model/activity/activity-request-dto.mode';
+import { ActivityUtil } from './../../../util/activity-util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Activity } from 'src/app/model/activity/activity.model';
-import { User } from 'src/app/model/user/user.model';
-import { ToastService } from 'src/app/service/toast.service';
-import { ActivityService } from './../../../service/activity.service';
-import { Exercise } from 'src/app/model/exercise/exercise.model';
 import { ModalController } from '@ionic/angular';
-import { ExerciseSelectionComponent } from '../../exercise/exercise-selection/exercise-selection.component';
+import { Activity } from 'src/app/model/activity/activity.model';
+import { Exercise } from 'src/app/model/exercise/exercise.model';
+import { ToastService } from 'src/app/service/toast.service';
 import { Literals } from 'src/app/util/literal-util';
+import { ExerciseSelectionComponent } from '../../exercise/exercise-selection/exercise-selection.component';
+import { ActivityCount } from './../../../model/activity/activity-count.model';
+import { ActivityRequestDTO } from './../../../model/activity/activity-request-dto.mode';
+import { ActivityService } from './../../../service/activity.service';
 
 @Component({
     selector: 'app-activity-edit',
@@ -21,14 +22,15 @@ export class ActivityEditComponent implements OnInit {
 
     public activityId: number;
     public activity: ActivityRequestDTO = new ActivityRequestDTO();
+    public total: string = '...';
 
     public selectedExercise: Exercise;
     public selectedTrainingId: number;
     public loading: boolean;
 
-    public durationRange: any;
-    public repeatsRange: any;
-    public setsRange: any;
+    public durationInput: ActivityCount;
+    public repeatsInput: ActivityCount;
+    public setsInput: ActivityCount;
 
     constructor(
         private modalController: ModalController,
@@ -48,22 +50,28 @@ export class ActivityEditComponent implements OnInit {
             this.getActivity();
         }
 
-        this.durationRange = {
+        this.durationInput = {
+            active: true,
             min: 0,
             max: 60,
-            step: 5
+            step: 5,
+            value: 0
         };
 
-        this.repeatsRange = {
+        this.repeatsInput = {
+            active: true,
             min: 0,
             max: 100,
-            step: 5
+            step: 5,
+            value: 0
         };
 
-        this.setsRange = {
+        this.setsInput = {
+            active: true,
             min: 0,
             max: 20,
-            step: 1
+            step: 1,
+            value: 0
         };
     }
 
@@ -104,6 +112,10 @@ export class ActivityEditComponent implements OnInit {
     }
 
     public prepareModel(): void {
+        this.activity.duration = this.durationInput.value;
+        this.activity.repeats = this.repeatsInput.value;
+        this.activity.sets = this.setsInput.value;
+
         this.activity.exerciseId = this.selectedExercise.id;
         this.activity.trainingId = this.selectedTrainingId;
         this.persistActivity();
@@ -112,11 +124,34 @@ export class ActivityEditComponent implements OnInit {
     public convertToEdit(activity: Activity): void {
         this.activity.id = activity.id;
         this.activity.comments = activity.comments;
-        this.activity.duration = activity.duration;
-        this.activity.repeats = activity.repeats;
-        this.activity.sets = activity.sets;
+        this.activity.sequentialOrder = activity.sequentialOrder;
+
+        this.durationInput.value = activity.duration;
+        this.repeatsInput.value = activity.repeats;
+        this.setsInput.value = activity.sets;
+
         this.selectedExercise = activity.exercise;
         this.selectedTrainingId = activity.training.id;
+        this.showTotal();
+    }
+
+    public showTotal() {
+        this.total = '...';
+        this.total = ActivityUtil.checkTotal(
+            this.durationInput.value,
+            this.repeatsInput.value,
+            this.setsInput.value,
+            this.selectedExercise?.title
+        );
+    }
+
+    public disableInput(event, input: ActivityCount) {
+        if (event.detail.checked) {
+            input.active = true;
+        } else {
+            input.active = false;
+            input.value = 0;
+        }
     }
 
     public goTo(url, param?): void {

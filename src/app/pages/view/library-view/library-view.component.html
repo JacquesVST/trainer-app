@@ -61,6 +61,6 @@
         </ion-chip>
       </ion-col>
     </ion-row>
-    <!-- <app-activity-list *ngIf="trainingId" [trainingId]="trainingId" [readMode]="true"></app-activity-list> -->
+    <app-activity-list-view *ngIf="training?.id" [trainingId]="training.id"></app-activity-list-view>
   </ion-grid>
 </ion-content>

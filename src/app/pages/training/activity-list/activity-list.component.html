@@ -77,14 +77,14 @@
 
   <ion-row>
     <ion-col>
-      <ion-button expand="block" color="light" (click)="toggleReorder()">
+      <ion-button expand="block" color="reorder ? success : light" (click)="toggleReorder()">
         <ion-icon slot="start" [name]="reorder ? 'save-outline' : 'repeat-outline'"></ion-icon>
         {{reorderButton}}
       </ion-button>
     </ion-col>
   </ion-row>
 
-  <ion-row *ngIf="!readMode">
+  <ion-row>
     <ion-col>
       <ion-button expand="block" color="primary" (click)="goTo('/training/activity/new', trainingId)"
         [disabled]="loading">

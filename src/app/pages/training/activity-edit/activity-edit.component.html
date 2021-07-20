@@ -42,9 +42,15 @@
       <ion-col>
         <ion-item>
           <ion-label>{{literals.form.duration}} ({{literals.form.seconds}}):</ion-label>
-          <ion-badge color="primary" slot="end">{{activity.duration}}</ion-badge>
-          <ion-range [(ngModel)]="activity.duration" [min]="durationRange.min" [max]="durationRange.max"
-            [step]="durationRange.step" snaps="true" ticks="true" color="primary"></ion-range>
+          <ion-toggle [(ngModel)]="durationInput.active" slot="end" (ionChange)="disableInput($event, durationInput)">
+          </ion-toggle>
+        </ion-item>
+
+        <ion-item *ngIf="durationInput.active">
+          <ion-badge color="primary" slot="end">{{durationInput.value}}</ion-badge>
+          <ion-range [(ngModel)]="durationInput.value" [min]="durationInput.min" [max]="durationInput.max"
+            [step]="durationInput.step" snaps="true" ticks="true" pin="true" color="primary"
+            [disabled]="!durationInput.active" (ionChange)="showTotal()"></ion-range>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -53,9 +59,15 @@
       <ion-col>
         <ion-item>
           <ion-label>{{literals.form.repeats}}:</ion-label>
-          <ion-badge color="primary" slot="end">{{activity.repeats}}</ion-badge>
-          <ion-range [(ngModel)]="activity.repeats" [min]="repeatsRange.min" [max]="repeatsRange.max"
-            [step]="repeatsRange.step" snaps="true" ticks="true" color="primary"></ion-range>
+          <ion-toggle [(ngModel)]="repeatsInput.active" slot="end" (ionChange)="disableInput($event, repeatsInput)">
+          </ion-toggle>
+        </ion-item>
+
+        <ion-item *ngIf="repeatsInput.active">
+          <ion-badge color="primary" slot="end">{{repeatsInput.value}}</ion-badge>
+          <ion-range [(ngModel)]="repeatsInput.value" [min]="repeatsInput.min" [max]="repeatsInput.max"
+            [step]="repeatsInput.step" snaps="true" ticks="true" pin="true" color="primary"
+            [disabled]="!repeatsInput.active" (ionChange)="showTotal()"></ion-range>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -64,9 +76,25 @@
       <ion-col>
         <ion-item>
           <ion-label>{{literals.form.sets}}:</ion-label>
-          <ion-badge color="primary" slot="end">{{activity.sets}}</ion-badge>
-          <ion-range [(ngModel)]="activity.sets" [min]="setsRange.min" [max]="setsRange.max" [step]="setsRange.step"
-            snaps="true" ticks="true" color="primary"></ion-range>
+          <ion-toggle [(ngModel)]="setsInput.active" slot="end" (ionChange)="disableInput($event, setsInput)">
+          </ion-toggle>
+        </ion-item>
+
+        <ion-item *ngIf="setsInput.active">
+          <ion-badge color="primary" slot="end">{{setsInput.value}}</ion-badge>
+          <ion-range [(ngModel)]="setsInput.value" [min]="setsInput.min" [max]="setsInput.max" [step]="setsInput.step"
+            snaps="true" ticks="true" pin="true" color="primary" [disabled]="!setsInput.active"
+            (ionChange)="showTotal()"></ion-range>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            {{literals.form.total}}: {{total}}
+          </ion-label>
         </ion-item>
       </ion-col>
     </ion-row>

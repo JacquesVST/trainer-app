@@ -43,7 +43,8 @@ export const ptBr = {
         repeats: 'Repetições',
         sets: 'Séries',
         comments: 'Comentários',
-        reorder: 'Reordenar'
+        reorder: 'Reordenar',
+        total: 'Total'
     },
 
     login: {
