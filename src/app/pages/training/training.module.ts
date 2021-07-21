@@ -11,18 +11,8 @@ import { TrainingRoutingModule } from './training-routing.module';
 import { TagModule } from '../tag/tag.module';
 
 @NgModule({
-    declarations: [
-        TrainingEditComponent,
-        TrainingListComponent,
-        ActivityEditComponent,
-        ActivityListComponent
-    ],
+    declarations: [TrainingEditComponent, TrainingListComponent, ActivityEditComponent, ActivityListComponent],
     imports: [IonicModule, CommonModule, FormsModule, TrainingRoutingModule, TagModule],
-    exports: [
-        TrainingEditComponent,
-        TrainingListComponent,
-        ActivityEditComponent,
-        ActivityListComponent
-    ]
+    exports: [TrainingEditComponent, TrainingListComponent, ActivityEditComponent, ActivityListComponent]
 })
 export class TrainingModule {}

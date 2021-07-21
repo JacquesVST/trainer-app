@@ -42,10 +42,8 @@ export class ToastService {
     }
 
     public custom(options: ToastOptions): void {
-        this.toastController
-            .create(options)
-            .then((toast) => {
-                toast.present();
-            });
+        this.toastController.create(options).then((toast) => {
+            toast.present();
+        });
     }
 }
