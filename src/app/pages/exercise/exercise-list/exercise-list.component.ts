@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/service/loading.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { Exercise } from '../../../model/exercise/exercise.model';
@@ -16,9 +17,13 @@ export class ExerciseListComponent implements OnInit {
     public literals: any = Literals.getLiterals();
     public user: User;
     public exercises: Exercise[] = [];
-    public loading: boolean;
 
-    constructor(private toastService: ToastService, private exerciseService: ExerciseService, private router: Router) {}
+    constructor(
+        private toastService: ToastService,
+        private exerciseService: ExerciseService,
+        private router: Router,
+        private loadingService: LoadingService
+    ) {}
 
     ngOnInit() {
         this.user = UserUtil.getUser();
@@ -26,8 +31,7 @@ export class ExerciseListComponent implements OnInit {
     }
 
     public findAllExercises(): void {
-        this.loading = true;
-        this.exercises = [];
+        this.loadingService.show();
         this.exerciseService.findAllByCreator(this.user.id).subscribe(
             (exercises: Exercise[]) => {
                 this.exercises = exercises;
@@ -37,7 +41,7 @@ export class ExerciseListComponent implements OnInit {
                 console.error(error);
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }

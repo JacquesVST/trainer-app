@@ -9,6 +9,7 @@ import { TagComponent } from './tag/tag.component';
 
 @NgModule({
     declarations: [TagComponent, TagEditComponent, TagSelectionComponent],
-    imports: [IonicModule, CommonModule, FormsModule, TagRoutingModule]
+    imports: [IonicModule, CommonModule, FormsModule, TagRoutingModule],
+    exports: [TagComponent, TagEditComponent, TagSelectionComponent]
 })
 export class TagModule {}

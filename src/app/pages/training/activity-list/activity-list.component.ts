@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Activity } from 'src/app/model/activity/activity.model';
 import { ActivityService } from 'src/app/service/activity.service';
+import { LoadingService } from 'src/app/service/loading.service';
 import { Literals } from 'src/app/util/literal-util';
 import { ActivityRequestDTO } from './../../../model/activity/activity-request-dto.mode';
 import { ToastService } from './../../../service/toast.service';
@@ -14,14 +15,18 @@ import { ToastService } from './../../../service/toast.service';
 export class ActivityListComponent implements OnInit {
     @Input() public trainingId: number;
     @Input() public readMode: boolean;
+    public literals: any = Literals.getLiterals();
     public activities: Activity[] = [];
     public reorder: boolean = false;
     public reorderButton: string;
     public dividerTitle: string;
-    public loading: boolean;
-    public literals: any = Literals.getLiterals();
 
-    constructor(private toastService: ToastService, private router: Router, private activityService: ActivityService) {}
+    constructor(
+        private toastService: ToastService,
+        private router: Router,
+        private activityService: ActivityService,
+        private loadingService: LoadingService
+    ) {}
 
     ngOnInit() {
         this.reorderButton = this.literals.form.reorder;
@@ -32,7 +37,7 @@ export class ActivityListComponent implements OnInit {
     }
 
     public findAllByTraining(): void {
-        this.loading = true;
+        this.loadingService.show();
         this.activityService.findAllByTraining(this.trainingId).subscribe(
             (activities: Activity[]) => {
                 this.activities = activities;
@@ -43,13 +48,13 @@ export class ActivityListComponent implements OnInit {
             },
             () => {
                 this.dividerTitle += ` (${this.activities?.length | 0})`;
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }
 
     public saveActivitiesList(activities: ActivityRequestDTO[]): void {
-        this.loading = true;
+        this.loadingService.show();
         this.activityService.persistActivities(activities).subscribe(
             (activities: Activity[]) => {
                 this.activities = activities;
@@ -60,7 +65,7 @@ export class ActivityListComponent implements OnInit {
             },
             () => {
                 this.reorder = false;
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }
@@ -87,7 +92,12 @@ export class ActivityListComponent implements OnInit {
         if (this.reorder) {
             this.prepareModels();
         } else {
-            this.toastService.custom(this.literals.messages.save_reorder, 5000, 'warning');
+            this.toastService.custom({
+                message: this.literals.messages.save_reorder,
+                duration: 5000,
+                color: 'warn',
+                position: 'top'
+            });
         }
         this.reorderButton = this.reorder ? this.literals.form.reorder : this.literals.common.save;
         this.reorder = !this.reorder;

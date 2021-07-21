@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SanitizedMediaFile } from 'src/app/model/media-file/sanitized-media-file.model';
 import { User } from 'src/app/model/user/user.model';
+import { LoadingService } from 'src/app/service/loading.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { ImageService } from './../../../service/image.service';
@@ -14,21 +15,17 @@ import { ImageService } from './../../../service/image.service';
 export class ProfileComponent implements OnInit {
     public literals: any = Literals.getLiterals();
     public user: User;
-    public loading: boolean;
     public profilePicture: SanitizedMediaFile;
 
-    constructor(private router: Router, private imageService: ImageService) {}
+    constructor(private router: Router, private imageService: ImageService, private loadingService: LoadingService) {}
 
     ngOnInit() {
-        this.initPage();
-    }
-
-    public initPage(refresh?): void {
         this.user = UserUtil.getUser();
-        this.getImage(refresh);
+        this.getImage();
     }
 
     public async getImage(refresh?) {
+        await this.loadingService.show();
         if (this.user?.picture?.id) {
             this.profilePicture = await this.imageService.getSanitizedImage(this.user?.picture?.id);
         } else {
@@ -39,6 +36,8 @@ export class ProfileComponent implements OnInit {
         }
         if (refresh) {
             setTimeout(() => refresh.target.complete(), 0);
+        } else {
+            this.loadingService.hide();
         }
     }
 
@@ -52,6 +51,6 @@ export class ProfileComponent implements OnInit {
     }
 
     public doRefresh(event) {
-        this.initPage(event);
+        this.getImage(event);
     }
 }

@@ -1,9 +1,10 @@
-import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { Training } from 'src/app/model/training/training.model';
 import { User } from 'src/app/model/user/user.model';
+import { LoadingService } from 'src/app/service/loading.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
 import { UserLibraryService } from 'src/app/service/user-library.service';
@@ -32,15 +33,14 @@ export class TrainingViewComponent implements OnInit {
 
     public trainingPicture: SafeResourceUrl;
 
-    public loading: boolean;
-
     constructor(
         private userLibraryService: UserLibraryService,
         private toastService: ToastService,
         private trainingService: TrainingService,
         private imageService: ImageService,
         private route: ActivatedRoute,
-        private modalController: ModalController
+        private modalController: ModalController,
+        private loadingService: LoadingService
     ) {}
 
     ngOnInit() {
@@ -53,7 +53,7 @@ export class TrainingViewComponent implements OnInit {
     }
 
     public getTraining(): void {
-        this.loading = true;
+        this.loadingService.show();
         this.trainingService.findByTrainingId(this.trainingId).subscribe(
             (training: Training) => {
                 this.training = training;
@@ -66,13 +66,13 @@ export class TrainingViewComponent implements OnInit {
                 this.toastService.error('retrieving_items');
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }
 
     public getLibrary(): void {
-        this.loading = true;
+        this.loadingService.show();
         this.userLibraryService.findByEndUserAndTraining(this.user.id, this.trainingId).subscribe(
             (userLibrary: UserLibrary) => {
                 if (userLibrary) {
@@ -85,13 +85,13 @@ export class TrainingViewComponent implements OnInit {
                 this.toastService.error('retrieving_items');
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }
 
     public persistUserLibrary(): void {
-        this.loading = true;
+        this.loadingService.show();
         this.userLibraryService.persistUserLibrary(this.userLibraryRequestDTO).subscribe(
             (response: UserLibrary) => {
                 this.userLibrary = response;
@@ -103,7 +103,7 @@ export class TrainingViewComponent implements OnInit {
                 this.toastService.error('retrieving_items');
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }

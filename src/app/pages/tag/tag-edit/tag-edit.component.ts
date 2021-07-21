@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/model/tag.model';
+import { LoadingService } from 'src/app/service/loading.service';
 import { TagService } from 'src/app/service/tag.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { Literals } from 'src/app/util/literal-util';
@@ -13,12 +14,12 @@ import { Literals } from 'src/app/util/literal-util';
 export class TagEditComponent implements OnInit {
     public literals: any = Literals.getLiterals();
     public newTag: Tag = new Tag();
-    public loading: boolean;
 
     constructor(
         private modalController: ModalController,
         private toastService: ToastService,
-        private tagService: TagService
+        private tagService: TagService,
+        private loadingService: LoadingService
     ) {}
 
     ngOnInit() {}
@@ -28,7 +29,7 @@ export class TagEditComponent implements OnInit {
     }
 
     public persistTag() {
-        this.loading = true;
+        this.loadingService.show();
         console.log(this.newTag);
         this.tagService.persistTag(this.newTag).subscribe(
             (response: Tag) => {
@@ -41,7 +42,7 @@ export class TagEditComponent implements OnInit {
                 this.toastService.error('processing_request');
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }

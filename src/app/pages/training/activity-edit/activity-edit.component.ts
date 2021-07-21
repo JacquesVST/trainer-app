@@ -1,15 +1,16 @@
-import { ActivityUtil } from './../../../util/activity-util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Activity } from 'src/app/model/activity/activity.model';
 import { Exercise } from 'src/app/model/exercise/exercise.model';
+import { LoadingService } from 'src/app/service/loading.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { Literals } from 'src/app/util/literal-util';
 import { ExerciseSelectionComponent } from '../../exercise/exercise-selection/exercise-selection.component';
 import { ActivityCount } from './../../../model/activity/activity-count.model';
 import { ActivityRequestDTO } from './../../../model/activity/activity-request-dto.mode';
 import { ActivityService } from './../../../service/activity.service';
+import { ActivityUtil } from './../../../util/activity-util';
 
 @Component({
     selector: 'app-activity-edit',
@@ -26,7 +27,6 @@ export class ActivityEditComponent implements OnInit {
 
     public selectedExercise: Exercise;
     public selectedTrainingId: number;
-    public loading: boolean;
 
     public durationInput: ActivityCount;
     public repeatsInput: ActivityCount;
@@ -37,7 +37,8 @@ export class ActivityEditComponent implements OnInit {
         private toastService: ToastService,
         private activityService: ActivityService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private loadingService: LoadingService
     ) {}
 
     ngOnInit() {
@@ -76,7 +77,7 @@ export class ActivityEditComponent implements OnInit {
     }
 
     public getActivity(): void {
-        this.loading = true;
+        this.loadingService.show();
         this.activityService.findById(this.activityId).subscribe(
             (response: Activity) => {
                 this.convertToEdit(response);
@@ -86,13 +87,13 @@ export class ActivityEditComponent implements OnInit {
                 this.toastService.error('retrieving_items');
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }
 
     public persistActivity() {
-        this.loading = true;
+        this.loadingService.show();
         this.activityService.persistActivity(this.activity).subscribe(
             (response: Activity) => {
                 this.toastService.success('item_saved');
@@ -106,7 +107,7 @@ export class ActivityEditComponent implements OnInit {
                 this.toastService.error('processing_request');
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }

@@ -6,7 +6,6 @@
 
 <ion-content>
   <ion-grid>
-
     <ion-item-divider>
       <ion-label>
         {{literals.form.selected_tags}}
@@ -14,13 +13,11 @@
     </ion-item-divider>
     <ion-row>
       <ion-col>
-        <div *ngIf="!loading && selectedTags?.length">
-          <ion-chip [style]="{'color':tag.color, 'border-color':tag.color}" *ngFor="let tag of selectedTags" outline
-            (click)="remove(tag)">
-            <ion-label>{{tag.description}}</ion-label>
-            <ion-icon name="close" [style]="{'color':tag.color}"></ion-icon>
-          </ion-chip>
-        </div>
+        <ion-chip [style]="{'color':tag.color, 'border-color':tag.color}" *ngFor="let tag of selectedTags" outline
+          (click)="remove(tag)">
+          <ion-label>{{tag.description}}</ion-label>
+          <ion-icon name="close" [style]="{'color':tag.color}"></ion-icon>
+        </ion-chip>
       </ion-col>
     </ion-row>
 
@@ -31,12 +28,10 @@
     </ion-item-divider>
     <ion-row>
       <ion-col>
-        <div *ngIf="!loading && availableTags?.length">
-          <ion-chip [style]="{'color':tag.color, 'border-color':tag.color}" *ngFor="let tag of availableTags" outline
-            (click)="add(tag)">
-            <ion-label>{{tag.description}}</ion-label>
-          </ion-chip>
-        </div>
+        <ion-chip [style]="{'color':tag.color, 'border-color':tag.color}" *ngFor="let tag of availableTags" outline
+          (click)="add(tag)">
+          <ion-label>{{tag.description}}</ion-label>
+        </ion-chip>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -44,7 +39,7 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="success" (click)="dismiss()" [disabled]="loading">
+    <ion-button expand="block" color="success" (click)="dismiss()">
       <ion-icon slot="start" name="checkmark-outline"></ion-icon>
       {{literals.common.ok}}
     </ion-button>

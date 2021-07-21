@@ -31,7 +31,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button expand="block" color="light" [disabled]="loading" (click)="openExerciseSelection()">
+        <ion-button expand="block" color="light" (click)="openExerciseSelection()">
           <ion-icon slot="start" name="accessibility-outline"></ion-icon>
           {{literals.pages.select_exercise}}
         </ion-button>
@@ -114,7 +114,7 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="success" [disabled]="loading" (click)="prepareModel()">
+    <ion-button expand="block" color="success" (click)="prepareModel()">
       <ion-icon slot="start" name="save-outline"></ion-icon>
       {{literals.common.save}}
     </ion-button>

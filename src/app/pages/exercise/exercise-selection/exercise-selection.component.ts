@@ -1,12 +1,13 @@
-import { ModalController } from '@ionic/angular';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { LoadingService } from 'src/app/service/loading.service';
+import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { Exercise } from '../../../model/exercise/exercise.model';
 import { User } from '../../../model/user/user.model';
 import { ExerciseService } from '../../../service/exercise.service';
 import { ToastService } from '../../../service/toast.service';
-import { Literals } from 'src/app/util/literal-util';
 
 @Component({
     selector: 'app-exercise-selection',
@@ -18,13 +19,13 @@ export class ExerciseSelectionComponent implements OnInit {
     public user: User;
     public exercises: Exercise[] = [];
     public selectedExercise: Exercise;
-    public loading: boolean;
 
     constructor(
         private modalController: ModalController,
         private toastService: ToastService,
         private exerciseService: ExerciseService,
-        private router: Router
+        private router: Router,
+        private loadingService: LoadingService
     ) {}
 
     ngOnInit() {
@@ -33,8 +34,7 @@ export class ExerciseSelectionComponent implements OnInit {
     }
 
     public findAllExercises(): void {
-        this.loading = true;
-        this.exercises = [];
+        this.loadingService.show();
         this.exerciseService.findAllByCreator(this.user.id).subscribe(
             (exercises: Exercise[]) => {
                 this.exercises = exercises;
@@ -44,7 +44,7 @@ export class ExerciseSelectionComponent implements OnInit {
                 console.error(error);
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }

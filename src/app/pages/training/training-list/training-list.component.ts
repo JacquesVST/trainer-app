@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/service/loading.service';
 import { Literals } from 'src/app/util/literal-util';
 import { Training } from '../../../model/training/training.model';
 import { User } from '../../../model/user/user.model';
@@ -16,9 +17,13 @@ export class TrainingListComponent implements OnInit {
     public literals: any = Literals.getLiterals();
     public user: User;
     public trainings: Training[] = [];
-    public loading: boolean;
 
-    constructor(private toastService: ToastService, private trainingService: TrainingService, private router: Router) {}
+    constructor(
+        private toastService: ToastService,
+        private trainingService: TrainingService,
+        private router: Router,
+        private loadingService: LoadingService
+    ) {}
 
     ngOnInit() {
         this.user = UserUtil.getUser();
@@ -26,8 +31,7 @@ export class TrainingListComponent implements OnInit {
     }
 
     public findAllTrainings(): void {
-        this.loading = true;
-        this.trainings = [];
+        this.loadingService.show();
         this.trainingService.findAllByCreator(this.user.id).subscribe(
             (trainings: Training[]) => {
                 this.trainings = trainings;
@@ -37,7 +41,7 @@ export class TrainingListComponent implements OnInit {
                 console.error(error);
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }

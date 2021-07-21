@@ -21,7 +21,7 @@
   <img src="https://picsum.photos/800/600">
   <ion-grid>
 
-    <ion-row>
+    <ion-row *ngIf="training?.description">
       <ion-col>
         <ion-item>
           <ion-label position="fixed">{{literals.form.description}}:</ion-label>
@@ -35,7 +35,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row (click)="openUserModal()">
+    <ion-row (click)="openUserModal()" *ngIf="training?.creator">
       <ion-col>
         <ion-item>
           <ion-label position="fixed">{{literals.common.owner}}:</ion-label>
@@ -43,7 +43,7 @@
 
         <ion-item lines="none">
           <ion-thumbnail slot="start">
-            <img [src]="trainingPicture">
+            <img [src]="userPicture">
           </ion-thumbnail>
 
           <ion-label class="ion-text-center">

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { Exercise } from 'src/app/model/exercise/exercise.model';
 import { ExerciseRequestDTO } from 'src/app/model/exercise/exercise-request-dto.model';
+import { Exercise } from 'src/app/model/exercise/exercise.model';
 import { MediaFile } from 'src/app/model/media-file/media-file.model';
 import { Tag } from 'src/app/model/tag.model';
 import { User } from 'src/app/model/user/user.model';
 import { ExerciseService } from 'src/app/service/exercise.service';
+import { LoadingService } from 'src/app/service/loading.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
@@ -28,13 +29,12 @@ export class ExerciseEditComponent implements OnInit {
     public selectedTags: Tag[];
     public selectedFiles: MediaFile[] = [];
 
-    public loading: boolean;
-
     constructor(
         private modalController: ModalController,
         private toastService: ToastService,
         private exerciseService: ExerciseService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private loadingService: LoadingService
     ) {}
 
     ngOnInit() {
@@ -47,7 +47,7 @@ export class ExerciseEditComponent implements OnInit {
     }
 
     public getExercise(): void {
-        this.loading = true;
+        this.loadingService.show();
         this.exerciseService.findById(this.exerciseId).subscribe(
             (response: Exercise) => {
                 this.convertToEdit(response);
@@ -57,13 +57,13 @@ export class ExerciseEditComponent implements OnInit {
                 this.toastService.error('retrieving_items');
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }
 
     public persistExercise() {
-        this.loading = true;
+        this.loadingService.show();
         this.exerciseService.persistExercise(this.exercise).subscribe(
             (response: Exercise) => {
                 if (!this.exerciseId) {
@@ -77,7 +77,7 @@ export class ExerciseEditComponent implements OnInit {
                 this.toastService.error('processing_request');
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }

@@ -1,9 +1,10 @@
-import { Literals } from 'src/app/util/literal-util';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/model/tag.model';
+import { LoadingService } from 'src/app/service/loading.service';
 import { TagService } from 'src/app/service/tag.service';
 import { ToastService } from 'src/app/service/toast.service';
+import { Literals } from 'src/app/util/literal-util';
 import { TagEditComponent } from '../tag-edit/tag-edit.component';
 
 @Component({
@@ -14,12 +15,12 @@ import { TagEditComponent } from '../tag-edit/tag-edit.component';
 export class TagComponent implements OnInit {
     public literals: any = Literals.getLiterals();
     public tags: Tag[] = [];
-    public loading: boolean = false;
 
     constructor(
         private tagService: TagService,
         private toastService: ToastService,
-        private modalController: ModalController
+        private modalController: ModalController,
+        private loadingService: LoadingService
     ) {}
 
     ngOnInit() {
@@ -27,7 +28,7 @@ export class TagComponent implements OnInit {
     }
 
     public getAllTags() {
-        this.loading = true;
+        this.loadingService.show();
         this.tagService.findAll().subscribe(
             (tags: Tag[]) => {
                 this.tags = tags;
@@ -37,7 +38,7 @@ export class TagComponent implements OnInit {
                 this.toastService.error('retrieving_items');
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }

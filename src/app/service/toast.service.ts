@@ -8,17 +8,6 @@ import { ToastOptions } from '@ionic/core';
 })
 export class ToastService {
     public literals = Literals.getLiterals();
-    public possibleColors = [
-        'primary',
-        'secondary',
-        'tertiary',
-        'success',
-        'warning',
-        'danger',
-        'light',
-        'medium',
-        'dark'
-    ];
 
     constructor(private toastController: ToastController) {}
 
@@ -52,20 +41,7 @@ export class ToastService {
             });
     }
 
-    public custom(message: string, duration: number = 2000, color: string = 'light'): void {
-        this.toastController
-            .create({
-                message: message,
-                duration: duration,
-                position: 'top',
-                color: color
-            })
-            .then((toast) => {
-                toast.present();
-            });
-    }
-
-    public original(options: ToastOptions): void {
+    public custom(options: ToastOptions): void {
         this.toastController
             .create(options)
             .then((toast) => {

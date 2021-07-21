@@ -1,9 +1,8 @@
-import { SafeResourceUrl } from '@angular/platform-browser';
-import { SanitizedMediaFile } from 'src/app/model/media-file/sanitized-media-file.model';
-import { ImageService } from 'src/app/service/image.service';
-import { User } from 'src/app/model/user/user.model';
 import { Component, Input, OnInit } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { ModalController } from '@ionic/angular';
+import { User } from 'src/app/model/user/user.model';
+import { ImageService } from 'src/app/service/image.service';
 import { Literals } from 'src/app/util/literal-util';
 
 @Component({
@@ -14,7 +13,6 @@ import { Literals } from 'src/app/util/literal-util';
 export class UserViewComponent implements OnInit {
     @Input() user: User;
 
-    public loading: boolean;
     public profilePicture: SafeResourceUrl;
     public literals: any = Literals.getLiterals();
 

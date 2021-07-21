@@ -10,6 +10,7 @@ import { TrainingService } from 'src/app/service/training.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.component';
+import { LoadingService } from 'src/app/service/loading.service';
 
 @Component({
     selector: 'app-training-edit',
@@ -26,14 +27,14 @@ export class TrainingEditComponent implements OnInit {
 
     public selectedTags: Tag[];
     public selectedPicture: File;
-    public loading: boolean;
     public publish: boolean = true;
 
     constructor(
         private modalController: ModalController,
         private toastService: ToastService,
         private trainingService: TrainingService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private loadingService: LoadingService
     ) {}
 
     ngOnInit() {
@@ -46,7 +47,7 @@ export class TrainingEditComponent implements OnInit {
     }
 
     public getTraining(): void {
-        this.loading = true;
+        this.loadingService.show();
         this.trainingService.findByTrainingId(this.trainingId).subscribe(
             (response: Training) => {
                 this.convertToEdit(response);
@@ -56,13 +57,13 @@ export class TrainingEditComponent implements OnInit {
                 this.toastService.error('retrieving_items');
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }
 
     public persistTraining() {
-        this.loading = true;
+        this.loadingService.show();
         this.trainingService.persistTraining(this.training).subscribe(
             (response: Training) => {
                 if (!this.trainingId) {
@@ -76,7 +77,7 @@ export class TrainingEditComponent implements OnInit {
                 this.toastService.error('processing_request');
             },
             () => {
-                this.loading = false;
+                this.loadingService.hide();
             }
         );
     }
