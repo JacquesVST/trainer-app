@@ -14,6 +14,7 @@ import { Literals } from 'src/app/util/literal-util';
 export class TagSelectionComponent implements OnInit {
     @Input() selectedTags: Tag[];
     public availableTags: Tag[] = [];
+    public initialTags: Tag[];
     public literals: any = Literals.getLiterals();
 
     constructor(
@@ -24,11 +25,12 @@ export class TagSelectionComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.initialTags = this.selectedTags ? this.selectedTags : [];
         this.getAllTags();
     }
 
-    public dismiss() {
-        this.modalController.dismiss(this.selectedTags);
+    public dismiss(save: boolean) {
+        this.modalController.dismiss(save ? this.selectedTags : this.initialTags);
     }
 
     public async getAllTags() {

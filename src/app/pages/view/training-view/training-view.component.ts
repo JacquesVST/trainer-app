@@ -14,6 +14,7 @@ import { UserLibraryRequestDTO } from '../../../model/user-library/user-library-
 import { UserLibrary } from '../../../model/user-library/user-library.model';
 import { ImageService } from '../../../service/image.service';
 import { UserViewComponent } from '../user-view/user-view.component';
+import { NavService } from './../../../service/nav.service';
 
 @Component({
     selector: 'app-training-view',
@@ -40,7 +41,8 @@ export class TrainingViewComponent implements OnInit {
         private imageService: ImageService,
         private route: ActivatedRoute,
         private modalController: ModalController,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private navService: NavService
     ) {}
 
     ngOnInit() {
@@ -59,7 +61,7 @@ export class TrainingViewComponent implements OnInit {
                 this.training = training;
                 this.pageTitle = training.title;
                 this.getLibrary();
-                this.getImage();
+                this.getImages();
             },
             (error) => {
                 console.error(error);
@@ -114,11 +116,17 @@ export class TrainingViewComponent implements OnInit {
         this.persistUserLibrary();
     }
 
-    public getImage() {
-        if (this.training.creator?.picture?.data) {
-            this.trainingPicture = this.imageService.sanitizeImage(this.training.creator.picture);
+    public getImages() {
+        if (this.training.picture?.data) {
+            this.training.picture = this.imageService.sanitizeImage(this.training.picture);
         } else {
-            this.trainingPicture = this.imageService.getDefaultImage();
+            this.training.picture = this.imageService.getDefaultImage();
+        }
+
+        if (this.training.creator?.picture?.data) {
+            this.training.creator.picture = this.imageService.sanitizeImage(this.training.creator.picture);
+        } else {
+            this.training.creator.picture = this.imageService.getDefaultImage();
         }
     }
 
@@ -131,5 +139,9 @@ export class TrainingViewComponent implements OnInit {
         });
 
         return await modal.present();
+    }
+
+    public goBack() {
+        this.navService.goBack();
     }
 }

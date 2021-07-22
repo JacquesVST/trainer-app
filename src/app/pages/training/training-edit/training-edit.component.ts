@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/model/tag.model';
-import { Training } from 'src/app/model/training/training.model';
 import { TrainingRequestDTO } from 'src/app/model/training/training-request-dto.model';
+import { Training } from 'src/app/model/training/training.model';
 import { User } from 'src/app/model/user/user.model';
+import { LoadingService } from 'src/app/service/loading.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.component';
-import { LoadingService } from 'src/app/service/loading.service';
+import { NavService } from './../../../service/nav.service';
 
 @Component({
     selector: 'app-training-edit',
@@ -34,7 +35,8 @@ export class TrainingEditComponent implements OnInit {
         private toastService: ToastService,
         private trainingService: TrainingService,
         private route: ActivatedRoute,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private navService: NavService
     ) {}
 
     ngOnInit() {
@@ -110,5 +112,9 @@ export class TrainingEditComponent implements OnInit {
         });
 
         return await modal.present();
+    }
+
+    public goBack() {
+        this.navService.goBack();
     }
 }

@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { SanitizedMediaFile } from 'src/app/model/media-file/sanitized-media-file.model';
+import { NavController } from '@ionic/angular';
+import { MediaFile } from 'src/app/model/media-file/media-file.model';
 import { User } from 'src/app/model/user/user.model';
+import { ImageService } from 'src/app/service/image.service';
 import { LoadingService } from 'src/app/service/loading.service';
+import { NavService } from 'src/app/service/nav.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
-import { ImageService } from './../../../service/image.service';
+import { ExerciseListComponent } from '../../exercise/exercise-list/exercise-list.component';
+import { TagComponent } from '../../tag/tag/tag.component';
+import { TrainingListComponent } from '../../training/training-list/training-list.component';
 
 @Component({
     selector: 'app-profile',
@@ -15,9 +19,19 @@ import { ImageService } from './../../../service/image.service';
 export class ProfileComponent implements OnInit {
     public literals: any = Literals.getLiterals();
     public user: User;
-    public profilePicture: SanitizedMediaFile;
+    public components: any;
 
-    constructor(private router: Router, private imageService: ImageService, private loadingService: LoadingService) {}
+    constructor(
+        private imageService: ImageService,
+        private loadingService: LoadingService,
+        private navService: NavService
+    ) {
+        this.components = {
+            training: TrainingListComponent,
+            exercise: ExerciseListComponent,
+            tag: TagComponent
+        };
+    }
 
     ngOnInit() {
         this.user = UserUtil.getUser();
@@ -25,14 +39,14 @@ export class ProfileComponent implements OnInit {
     }
 
     public async getImage(refresh?) {
-        await this.loadingService.show();
+        if (!refresh) {
+            await this.loadingService.show();
+        }
+
         if (this.user?.picture?.id) {
-            this.profilePicture = await this.imageService.getSanitizedImage(this.user?.picture?.id);
+            this.user.picture = await this.imageService.getSanitizedImage(this.user?.picture?.id);
         } else {
-            this.profilePicture = {
-                sanitized: this.imageService.getDefaultImage(),
-                original: null
-            };
+            this.user.picture = this.imageService.getDefaultImage();
         }
         if (refresh) {
             setTimeout(() => refresh.target.complete(), 0);
@@ -41,13 +55,13 @@ export class ProfileComponent implements OnInit {
         }
     }
 
-    public redirect(url: string): void {
-        this.router.navigate([url]);
+    public goTo(url, param?): void {
+        this.navService.goTo(url, param);
     }
 
     public logout(): void {
-        this.router.navigateByUrl('/login');
         UserUtil.unsetUser();
+        this.navService.exit();
     }
 
     public doRefresh(event) {

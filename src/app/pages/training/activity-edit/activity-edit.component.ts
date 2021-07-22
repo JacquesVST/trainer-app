@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { Activity } from 'src/app/model/activity/activity.model';
 import { Exercise } from 'src/app/model/exercise/exercise.model';
 import { LoadingService } from 'src/app/service/loading.service';
+import { NavService } from 'src/app/service/nav.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { Literals } from 'src/app/util/literal-util';
 import { ExerciseSelectionComponent } from '../../exercise/exercise-selection/exercise-selection.component';
@@ -36,7 +37,7 @@ export class ActivityEditComponent implements OnInit {
         private modalController: ModalController,
         private toastService: ToastService,
         private activityService: ActivityService,
-        private router: Router,
+        private navService: NavService,
         private route: ActivatedRoute,
         private loadingService: LoadingService
     ) {}
@@ -155,10 +156,6 @@ export class ActivityEditComponent implements OnInit {
         }
     }
 
-    public goTo(url, param?): void {
-        param ? this.router.navigate([url, param]) : this.router.navigate([url]);
-    }
-
     public async openExerciseSelection() {
         const modal = await this.modalController.create({
             component: ExerciseSelectionComponent
@@ -171,5 +168,13 @@ export class ActivityEditComponent implements OnInit {
         });
 
         return await modal.present();
+    }
+
+    public goTo(url, param?): void {
+        this.navService.goTo(url, param);
+    }
+
+    public goBack() {
+        this.navService.goBack();
     }
 }

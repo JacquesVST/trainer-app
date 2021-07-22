@@ -6,6 +6,7 @@ import { LoadingService } from 'src/app/service/loading.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { ActivityUtil } from 'src/app/util/activity-util';
 import { Literals } from 'src/app/util/literal-util';
+import { NavService } from './../../../service/nav.service';
 
 @Component({
     selector: 'app-activity-view',
@@ -22,7 +23,8 @@ export class ActivityViewComponent implements OnInit {
         private activityService: ActivityService,
         private route: ActivatedRoute,
         private toastService: ToastService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private navService: NavService
     ) {}
 
     ngOnInit() {
@@ -55,5 +57,9 @@ export class ActivityViewComponent implements OnInit {
                 this.loadingService.hide();
             }
         );
+    }
+
+    public goBack() {
+        this.navService.goBack();
     }
 }

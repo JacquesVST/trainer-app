@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Activity } from 'src/app/model/activity/activity.model';
 import { ActivityService } from 'src/app/service/activity.service';
 import { LoadingService } from 'src/app/service/loading.service';
+import { NavService } from 'src/app/service/nav.service';
 import { Literals } from 'src/app/util/literal-util';
 import { ActivityRequestDTO } from './../../../model/activity/activity-request-dto.mode';
 import { ToastService } from './../../../service/toast.service';
@@ -23,7 +23,7 @@ export class ActivityListComponent implements OnInit {
 
     constructor(
         private toastService: ToastService,
-        private router: Router,
+        private navService: NavService,
         private activityService: ActivityService,
         private loadingService: LoadingService
     ) {}
@@ -110,6 +110,6 @@ export class ActivityListComponent implements OnInit {
     }
 
     public goTo(url, param?): void {
-        param ? this.router.navigate([url, param]) : this.router.navigate([url]);
+        this.navService.goTo(url, param);
     }
 }

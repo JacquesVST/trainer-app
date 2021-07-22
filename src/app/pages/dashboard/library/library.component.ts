@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserLibrary } from 'src/app/model/user-library/user-library.model';
 import { User } from 'src/app/model/user/user.model';
 import { LoadingService } from 'src/app/service/loading.service';
+import { NavService } from 'src/app/service/nav.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { UserLibraryService } from 'src/app/service/user-library.service';
 import { Literals } from 'src/app/util/literal-util';
@@ -23,7 +23,7 @@ export class LibraryComponent implements OnInit {
     constructor(
         private userLibraryService: UserLibraryService,
         private toastService: ToastService,
-        private router: Router,
+        private navService: NavService,
         private loadingService: LoadingService
     ) {}
 
@@ -67,6 +67,6 @@ export class LibraryComponent implements OnInit {
     }
 
     public goTo(url, param?): void {
-        param ? this.router.navigate([url, param]) : this.router.navigate([url]);
+        this.navService.goTo(url, param);
     }
 }

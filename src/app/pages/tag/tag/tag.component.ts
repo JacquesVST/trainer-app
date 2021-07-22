@@ -6,6 +6,7 @@ import { TagService } from 'src/app/service/tag.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { Literals } from 'src/app/util/literal-util';
 import { TagEditComponent } from '../tag-edit/tag-edit.component';
+import { NavService } from './../../../service/nav.service';
 
 @Component({
     selector: 'app-tag',
@@ -20,7 +21,8 @@ export class TagComponent implements OnInit {
         private tagService: TagService,
         private toastService: ToastService,
         private modalController: ModalController,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private navService: NavService
     ) {}
 
     ngOnInit() {
@@ -55,5 +57,9 @@ export class TagComponent implements OnInit {
         });
 
         return await modal.present();
+    }
+
+    public goBack() {
+        this.navService.goBack();
     }
 }

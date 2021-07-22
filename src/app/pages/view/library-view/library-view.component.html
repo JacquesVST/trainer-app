@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard/profile"></ion-back-button>
+      <ion-back-button defaultHref="" (click)="goBack()"></ion-back-button>
     </ion-buttons>
 
     <ion-title>
@@ -18,7 +18,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <img src="https://picsum.photos/800/600">
+  <img [src]="training?.picture?.sanitized">
   <ion-grid>
 
     <ion-row *ngIf="training?.description">
@@ -43,7 +43,7 @@
 
         <ion-item lines="none">
           <ion-thumbnail slot="start">
-            <img [src]="userPicture">
+            <img [src]="training?.creator?.picture?.sanitized">
           </ion-thumbnail>
 
           <ion-label class="ion-text-center">

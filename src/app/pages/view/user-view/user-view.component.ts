@@ -12,17 +12,15 @@ import { Literals } from 'src/app/util/literal-util';
 })
 export class UserViewComponent implements OnInit {
     @Input() user: User;
-
-    public profilePicture: SafeResourceUrl;
     public literals: any = Literals.getLiterals();
 
     constructor(private modalController: ModalController, private imageService: ImageService) {}
 
     async ngOnInit() {
-        if (this.user?.picture?.data) {
-            this.profilePicture = this.imageService.sanitizeImage(this.user.picture);
+        if (this.user.picture?.data) {
+            this.user.picture = this.imageService.sanitizeImage(this.user.picture);
         } else {
-            this.profilePicture = this.imageService.getDefaultImage();
+            this.user.picture = this.imageService.getDefaultImage();
         }
     }
 

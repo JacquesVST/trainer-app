@@ -1,3 +1,5 @@
+import { SafeResourceUrl } from "@angular/platform-browser";
+
 export class MediaFile {
     id: number;
     url: string;
@@ -8,4 +10,5 @@ export class MediaFile {
     originalName: string;
     type: string;
     data: any;
+    sanitized: SafeResourceUrl;
 }

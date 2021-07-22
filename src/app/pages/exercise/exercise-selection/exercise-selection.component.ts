@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { LoadingService } from 'src/app/service/loading.service';
+import { NavService } from 'src/app/service/nav.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { Exercise } from '../../../model/exercise/exercise.model';
@@ -15,20 +15,22 @@ import { ToastService } from '../../../service/toast.service';
     styleUrls: ['./exercise-selection.component.scss']
 })
 export class ExerciseSelectionComponent implements OnInit {
+    @Input() public selectedExercise: Exercise;
     public literals: any = Literals.getLiterals();
     public user: User;
     public exercises: Exercise[] = [];
-    public selectedExercise: Exercise;
+    public initialExercise: Exercise;
 
     constructor(
         private modalController: ModalController,
         private toastService: ToastService,
         private exerciseService: ExerciseService,
-        private router: Router,
+        private navService: NavService,
         private loadingService: LoadingService
     ) {}
 
     ngOnInit() {
+        this.initialExercise = this.selectedExercise ? this.selectedExercise : null;
         this.user = UserUtil.getUser();
         this.findAllExercises();
     }
@@ -49,11 +51,11 @@ export class ExerciseSelectionComponent implements OnInit {
         );
     }
 
-    public dismiss() {
-        this.modalController.dismiss(this.selectedExercise);
+    public dismiss(save: boolean) {
+        this.modalController.dismiss(save ? this.selectedExercise : this.initialExercise);
     }
 
     public goTo(url, param?): void {
-        param ? this.router.navigate([url, param]) : this.router.navigate([url]);
+        this.navService.goTo(url, param);
     }
 }

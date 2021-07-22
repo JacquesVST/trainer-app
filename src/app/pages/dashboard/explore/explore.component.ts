@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Training } from 'src/app/model/training/training.model';
 import { LoadingService } from 'src/app/service/loading.service';
+import { NavService } from 'src/app/service/nav.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
 import { Literals } from 'src/app/util/literal-util';
@@ -18,16 +18,18 @@ export class ExploreComponent implements OnInit {
     constructor(
         private trainingService: TrainingService,
         private toastService: ToastService,
-        private router: Router,
+        private navService: NavService,
         private loadingService: LoadingService
     ) {}
 
     ngOnInit() {
-        this.loadingService.show();
         this.getTrainings();
     }
 
     public async getTrainings(refresh?) {
+        if (!refresh) {
+            this.loadingService.show();
+        }
         this.trainingService.findAll().subscribe(
             (trainings: Training[]) => {
                 this.trainings = trainings;
@@ -51,6 +53,6 @@ export class ExploreComponent implements OnInit {
     }
 
     public goTo(url, param?): void {
-        param ? this.router.navigate([url, param]) : this.router.navigate([url]);
+        this.navService.goTo(url, param);
     }
 }

@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="dismiss(false)"></ion-back-button>
+    </ion-buttons>
     <ion-title>{{literals.pages.select_exercise}}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -34,7 +37,7 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="success" (click)="dismiss()">
+    <ion-button expand="block" color="success" (click)="dismiss(true)">
       <ion-icon slot="start" name="checkmark-outline"></ion-icon>
       {{literals.common.ok}}
     </ion-button>

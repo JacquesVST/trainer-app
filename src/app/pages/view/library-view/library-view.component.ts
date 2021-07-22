@@ -13,6 +13,7 @@ import { UserLibraryService } from 'src/app/service/user-library.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { UserViewComponent } from '../user-view/user-view.component';
+import { NavService } from './../../../service/nav.service';
 
 @Component({
     selector: 'app-library-view',
@@ -29,16 +30,14 @@ export class LibraryViewComponent implements OnInit {
     public userLibraryId: number;
     public userLibraryRequestDTO: UserLibraryRequestDTO = new UserLibraryRequestDTO();
 
-    public trainingPicture: SafeResourceUrl;
-    public userPicture: SafeResourceUrl;
-
     constructor(
         private userLibraryService: UserLibraryService,
         private toastService: ToastService,
         private imageService: ImageService,
         private route: ActivatedRoute,
         private modalController: ModalController,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private navService: NavService
     ) {}
 
     ngOnInit() {
@@ -49,14 +48,14 @@ export class LibraryViewComponent implements OnInit {
         }
     }
 
-    public getUserLibrary(): void {
-        this.loadingService.show();
+    public async getUserLibrary() {
+        await this.loadingService.show();
         this.userLibraryService.findById(this.userLibraryId).subscribe(
             (userLibrary: UserLibrary) => {
                 this.userLibrary = userLibrary;
                 this.training = this.userLibrary.training;
                 this.pageTitle = this.training.title;
-                this.getImage();
+                this.getImages();
             },
             (error) => {
                 console.error(error);
@@ -98,11 +97,17 @@ export class LibraryViewComponent implements OnInit {
         this.persistUserLibrary();
     }
 
-    public getImage() {
-        if (this.training.creator?.picture?.data) {
-            this.userPicture = this.imageService.sanitizeImage(this.training.creator.picture);
+    public getImages() {
+        if (this.training.picture?.data) {
+            this.training.picture = this.imageService.sanitizeImage(this.training.picture);
         } else {
-            this.userPicture = this.imageService.getDefaultImage();
+            this.training.picture = this.imageService.getDefaultImage();
+        }
+
+        if (this.training.creator?.picture?.data) {
+            this.training.creator.picture = this.imageService.sanitizeImage(this.training.creator.picture);
+        } else {
+            this.training.creator.picture = this.imageService.getDefaultImage();
         }
     }
 
@@ -115,5 +120,9 @@ export class LibraryViewComponent implements OnInit {
         });
 
         return await modal.present();
+    }
+
+    public goBack() {
+        this.navService.goBack();
     }
 }

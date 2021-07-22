@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/service/loading.service';
+import { NavService } from 'src/app/service/nav.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { Exercise } from '../../../model/exercise/exercise.model';
@@ -21,8 +21,8 @@ export class ExerciseListComponent implements OnInit {
     constructor(
         private toastService: ToastService,
         private exerciseService: ExerciseService,
-        private router: Router,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private navService: NavService
     ) {}
 
     ngOnInit() {
@@ -47,6 +47,10 @@ export class ExerciseListComponent implements OnInit {
     }
 
     public goTo(url, param?): void {
-        param ? this.router.navigate([url, param]) : this.router.navigate([url]);
+        this.navService.goTo(url, param);
+    }
+
+    public goBack() {
+        this.navService.goBack();
     }
 }

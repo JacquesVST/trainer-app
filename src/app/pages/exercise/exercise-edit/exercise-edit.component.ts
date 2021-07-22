@@ -12,6 +12,7 @@ import { ToastService } from 'src/app/service/toast.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.component';
+import { NavService } from './../../../service/nav.service';
 
 @Component({
     selector: 'app-exercise-edit',
@@ -34,7 +35,8 @@ export class ExerciseEditComponent implements OnInit {
         private toastService: ToastService,
         private exerciseService: ExerciseService,
         private route: ActivatedRoute,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private navService: NavService
     ) {}
 
     ngOnInit() {
@@ -113,5 +115,9 @@ export class ExerciseEditComponent implements OnInit {
         });
 
         return await modal.present();
+    }
+
+    public goBack() {
+        this.navService.goBack();
     }
 }
