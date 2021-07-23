@@ -13,7 +13,7 @@
       <ion-col>
         <ion-item lines="none">
           <ion-thumbnail slot="start">
-            <img [src]="profilePicture">
+            <img [src]="user?.picture?.sanitized">
           </ion-thumbnail>
           <ion-label class="ion-text-center">
             {{user.firstName + ' ' + user.lastName}}

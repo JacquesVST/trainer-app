@@ -90,6 +90,8 @@ export const enUs = {
         edit_activity: 'Edit activity',
         new_tag: 'New tag',
         select_tags: 'Select Tags',
+        select_image: 'Select Image',
+        select_images: 'Select Images',
         select_exercise: 'Select Exercise',
         user_info: 'User Info'
     },

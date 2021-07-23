@@ -1,3 +1,4 @@
+import { ImageService } from 'src/app/service/image.service';
 import { Component, OnInit } from '@angular/core';
 import { Training } from 'src/app/model/training/training.model';
 import { LoadingService } from 'src/app/service/loading.service';
@@ -19,7 +20,8 @@ export class ExploreComponent implements OnInit {
         private trainingService: TrainingService,
         private toastService: ToastService,
         private navService: NavService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private imageService: ImageService
     ) {}
 
     ngOnInit() {
@@ -28,11 +30,11 @@ export class ExploreComponent implements OnInit {
 
     public async getTrainings(refresh?) {
         if (!refresh) {
-            this.loadingService.show();
+            await this.loadingService.show();
         }
         this.trainingService.findAll().subscribe(
             (trainings: Training[]) => {
-                this.trainings = trainings;
+                this.processImages(trainings);
             },
             (error) => {
                 console.error(error);
@@ -46,6 +48,13 @@ export class ExploreComponent implements OnInit {
                 }
             }
         );
+    }
+
+    public async processImages(trainings) {
+        for (let item of trainings) {
+            item.picture = await this.imageService.getSanitizedOrDefault(item?.picture);
+        }
+        this.trainings = trainings;
     }
 
     public doRefresh(event) {

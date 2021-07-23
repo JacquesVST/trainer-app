@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { MediaFile } from 'src/app/model/media-file/media-file.model';
 import { Tag } from 'src/app/model/tag.model';
 import { TrainingRequestDTO } from 'src/app/model/training/training-request-dto.model';
 import { Training } from 'src/app/model/training/training.model';
 import { User } from 'src/app/model/user/user.model';
+import { ImageService } from 'src/app/service/image.service';
 import { LoadingService } from 'src/app/service/loading.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { TrainingService } from 'src/app/service/training.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.component';
+import { FileService } from './../../../service/file.service';
 import { NavService } from './../../../service/nav.service';
 
 @Component({
@@ -27,7 +30,7 @@ export class TrainingEditComponent implements OnInit {
     public training: TrainingRequestDTO = new TrainingRequestDTO();
 
     public selectedTags: Tag[];
-    public selectedPicture: File;
+    public selectedPicture: MediaFile;
     public publish: boolean = true;
 
     constructor(
@@ -36,7 +39,9 @@ export class TrainingEditComponent implements OnInit {
         private trainingService: TrainingService,
         private route: ActivatedRoute,
         private loadingService: LoadingService,
-        private navService: NavService
+        private navService: NavService,
+        private fileService: FileService,
+        private imageService: ImageService
     ) {}
 
     ngOnInit() {
@@ -48,8 +53,8 @@ export class TrainingEditComponent implements OnInit {
         }
     }
 
-    public getTraining(): void {
-        this.loadingService.show();
+    public async getTraining() {
+        await this.loadingService.show();
         this.trainingService.findByTrainingId(this.trainingId).subscribe(
             (response: Training) => {
                 this.convertToEdit(response);
@@ -64,8 +69,8 @@ export class TrainingEditComponent implements OnInit {
         );
     }
 
-    public persistTraining() {
-        this.loadingService.show();
+    public async persistTraining() {
+        await this.loadingService.show();
         this.trainingService.persistTraining(this.training).subscribe(
             (response: Training) => {
                 if (!this.trainingId) {
@@ -84,7 +89,27 @@ export class TrainingEditComponent implements OnInit {
         );
     }
 
+    public async saveSelectedImage(event) {
+        const file = event?.target?.files[0];
+        if (file) {
+            await this.loadingService.show();
+            this.fileService.persistFile(file).subscribe(
+                (response: MediaFile) => {
+                    this.selectedPicture = this.imageService.sanitizeImage(response);
+                },
+                (error) => {
+                    console.error(error);
+                    this.toastService.error('processing_request');
+                },
+                () => {
+                    this.loadingService.hide();
+                }
+            );
+        }
+    }
+
     public prepareModel(): void {
+        this.training.pictureId = this.selectedPicture?.id;
         this.training.creatorId = this.user?.id;
         this.training.tagIds = this.selectedTags ? this.selectedTags.map((tag) => tag.id) : [];
         this.persistTraining();
@@ -95,6 +120,7 @@ export class TrainingEditComponent implements OnInit {
         this.training.title = training.title;
         this.training.description = training.description;
         this.training.published = !!training.published;
+        this.selectedPicture = this.imageService.sanitizeImage(training.picture);
     }
 
     public async openTagSelection() {
@@ -112,6 +138,11 @@ export class TrainingEditComponent implements OnInit {
         });
 
         return await modal.present();
+    }
+
+    public openImageSelection() {
+        const element = document.getElementById('file-input');
+        element.click();
     }
 
     public goBack() {

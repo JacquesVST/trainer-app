@@ -16,7 +16,7 @@
         <ion-list>
           <ion-item *ngFor="let training of trainings" (click)="goTo('/training/edit', training.id)">
             <ion-thumbnail slot="end">
-              <img src="https://picsum.photos/200">
+              <img [src]="training?.picture?.sanitized">
             </ion-thumbnail>
             <ion-label>
               <h1><b>{{training.title}}</b></h1>

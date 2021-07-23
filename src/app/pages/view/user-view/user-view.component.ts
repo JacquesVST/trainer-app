@@ -17,11 +17,7 @@ export class UserViewComponent implements OnInit {
     constructor(private modalController: ModalController, private imageService: ImageService) {}
 
     async ngOnInit() {
-        if (this.user.picture?.data) {
-            this.user.picture = this.imageService.sanitizeImage(this.user.picture);
-        } else {
-            this.user.picture = this.imageService.getDefaultImage();
-        }
+        //this.user.picture = await this.imageService.getSanitizedOrDefault(this.user?.picture);
     }
 
     public dismiss() {

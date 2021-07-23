@@ -40,4 +40,17 @@ export class ImageService {
         );
         return image;
     }
+
+    public async getSanitizedOrDefault(media: MediaFile) {
+        if (media?.id) {
+            if (media?.data) {
+                return this.sanitizeImage(media);
+            } else {
+                return await this.getSanitizedImage(media.id);
+            }
+        } else {
+            return this.getDefaultImage();
+        }
+    }
+
 }

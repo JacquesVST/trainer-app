@@ -77,8 +77,8 @@ export class ActivityEditComponent implements OnInit {
         };
     }
 
-    public getActivity(): void {
-        this.loadingService.show();
+    public async getActivity() {
+        await this.loadingService.show();
         this.activityService.findById(this.activityId).subscribe(
             (response: Activity) => {
                 this.convertToEdit(response);
@@ -93,8 +93,8 @@ export class ActivityEditComponent implements OnInit {
         );
     }
 
-    public persistActivity() {
-        this.loadingService.show();
+    public async persistActivity() {
+        await this.loadingService.show();
         this.activityService.persistActivity(this.activity).subscribe(
             (response: Activity) => {
                 this.toastService.success('item_saved');

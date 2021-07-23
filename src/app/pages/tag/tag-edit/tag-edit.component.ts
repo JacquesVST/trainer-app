@@ -28,8 +28,8 @@ export class TagEditComponent implements OnInit {
         this.modalController.dismiss(this.newTag);
     }
 
-    public persistTag() {
-        this.loadingService.show();
+    public async persistTag() {
+        await this.loadingService.show();
         console.log(this.newTag);
         this.tagService.persistTag(this.newTag).subscribe(
             (response: Tag) => {

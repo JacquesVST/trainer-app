@@ -31,8 +31,8 @@ export class ActivityListViewComponent implements OnInit {
         }
     }
 
-    public findAllByTraining(): void {
-        this.loadingService.show();
+    public async findAllByTraining() {
+        await this.loadingService.show();
         this.activityService.findAllByTraining(this.trainingId).subscribe(
             (activities: Activity[]) => {
                 this.activities = activities;

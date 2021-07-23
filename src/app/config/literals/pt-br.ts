@@ -90,6 +90,8 @@ export const ptBr = {
         edit_activity: 'Editar Atividade',
         new_tag: 'Nova tag',
         select_tags: 'Selecionar Tags',
+        select_image: 'Selecionar Imagem',
+        select_images: 'Selecionar Imagens',
         select_exercise: 'Selecionar Exercício',
         user_info: 'Informações do Usuário'
     },

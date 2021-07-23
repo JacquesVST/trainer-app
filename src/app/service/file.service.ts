@@ -25,10 +25,12 @@ export class FileService {
     }
 
     public persistFile(file: File): Observable<MediaFile> {
-        return this.http.post<MediaFile>(`${this.url}/upload`, file);
+        const formData = new FormData();
+        formData.set('file', file);
+        return this.http.post<MediaFile>(`${this.url}/upload`, formData);
     }
 
-    public persistFils(files: File[]): Observable<MediaFile[]> {
+    public persistFiles(files: File[]): Observable<MediaFile[]> {
         return this.http.post<MediaFile[]>(`${this.url}/uploads`, files);
     }
 }

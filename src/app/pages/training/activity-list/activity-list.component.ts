@@ -36,8 +36,8 @@ export class ActivityListComponent implements OnInit {
         }
     }
 
-    public findAllByTraining(): void {
-        this.loadingService.show();
+    public async findAllByTraining() {
+        await this.loadingService.show();
         this.activityService.findAllByTraining(this.trainingId).subscribe(
             (activities: Activity[]) => {
                 this.activities = activities;
@@ -53,8 +53,8 @@ export class ActivityListComponent implements OnInit {
         );
     }
 
-    public saveActivitiesList(activities: ActivityRequestDTO[]): void {
-        this.loadingService.show();
+    public async saveActivitiesList(activities: ActivityRequestDTO[]) {
+        await this.loadingService.show();
         this.activityService.persistActivities(activities).subscribe(
             (activities: Activity[]) => {
                 this.activities = activities;

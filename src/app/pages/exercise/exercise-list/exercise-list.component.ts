@@ -30,8 +30,8 @@ export class ExerciseListComponent implements OnInit {
         this.findAllExercises();
     }
 
-    public findAllExercises(): void {
-        this.loadingService.show();
+    public async findAllExercises() {
+        await this.loadingService.show();
         this.exerciseService.findAllByCreator(this.user.id).subscribe(
             (exercises: Exercise[]) => {
                 this.exercises = exercises;

@@ -42,12 +42,7 @@ export class ProfileComponent implements OnInit {
         if (!refresh) {
             await this.loadingService.show();
         }
-
-        if (this.user?.picture?.id) {
-            this.user.picture = await this.imageService.getSanitizedImage(this.user?.picture?.id);
-        } else {
-            this.user.picture = this.imageService.getDefaultImage();
-        }
+        this.user.picture = await this.imageService.getSanitizedOrDefault(this.user?.picture);
         if (refresh) {
             setTimeout(() => refresh.target.complete(), 0);
         } else {

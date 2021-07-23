@@ -48,8 +48,8 @@ export class ExerciseEditComponent implements OnInit {
         }
     }
 
-    public getExercise(): void {
-        this.loadingService.show();
+    public async getExercise() {
+        await this.loadingService.show();
         this.exerciseService.findById(this.exerciseId).subscribe(
             (response: Exercise) => {
                 this.convertToEdit(response);
@@ -64,8 +64,8 @@ export class ExerciseEditComponent implements OnInit {
         );
     }
 
-    public persistExercise() {
-        this.loadingService.show();
+    public async persistExercise() {
+        await this.loadingService.show();
         this.exerciseService.persistExercise(this.exercise).subscribe(
             (response: Exercise) => {
                 if (!this.exerciseId) {

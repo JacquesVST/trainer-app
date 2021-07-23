@@ -36,8 +36,8 @@ export class ActivityViewComponent implements OnInit {
         }
     }
 
-    public getActivity(): void {
-        this.loadingService.show();
+    public async getActivity() {
+        await this.loadingService.show();
         this.activityService.findById(this.activityId).subscribe(
             (activity: Activity) => {
                 this.activity = activity;
@@ -47,7 +47,6 @@ export class ActivityViewComponent implements OnInit {
                     activity.sets,
                     activity?.exercise?.title
                 );
-                console.log(this.activity);
             },
             (error) => {
                 console.error(error);

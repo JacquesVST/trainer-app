@@ -29,8 +29,8 @@ export class TagComponent implements OnInit {
         this.getAllTags();
     }
 
-    public getAllTags() {
-        this.loadingService.show();
+    public async getAllTags() {
+        await this.loadingService.show();
         this.tagService.findAll().subscribe(
             (tags: Tag[]) => {
                 this.tags = tags;

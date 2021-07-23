@@ -13,8 +13,7 @@
     <ion-row>
       <ion-col>
         <ion-card *ngFor="let training of trainings" (click)="goTo('view/training', training.id)">
-
-          <img src="https://picsum.photos/800/450">
+          <img [src]="training?.picture?.sanitized">
           <ion-card-header>
             <ion-card-subtitle>
               {{literals.messages.date_published}}: {{training?.published | date: 'dd/MM/yyyy'}}

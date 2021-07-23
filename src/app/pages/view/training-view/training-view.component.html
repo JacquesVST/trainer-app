@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <img src="https://picsum.photos/800/600">
+  <img [src]="training?.picture?.sanitized">
   <ion-grid>
 
     <ion-row>
@@ -34,7 +34,7 @@
 
         <ion-item lines="none">
           <ion-thumbnail slot="start">
-            <img [src]="trainingPicture">
+            <img [src]="training?.creator?.picture?.sanitized">
           </ion-thumbnail>
           <ion-label class="ion-text-center">
             {{training?.creator?.firstName + ' ' + training?.creator?.lastName}}

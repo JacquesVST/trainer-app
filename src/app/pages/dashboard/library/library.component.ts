@@ -1,3 +1,4 @@
+import { ImageService } from 'src/app/service/image.service';
 import { Component, OnInit } from '@angular/core';
 import { UserLibrary } from 'src/app/model/user-library/user-library.model';
 import { User } from 'src/app/model/user/user.model';
@@ -24,20 +25,22 @@ export class LibraryComponent implements OnInit {
         private userLibraryService: UserLibraryService,
         private toastService: ToastService,
         private navService: NavService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private imageService: ImageService
     ) {}
 
     ngOnInit() {
-        this.loadingService.show();
         this.user = UserUtil.getUser();
         this.getLibrary();
     }
 
-    public getLibrary(refresh?) {
+    public async getLibrary(refresh?) {
+        if (!refresh) {
+            await this.loadingService.show();
+        }
         this.userLibraryService.findAllByUser(this.user.id).subscribe(
             (library: UserLibrary[]) => {
-                this.library = library;
-                this.processFavorites();
+                this.processImages(library);
             },
             (error) => {
                 console.error(error);
@@ -51,6 +54,14 @@ export class LibraryComponent implements OnInit {
                 }
             }
         );
+    }
+
+    public async processImages(library: UserLibrary[]) {
+        for (let item of library) {
+            item.training.picture = await this.imageService.getSanitizedOrDefault(item?.training?.picture);
+        }
+        this.library = library;
+        this.processFavorites();
     }
 
     public processFavorites(): void {

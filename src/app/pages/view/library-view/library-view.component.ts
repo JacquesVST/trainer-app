@@ -67,8 +67,8 @@ export class LibraryViewComponent implements OnInit {
         );
     }
 
-    public persistUserLibrary(): void {
-        this.loadingService.show();
+    public async persistUserLibrary() {
+        await this.loadingService.show();
         this.userLibraryService.persistUserLibrary(this.userLibraryRequestDTO).subscribe(
             (response: UserLibrary) => {
                 this.userLibrary = response;
@@ -97,18 +97,9 @@ export class LibraryViewComponent implements OnInit {
         this.persistUserLibrary();
     }
 
-    public getImages() {
-        if (this.training.picture?.data) {
-            this.training.picture = this.imageService.sanitizeImage(this.training.picture);
-        } else {
-            this.training.picture = this.imageService.getDefaultImage();
-        }
-
-        if (this.training.creator?.picture?.data) {
-            this.training.creator.picture = this.imageService.sanitizeImage(this.training.creator.picture);
-        } else {
-            this.training.creator.picture = this.imageService.getDefaultImage();
-        }
+    public async getImages() {
+        this.training.picture = await this.imageService.getSanitizedOrDefault(this.training?.picture);
+        this.training.creator.picture = await this.imageService.getSanitizedOrDefault(this.training?.creator?.picture);
     }
 
     public async openUserModal() {
