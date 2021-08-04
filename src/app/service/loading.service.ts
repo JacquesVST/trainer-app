@@ -20,7 +20,7 @@ export class LoadingService {
         await loading.present();
     }
 
-    public hide(): void {
-        setTimeout(() => this.loadingStack.pop().dismiss(), 100);
+    public hide(delay: number = 100): void {
+        setTimeout(() => this.loadingStack.pop().dismiss(), delay);
     }
 }

@@ -1,3 +1,4 @@
+import { ImageService } from 'src/app/service/image.service';
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/service/loading.service';
 import { NavService } from 'src/app/service/nav.service';
@@ -22,7 +23,8 @@ export class ExerciseListComponent implements OnInit {
         private toastService: ToastService,
         private exerciseService: ExerciseService,
         private loadingService: LoadingService,
-        private navService: NavService
+        private navService: NavService,
+        private imageService: ImageService
     ) {}
 
     ngOnInit() {
@@ -34,7 +36,7 @@ export class ExerciseListComponent implements OnInit {
         await this.loadingService.show();
         this.exerciseService.findAllByCreator(this.user.id).subscribe(
             (exercises: Exercise[]) => {
-                this.exercises = exercises;
+                this.processImages(exercises);
             },
             (error) => {
                 this.toastService.error('retrieving_items');
@@ -44,6 +46,13 @@ export class ExerciseListComponent implements OnInit {
                 this.loadingService.hide();
             }
         );
+    }
+
+    public async processImages(exercises) {
+        for (let item of exercises) {
+            item.picture = await this.imageService.getSanitizedOrDefault(item?.picture);
+        }
+        this.exercises = exercises;
     }
 
     public goTo(url, param?): void {

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoadingController, NavController } from '@ionic/angular';
-import { Literals } from 'src/app/util/literal-util';
+import { NavController } from '@ionic/angular';
 
 @Injectable({
     providedIn: 'root'

@@ -1,3 +1,5 @@
+import { ImageService } from 'src/app/service/image.service';
+import { FileService } from 'src/app/service/file.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
@@ -27,8 +29,10 @@ export class ExerciseEditComponent implements OnInit {
     public exerciseId: number;
     public exercise: ExerciseRequestDTO = new ExerciseRequestDTO();
 
+    public hasMaterial: boolean = true;
     public selectedTags: Tag[];
     public selectedFiles: MediaFile[] = [];
+    public selectedPicture: MediaFile;
 
     constructor(
         private modalController: ModalController,
@@ -36,7 +40,9 @@ export class ExerciseEditComponent implements OnInit {
         private exerciseService: ExerciseService,
         private route: ActivatedRoute,
         private loadingService: LoadingService,
-        private navService: NavService
+        private navService: NavService,
+        private fileService: FileService,
+        private imageService: ImageService
     ) {}
 
     ngOnInit() {
@@ -84,6 +90,28 @@ export class ExerciseEditComponent implements OnInit {
         );
     }
 
+    public async saveSelectedImages(event) {
+        let files = event?.target?.files;
+        if (files) {
+            await this.loadingService.show();
+            files = Array.from(files);
+            this.fileService.persistFiles(files).subscribe(
+                (response: MediaFile[]) => {
+                    console.log(response)
+                    this.selectedFiles = response;
+                    this.selectedPicture = this.imageService.sanitizeImage(response[0]);
+                },
+                (error) => {
+                    console.error(error);
+                    this.toastService.error('processing_request');
+                },
+                () => {
+                    this.loadingService.hide();
+                }
+            );
+        }
+    }
+
     public prepareModel(): void {
         this.exercise.tagIds = this.selectedTags ? this.selectedTags.map((tag) => tag.id) : [];
         this.exercise.fileIds = this.selectedFiles ? this.selectedFiles.map((file) => file.id) : [];
@@ -115,6 +143,11 @@ export class ExerciseEditComponent implements OnInit {
         });
 
         return await modal.present();
+    }
+    
+    public openImageSelection() {
+        const element = document.getElementById('file-input');
+        element.click();
     }
 
     public goBack() {

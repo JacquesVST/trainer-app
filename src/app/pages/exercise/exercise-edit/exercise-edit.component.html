@@ -10,7 +10,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <img *ngIf="selectedPicture" [src]="selectedPicture?.sanitized">
   <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="light" (click)="openImageSelection()">
+          <ion-icon slot="start" name="image-outline"></ion-icon>
+          {{literals.pages.select_images}}
+        </ion-button>
+        <input type="file" id="file-input" slot="end" (change)="saveSelectedImages($event)" multiple>
+      </ion-col>
+    </ion-row>
+
     <ion-row>
       <ion-col>
         <ion-item>
@@ -32,7 +43,12 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label position="floating">{{literals.form.material}}:</ion-label>
+          <ion-label>{{literals.form.material}}:</ion-label>
+          <ion-toggle [(ngModel)]="hasMaterial" slot="end">
+          </ion-toggle>
+        </ion-item>
+
+        <ion-item *ngIf="hasMaterial">
           <ion-textarea [(ngModel)]="exercise.material" rows="3"></ion-textarea>
         </ion-item>
       </ion-col>
