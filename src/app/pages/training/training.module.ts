@@ -1,3 +1,4 @@
+import { ExerciseModule } from './../exercise/exercise.module';
 import { TagSelectionComponent } from './../tag/tag-selection/tag-selection.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -12,7 +13,7 @@ import { TagModule } from '../tag/tag.module';
 
 @NgModule({
     declarations: [TrainingEditComponent, TrainingListComponent, ActivityEditComponent, ActivityListComponent],
-    imports: [IonicModule, CommonModule, FormsModule, TrainingRoutingModule, TagModule],
+    imports: [IonicModule, CommonModule, FormsModule, TrainingRoutingModule, TagModule, ExerciseModule],
     exports: [TrainingEditComponent, TrainingListComponent, ActivityEditComponent, ActivityListComponent]
 })
 export class TrainingModule {}

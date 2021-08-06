@@ -19,7 +19,9 @@ export const enUs = {
         owner: 'Creator',
         favorites: 'Favorites',
         favorite_action: 'Favorite',
-        wait: 'Wait'
+        wait: 'Wait',
+        cancel: 'Cancel',
+        code: 'Code'
     },
 
     error_messages: {
@@ -93,7 +95,8 @@ export const enUs = {
         select_image: 'Select Image',
         select_images: 'Select Images',
         select_exercise: 'Select Exercise',
-        user_info: 'User Info'
+        user_info: 'User Info',
+        add_from_code: 'Insert Training Code'
     },
 
     success_messages: {

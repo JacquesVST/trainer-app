@@ -12,4 +12,5 @@ export class Training {
     creator: User;
     picture: MediaFile;
     tags: Tag[];
+    code: string;
 }

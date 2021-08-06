@@ -10,4 +10,5 @@ export class Exercise {
     creator: User;
     files: MediaFile[];
     tags: Tag[];
+    picture: MediaFile;
 }

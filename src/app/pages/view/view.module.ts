@@ -1,3 +1,4 @@
+import { ExerciseModule } from './../exercise/exercise.module';
 import { TrainingModule } from './../training/training.module';
 import { ActivityViewComponent } from './activity-view/activity-view.component';
 import { ActivityListViewComponent } from './activity-list-view/activity-list-view.component';
@@ -18,7 +19,7 @@ import { ViewRoutingModule } from './view-routing.module';
         TrainingViewComponent,
         UserViewComponent
     ],
-    imports: [IonicModule, CommonModule, FormsModule, ViewRoutingModule, TrainingModule],
+    imports: [IonicModule, CommonModule, FormsModule, ViewRoutingModule, TrainingModule, ExerciseModule],
     exports: [LibraryViewComponent]
 })
 export class ViewModule {}

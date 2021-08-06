@@ -1,0 +1,5 @@
+<ion-slides [pager]="files.length > 1" [options]="slideOptions">
+  <ion-slide *ngFor="let file of files">
+    <img [src]="file.sanitized">
+  </ion-slide>
+</ion-slides>

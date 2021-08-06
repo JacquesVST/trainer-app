@@ -25,6 +25,10 @@ export class TrainingService {
         return this.http.get<Training>(`${this.url}?trainingId=${trainingId}`);
     }
 
+    public findByCode(code: string): Observable<Training> {
+        return this.http.get<Training>(`${this.url}/code?code=${code}`);
+    }
+
     public persistTraining(trainingRequestDTO: TrainingRequestDTO): Observable<Training> {
         return this.http.post<Training>(this.url, trainingRequestDTO);
     }

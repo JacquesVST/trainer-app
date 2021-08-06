@@ -12,6 +12,16 @@
   <ion-grid>
     <ion-row>
       <ion-col>
+            <ion-button expand="block" color="primary" (click)="openCodeModal()"
+              [disabled]="userLibrary">
+              <ion-icon name="link-outline" slot="start"></ion-icon>
+              {{literals.pages.add_from_code}}
+            </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
         <ion-item-divider>
           <ion-label>
             {{literals.common.favorites}}

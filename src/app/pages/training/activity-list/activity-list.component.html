@@ -37,7 +37,7 @@
         <ion-col>
           <ion-item (click)="goTo('/training/activity/edit', activity?.id)">
             <ion-thumbnail slot="end">
-              <img src="https://picsum.photos/200">
+              <img [src]="activity?.picture?.sanitized">
             </ion-thumbnail>
             <ion-label>
               <h1><b>{{activity?.exercise?.title}}</b></h1>

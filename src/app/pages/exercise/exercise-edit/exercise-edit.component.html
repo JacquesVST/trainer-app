@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <img *ngIf="selectedPicture" [src]="selectedPicture?.sanitized">
+  <app-exercise-files *ngIf="selectedFiles?.length" [fileList]="selectedFiles"></app-exercise-files>
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -18,7 +18,7 @@
           <ion-icon slot="start" name="image-outline"></ion-icon>
           {{literals.pages.select_images}}
         </ion-button>
-        <input type="file" id="file-input" slot="end" (change)="saveSelectedImages($event)" multiple>
+        <input type="file" id="file-input" slot="end" (change)="saveSelectedImages($event)" accept="image/*" multiple>
       </ion-col>
     </ion-row>
 

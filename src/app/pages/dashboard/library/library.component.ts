@@ -8,6 +8,7 @@ import { ToastService } from 'src/app/service/toast.service';
 import { UserLibraryService } from 'src/app/service/user-library.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
+import { AlertController } from '@ionic/angular';
 
 @Component({
     selector: 'app-library',
@@ -26,7 +27,8 @@ export class LibraryComponent implements OnInit {
         private toastService: ToastService,
         private navService: NavService,
         private loadingService: LoadingService,
-        private imageService: ImageService
+        private imageService: ImageService,
+        private alertController: AlertController
     ) {}
 
     ngOnInit() {
@@ -71,6 +73,37 @@ export class LibraryComponent implements OnInit {
                 this.favorites.push(this.library.shift());
             }
         }
+    }
+
+    public async openCodeModal() {
+        const modal = await this.alertController.create({
+            header: this.literals.pages.add_from_code,
+            inputs: [
+                {
+                  name: 'code',
+                  type: 'text',
+                  attributes: {
+                    maxlength: 6
+                  }
+                },
+            ],
+            buttons: [
+                {
+                    text: this.literals.common.cancel,
+                    role: 'cancel',
+                    handler: () => {}
+                },
+                {
+                    text: this.literals.common.ok,
+                    role: 'add',
+                    handler: (data) => {
+                    this.goTo('view/training', data.code);
+                    }
+                }
+            ]
+        });
+
+        await modal.present();
     }
 
     public doRefresh(event) {

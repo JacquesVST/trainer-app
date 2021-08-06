@@ -1,3 +1,4 @@
+import { ImageService } from 'src/app/service/image.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Activity } from 'src/app/model/activity/activity.model';
 import { ActivityService } from 'src/app/service/activity.service';
@@ -22,7 +23,8 @@ export class ActivityListViewComponent implements OnInit {
         private toastService: ToastService,
         private navService: NavService,
         private activityService: ActivityService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private imageService: ImageService
     ) {}
 
     ngOnInit() {
@@ -35,7 +37,7 @@ export class ActivityListViewComponent implements OnInit {
         await this.loadingService.show();
         this.activityService.findAllByTraining(this.trainingId).subscribe(
             (activities: Activity[]) => {
-                this.activities = activities;
+                this.processImages(activities);
             },
             (error) => {
                 console.error(error);
@@ -45,6 +47,13 @@ export class ActivityListViewComponent implements OnInit {
                 this.loadingService.hide();
             }
         );
+    }
+
+    public async processImages(activities) {
+        for (let item of activities) {
+            item.picture = await this.imageService.getSanitizedOrDefault(item?.exercise?.files[0]);
+        }
+        this.activities = activities;
     }
 
     public getTotal(activity: Activity) {

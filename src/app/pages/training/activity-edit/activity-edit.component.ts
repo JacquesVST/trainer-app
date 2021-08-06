@@ -1,3 +1,4 @@
+import { ImageService } from 'src/app/service/image.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
@@ -39,7 +40,8 @@ export class ActivityEditComponent implements OnInit {
         private activityService: ActivityService,
         private navService: NavService,
         private route: ActivatedRoute,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private imageService: ImageService
     ) {}
 
     ngOnInit() {
@@ -161,9 +163,10 @@ export class ActivityEditComponent implements OnInit {
             component: ExerciseSelectionComponent
         });
 
-        modal.onDidDismiss().then((data) => {
+        modal.onDidDismiss().then(async (data) => {
             if (data.data) {
                 this.selectedExercise = data.data;
+                this.selectedExercise.picture = await this.imageService.getSanitizedOrDefault(this.selectedExercise?.files[0])
             }
         });
 

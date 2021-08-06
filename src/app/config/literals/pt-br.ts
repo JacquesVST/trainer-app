@@ -19,7 +19,8 @@ export const ptBr = {
         owner: 'Criador',
         favorites: 'Favoritos',
         favorite_action: 'Favoritar',
-        wait: 'Aguarde'
+        wait: 'Aguarde',
+        cancel: 'Cancelar'
     },
 
     error_messages: {
@@ -45,7 +46,8 @@ export const ptBr = {
         sets: 'Séries',
         comments: 'Comentários',
         reorder: 'Reordenar',
-        total: 'Total'
+        total: 'Total',
+        code: 'Código'
     },
 
     login: {
@@ -71,7 +73,7 @@ export const ptBr = {
     },
 
     messages: {
-        warn_adding_activities: 'Você deve salvar esta aula antes de adicionar atividades a ela!',
+        warn_adding_activities: 'Você deve salvar esta aula antes de adicionar exercícios!',
         library_description: 'Todas as aulas disponíveis para praticar aparecerão aqui!',
         save_reorder: 'Observação: a ordem da lista de atividades deve ser salva a parte',
         already_in_library: 'Disponível na sua biblioteca',
@@ -82,8 +84,8 @@ export const ptBr = {
     },
 
     pages: {
-        new_trainings: 'Nova aula',
-        edit_trainings: 'Editar aula',
+        new_training: 'Nova aula',
+        edit_training: 'Editar aula',
         new_exercise: 'Novo exercício',
         edit_exercise: 'Editar exercício',
         new_activity: 'Nova Atividade',
@@ -93,7 +95,8 @@ export const ptBr = {
         select_image: 'Selecionar Imagem',
         select_images: 'Selecionar Imagens',
         select_exercise: 'Selecionar Exercício',
-        user_info: 'Informações do Usuário'
+        user_info: 'Informações do Usuário',
+        add_from_code: 'Inserir Código da Aula'
     },
 
     success_messages: {

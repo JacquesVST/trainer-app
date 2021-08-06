@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Training } from 'src/app/model/training/training.model';
@@ -27,7 +26,7 @@ export class TrainingViewComponent implements OnInit {
     public libraryButton: string;
 
     public user: User;
-    public trainingId: number;
+    public trainingCode: string;
     public training: Training = new Training();
     public userLibrary: UserLibrary;
     public userLibraryRequestDTO: UserLibraryRequestDTO = new UserLibraryRequestDTO();
@@ -45,16 +44,16 @@ export class TrainingViewComponent implements OnInit {
 
     ngOnInit() {
         this.libraryButton = this.literals.common.add_library;
-        this.route.params.subscribe((params: Params) => (this.trainingId = params['id']));
+        this.route.params.subscribe((params: Params) => (this.trainingCode = params['code']));
         this.user = UserUtil.getUser();
-        if (this.trainingId) {
+        if (this.trainingCode) {
             this.getTraining();
         }
     }
 
     public async getTraining() {
         await this.loadingService.show();
-        this.trainingService.findByTrainingId(this.trainingId).subscribe(
+        this.trainingService.findByCode(this.trainingCode).subscribe(
             (training: Training) => {
                 this.training = training;
                 this.pageTitle = training.title;
@@ -73,7 +72,7 @@ export class TrainingViewComponent implements OnInit {
 
     public async getLibrary() {
         await this.loadingService.show();
-        this.userLibraryService.findByEndUserAndTraining(this.user.id, this.trainingId).subscribe(
+        this.userLibraryService.findByEndUserAndTraining(this.user.id, this.training.id).subscribe(
             (userLibrary: UserLibrary) => {
                 if (userLibrary) {
                     this.userLibrary = userLibrary;
@@ -110,7 +109,7 @@ export class TrainingViewComponent implements OnInit {
 
     public addToLibrary(): void {
         this.userLibraryRequestDTO.userId = this.user.id;
-        this.userLibraryRequestDTO.trainingId = this.trainingId;
+        this.userLibraryRequestDTO.trainingId = this.training.id;
         this.persistUserLibrary();
     }
 

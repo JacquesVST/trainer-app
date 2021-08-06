@@ -18,7 +18,17 @@
           <ion-icon slot="start" name="image-outline"></ion-icon>
           {{literals.pages.select_images}}
         </ion-button>
-        <input type="file" id="file-input" slot="end" (change)="saveSelectedImage($event)">
+        <input type="file" id="file-input" slot="end" (change)="saveSelectedImage($event)" accept="image/*">
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="training.code">
+      <ion-col>
+        <ion-item>
+          <ion-label>{{literals.form.code}}:</ion-label>
+          <ion-icon name="copy-outline" slot="end"></ion-icon>
+          <span text-right><code>{{training?.code}}</code></span>
+        </ion-item>
       </ion-col>
     </ion-row>
 

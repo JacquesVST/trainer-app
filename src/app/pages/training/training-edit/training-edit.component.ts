@@ -120,7 +120,10 @@ export class TrainingEditComponent implements OnInit {
         this.training.title = training.title;
         this.training.description = training.description;
         this.training.published = !!training.published;
-        this.selectedPicture = this.imageService.sanitizeImage(training.picture);
+        this.training.code = training.code;
+        if(training?.picture?.data){
+            this.selectedPicture = this.imageService.sanitizeImage(training.picture);
+        }
     }
 
     public async openTagSelection() {

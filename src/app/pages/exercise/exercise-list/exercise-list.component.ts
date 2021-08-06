@@ -15,6 +15,7 @@ import { ToastService } from '../../../service/toast.service';
     styleUrls: ['./exercise-list.component.scss']
 })
 export class ExerciseListComponent implements OnInit {
+    
     public literals: any = Literals.getLiterals();
     public user: User;
     public exercises: Exercise[] = [];
@@ -50,7 +51,7 @@ export class ExerciseListComponent implements OnInit {
 
     public async processImages(exercises) {
         for (let item of exercises) {
-            item.picture = await this.imageService.getSanitizedOrDefault(item?.picture);
+            item.picture = await this.imageService.getSanitizedOrDefault(item?.files[0]);
         }
         this.exercises = exercises;
     }

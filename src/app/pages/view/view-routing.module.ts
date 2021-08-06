@@ -15,7 +15,7 @@ const routes: Routes = [
         component: LibraryViewComponent
     },
     {
-        path: 'training/:id',
+        path: 'training/:code',
         component: TrainingViewComponent
     },
     {

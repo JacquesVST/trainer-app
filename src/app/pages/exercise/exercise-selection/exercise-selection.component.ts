@@ -1,3 +1,4 @@
+import { ImageService } from 'src/app/service/image.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { LoadingService } from 'src/app/service/loading.service';
@@ -15,6 +16,7 @@ import { ToastService } from '../../../service/toast.service';
     styleUrls: ['./exercise-selection.component.scss']
 })
 export class ExerciseSelectionComponent implements OnInit {
+    
     @Input() public selectedExercise: Exercise;
     public literals: any = Literals.getLiterals();
     public user: User;
@@ -26,7 +28,8 @@ export class ExerciseSelectionComponent implements OnInit {
         private toastService: ToastService,
         private exerciseService: ExerciseService,
         private navService: NavService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private imageService: ImageService
     ) {}
 
     ngOnInit() {
@@ -39,7 +42,7 @@ export class ExerciseSelectionComponent implements OnInit {
         await this.loadingService.show();
         this.exerciseService.findAllByCreator(this.user.id).subscribe(
             (exercises: Exercise[]) => {
-                this.exercises = exercises;
+                this.processImages(exercises)
             },
             (error) => {
                 this.toastService.error('retrieving_items');
@@ -49,6 +52,13 @@ export class ExerciseSelectionComponent implements OnInit {
                 this.loadingService.hide();
             }
         );
+    }
+
+    public async processImages(exercises) {
+        for (let item of exercises) {
+            item.picture = await this.imageService.getSanitizedOrDefault(item?.files[0]);
+        }
+        this.exercises = exercises;
     }
 
     public dismiss(save: boolean) {

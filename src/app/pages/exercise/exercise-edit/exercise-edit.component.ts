@@ -29,10 +29,9 @@ export class ExerciseEditComponent implements OnInit {
     public exerciseId: number;
     public exercise: ExerciseRequestDTO = new ExerciseRequestDTO();
 
-    public hasMaterial: boolean = true;
+    public hasMaterial: boolean = false;
     public selectedTags: Tag[];
     public selectedFiles: MediaFile[] = [];
-    public selectedPicture: MediaFile;
 
     constructor(
         private modalController: ModalController,
@@ -41,8 +40,7 @@ export class ExerciseEditComponent implements OnInit {
         private route: ActivatedRoute,
         private loadingService: LoadingService,
         private navService: NavService,
-        private fileService: FileService,
-        private imageService: ImageService
+        private fileService: FileService
     ) {}
 
     ngOnInit() {
@@ -99,7 +97,6 @@ export class ExerciseEditComponent implements OnInit {
                 (response: MediaFile[]) => {
                     console.log(response)
                     this.selectedFiles = response;
-                    this.selectedPicture = this.imageService.sanitizeImage(response[0]);
                 },
                 (error) => {
                     console.error(error);

@@ -8,4 +8,5 @@ export class TrainingRequestDTO {
     creatorId: number;
     pictureId: number;
     tagIds: number[];
+    code: string;
 }
