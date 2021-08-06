@@ -80,7 +80,8 @@ export const ptBr = {
         date_published: 'Publicado',
         date_added: 'Adquirido',
         added_favorite: 'Adicionado aos favoritos!',
-        removed_favorite: 'Removido dos favoritos!'
+        removed_favorite: 'Removido dos favoritos!',
+        code_copied: 'Código copiado para área de transferência.'
     },
 
     pages: {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { ClipboardService } from 'ngx-clipboard';
 import { MediaFile } from 'src/app/model/media-file/media-file.model';
 import { Tag } from 'src/app/model/tag.model';
 import { TrainingRequestDTO } from 'src/app/model/training/training-request-dto.model';
@@ -15,7 +16,6 @@ import { UserUtil } from 'src/app/util/user-util';
 import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.component';
 import { FileService } from './../../../service/file.service';
 import { NavService } from './../../../service/nav.service';
-
 @Component({
     selector: 'app-training-edit',
     templateUrl: './training-edit.component.html',
@@ -41,7 +41,8 @@ export class TrainingEditComponent implements OnInit {
         private loadingService: LoadingService,
         private navService: NavService,
         private fileService: FileService,
-        private imageService: ImageService
+        private imageService: ImageService,
+        private clipboard: ClipboardService
     ) {}
 
     ngOnInit() {
@@ -121,7 +122,7 @@ export class TrainingEditComponent implements OnInit {
         this.training.description = training.description;
         this.training.published = !!training.published;
         this.training.code = training.code;
-        if(training?.picture?.data){
+        if (training?.picture?.data) {
             this.selectedPicture = this.imageService.sanitizeImage(training.picture);
         }
     }
@@ -141,6 +142,14 @@ export class TrainingEditComponent implements OnInit {
         });
 
         return await modal.present();
+    }
+
+    public copyCode(): void {
+        this.clipboard.copyFromContent(this.training.code);
+        this.toastService.custom({
+            message: this.literals.messages.code_copied,
+            color: 'primary'
+        })
     }
 
     public openImageSelection() {

@@ -80,7 +80,8 @@ export const enUs = {
         date_published: 'Published',
         date_added: 'Added',
         added_favorite: 'Added to favorites!',
-        removed_favorite: 'Removed from favorites!'
+        removed_favorite: 'Removed from favorites!',
+        code_copied: 'Code copied to the clipboard.'
     },
 
     pages: {

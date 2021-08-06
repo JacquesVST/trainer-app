@@ -7,7 +7,7 @@ import { ToastOptions } from '@ionic/core';
     providedIn: 'root'
 })
 export class ToastService {
-    public literals = Literals.getLiterals();
+    private literals = Literals.getLiterals();
 
     constructor(private toastController: ToastController) {}
 
@@ -42,6 +42,9 @@ export class ToastService {
     }
 
     public custom(options: ToastOptions): void {
+        options.duration = options.duration | 2000;
+        options.position = options.position ? options.position : 'top';
+
         this.toastController.create(options).then((toast) => {
             toast.present();
         });
