@@ -149,7 +149,7 @@ export class TrainingEditComponent implements OnInit {
         this.toastService.custom({
             message: this.literals.messages.code_copied,
             color: 'primary'
-        })
+        });
     }
 
     public openImageSelection() {

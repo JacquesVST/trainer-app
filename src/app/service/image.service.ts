@@ -52,5 +52,4 @@ export class ImageService {
             return this.getDefaultImage();
         }
     }
-
 }

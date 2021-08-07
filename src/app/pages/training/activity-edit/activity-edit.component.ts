@@ -166,7 +166,9 @@ export class ActivityEditComponent implements OnInit {
         modal.onDidDismiss().then(async (data) => {
             if (data.data) {
                 this.selectedExercise = data.data;
-                this.selectedExercise.picture = await this.imageService.getSanitizedOrDefault(this.selectedExercise?.files[0])
+                this.selectedExercise.picture = await this.imageService.getSanitizedOrDefault(
+                    this.selectedExercise?.files[0]
+                );
             }
         });
 

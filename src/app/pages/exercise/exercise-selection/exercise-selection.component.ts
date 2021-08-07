@@ -16,7 +16,6 @@ import { ToastService } from '../../../service/toast.service';
     styleUrls: ['./exercise-selection.component.scss']
 })
 export class ExerciseSelectionComponent implements OnInit {
-    
     @Input() public selectedExercise: Exercise;
     public literals: any = Literals.getLiterals();
     public user: User;
@@ -42,7 +41,7 @@ export class ExerciseSelectionComponent implements OnInit {
         await this.loadingService.show();
         this.exerciseService.findAllByCreator(this.user.id).subscribe(
             (exercises: Exercise[]) => {
-                this.processImages(exercises)
+                this.processImages(exercises);
             },
             (error) => {
                 this.toastService.error('retrieving_items');

@@ -32,8 +32,8 @@ export class FileService {
 
     public persistFiles(files: File[]): Observable<MediaFile[]> {
         const formData = new FormData();
-        files.forEach(f => {
-            formData.append('files', f)
+        files.forEach((f) => {
+            formData.append('files', f);
         });
         return this.http.post<MediaFile[]>(`${this.url}/uploads`, formData);
     }

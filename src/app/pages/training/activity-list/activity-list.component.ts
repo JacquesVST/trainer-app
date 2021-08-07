@@ -42,7 +42,7 @@ export class ActivityListComponent implements OnInit {
         await this.loadingService.show();
         this.activityService.findAllByTraining(this.trainingId).subscribe(
             (activities: Activity[]) => {
-                this.processImages(activities)
+                this.processImages(activities);
             },
             (error) => {
                 console.error(error);
@@ -59,7 +59,7 @@ export class ActivityListComponent implements OnInit {
         await this.loadingService.show();
         this.activityService.persistActivities(activities).subscribe(
             (activities: Activity[]) => {
-                this.processImages(activities)
+                this.processImages(activities);
             },
             (error) => {
                 console.error(error);

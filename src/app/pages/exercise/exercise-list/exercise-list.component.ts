@@ -15,7 +15,6 @@ import { ToastService } from '../../../service/toast.service';
     styleUrls: ['./exercise-list.component.scss']
 })
 export class ExerciseListComponent implements OnInit {
-    
     public literals: any = Literals.getLiterals();
     public user: User;
     public exercises: Exercise[] = [];

@@ -80,12 +80,12 @@ export class LibraryComponent implements OnInit {
             header: this.literals.pages.add_from_code,
             inputs: [
                 {
-                  name: 'code',
-                  type: 'text',
-                  attributes: {
-                    maxlength: 6
-                  }
-                },
+                    name: 'code',
+                    type: 'text',
+                    attributes: {
+                        maxlength: 6
+                    }
+                }
             ],
             buttons: [
                 {
@@ -97,7 +97,7 @@ export class LibraryComponent implements OnInit {
                     text: this.literals.common.ok,
                     role: 'add',
                     handler: (data) => {
-                    this.goTo('view/training', data.code);
+                        this.goTo('view/training', data.code);
                     }
                 }
             ]

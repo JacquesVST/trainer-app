@@ -8,11 +8,9 @@ import { MediaFile } from 'src/app/model/media-file/media-file.model';
     styleUrls: ['./exercise-files.component.scss']
 })
 export class ExerciseFilesComponent implements OnInit {
-    
     @Input()
     public set fileList(files: MediaFile[]) {
-      this.files = this.sanitizeImages(files);
-        
+        this.files = this.sanitizeImages(files);
     }
     public files: MediaFile[];
     public slideOptions: any;
