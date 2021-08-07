@@ -1,4 +1,4 @@
-import { UserLibrary } from './user-library/user-library.model';
+import { UserLibrary } from '../user-library/user-library.model';
 
 export class Session {
     id: number;
@@ -7,4 +7,5 @@ export class Session {
     finish: Date;
     observations: string;
     userLibrary: UserLibrary;
+    sent: boolean;
 }

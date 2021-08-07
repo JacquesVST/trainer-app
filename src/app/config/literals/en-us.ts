@@ -27,7 +27,8 @@ export const enUs = {
     error_messages: {
         retrieving_items: 'Error while retrieving items!',
         processing_request: 'Error while processing your request!',
-        incorrect_login: 'User or password are incorrect!'
+        incorrect_login: 'User or password are incorrect!',
+        training_not_found: 'No training found for this code!'
     },
 
     form: {

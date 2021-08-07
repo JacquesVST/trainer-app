@@ -64,3 +64,12 @@
     <app-activity-list-view *ngIf="training?.id" [trainingId]="training.id"></app-activity-list-view>
   </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" color="success" (click)="goTo('/session/new', userLibrary.id)">
+      <ion-icon slot="start" name="play-outline"></ion-icon>
+      <!-- TODO: Create literal --> Start a new session with this training
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

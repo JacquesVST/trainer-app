@@ -1,3 +1,4 @@
+import { TrainingService } from './../../../service/training.service';
 import { ImageService } from 'src/app/service/image.service';
 import { Component, OnInit } from '@angular/core';
 import { UserLibrary } from 'src/app/model/user-library/user-library.model';
@@ -9,6 +10,7 @@ import { UserLibraryService } from 'src/app/service/user-library.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { AlertController } from '@ionic/angular';
+import { Training } from 'src/app/model/training/training.model';
 
 @Component({
     selector: 'app-library',
@@ -23,6 +25,7 @@ export class LibraryComponent implements OnInit {
     public user: User;
 
     constructor(
+        private trainingService: TrainingService,
         private userLibraryService: UserLibraryService,
         private toastService: ToastService,
         private navService: NavService,
@@ -75,6 +78,18 @@ export class LibraryComponent implements OnInit {
         }
     }
 
+    public getTraining(code: string) {
+        this.trainingService.findByCode(code).subscribe(
+            (training: Training) => {
+                this.goTo('view/training', code);
+            },
+            (error) => {
+                console.error(error);
+                this.toastService.error('training_not_found');
+            }
+        );
+    }
+
     public async openCodeModal() {
         const modal = await this.alertController.create({
             header: this.literals.pages.add_from_code,
@@ -97,7 +112,7 @@ export class LibraryComponent implements OnInit {
                     text: this.literals.common.ok,
                     role: 'add',
                     handler: (data) => {
-                        this.goTo('view/training', data.code);
+                        this.getTraining(data.code);
                     }
                 }
             ]

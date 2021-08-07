@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Activity } from 'src/app/model/activity/activity.model';
 import { ActivityService } from 'src/app/service/activity.service';
@@ -14,6 +14,13 @@ import { NavService } from './../../../service/nav.service';
     styleUrls: ['./activity-view.component.scss']
 })
 export class ActivityViewComponent implements OnInit {
+    @Input()
+    public set fromSession(id: number) {
+        this.activityId = id;
+        this.getActivity();
+        this.isSession = true;
+    }
+    public isSession: boolean;
     public literals: any = Literals.getLiterals();
     public activityId: number;
     public activity: Activity = new Activity();

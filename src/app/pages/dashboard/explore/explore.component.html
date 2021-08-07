@@ -12,7 +12,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-card *ngFor="let training of trainings" (click)="goTo('view/training', training.id)">
+        <ion-card *ngFor="let training of trainings" (click)="goTo('view/training', training.code)">
           <img [src]="training?.picture?.sanitized">
           <ion-card-header>
             <ion-card-subtitle>

@@ -113,6 +113,10 @@ export class LibraryViewComponent implements OnInit {
         return await modal.present();
     }
 
+    public goTo(url, param?): void {
+        this.navService.goTo(url, param);
+    }
+
     public goBack() {
         this.navService.goBack();
     }

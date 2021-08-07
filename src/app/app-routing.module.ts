@@ -1,3 +1,4 @@
+import { Session } from './model/session/session.model';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './config/auth-guard';
@@ -35,6 +36,11 @@ const routes: Routes = [
         path: 'view',
         canActivate: [AuthGuard],
         loadChildren: () => import('./pages/view/view.module').then((m) => m.ViewModule)
+    },
+    {
+        path: 'session',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/session/session.module').then((m) => m.SessionModule)
     },
     {
         path: '**',

@@ -20,6 +20,6 @@ import { ViewRoutingModule } from './view-routing.module';
         UserViewComponent
     ],
     imports: [IonicModule, CommonModule, FormsModule, ViewRoutingModule, TrainingModule, ExerciseModule],
-    exports: [LibraryViewComponent]
+    exports: [LibraryViewComponent, ActivityViewComponent]
 })
 export class ViewModule {}

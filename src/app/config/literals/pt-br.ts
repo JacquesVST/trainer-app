@@ -26,7 +26,8 @@ export const ptBr = {
     error_messages: {
         retrieving_items: 'Erro ao buscar itens!',
         processing_request: 'Erro ao processar sua requisição!',
-        incorrect_login: 'Usuário ou senha estão incorretos!'
+        incorrect_login: 'Usuário ou senha estão incorretos!',
+        training_not_found: 'Nenhuma aula encontrada para este código!'
     },
 
     form: {
