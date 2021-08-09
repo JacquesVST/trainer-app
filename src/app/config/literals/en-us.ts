@@ -71,7 +71,7 @@ export const enUs = {
     },
 
     menu: {
-        reports: 'Reports',
+        sessions: 'Sessions',
         settings: 'Settings',
         exit: 'Exit',
         explore: 'Explore',

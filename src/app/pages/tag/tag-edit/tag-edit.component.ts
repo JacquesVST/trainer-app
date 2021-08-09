@@ -30,7 +30,6 @@ export class TagEditComponent implements OnInit {
 
     public async persistTag() {
         await this.loadingService.show();
-        console.log(this.newTag);
         this.tagService.persistTag(this.newTag).subscribe(
             (response: Tag) => {
                 this.newTag = response;

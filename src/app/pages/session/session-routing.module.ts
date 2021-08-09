@@ -1,9 +1,14 @@
+import { SessionListComponent } from './session-list/session-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FinishSessionComponent } from './finish-session/finish-session.component';
 import { SessionComponent } from './session/session.component';
 
 const routes: Routes = [
+    {
+        path: '',
+        component: SessionListComponent
+    },
     {
         path: 'new/:id',
         component: SessionComponent

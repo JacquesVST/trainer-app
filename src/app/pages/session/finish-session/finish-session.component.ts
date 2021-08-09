@@ -51,7 +51,6 @@ export class FinishSessionComponent implements OnInit {
         await this.loadingService.show();
         this.sessionService.findById(this.sessionId).subscribe(
             (response: Session) => {
-                console.log(response);
                 this.session = response;
                 this.training = this.session.userLibrary.training;
                 this.processImages();

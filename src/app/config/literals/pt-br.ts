@@ -72,7 +72,7 @@ export const ptBr = {
     },
 
     menu: {
-        reports: 'Relatórios',
+        sessions: 'Sessões',
         settings: 'Ajustes',
         exit: 'Sair',
         explore: 'Explorar',

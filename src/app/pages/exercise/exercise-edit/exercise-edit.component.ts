@@ -94,7 +94,6 @@ export class ExerciseEditComponent implements OnInit {
             files = Array.from(files);
             this.fileService.persistFiles(files).subscribe(
                 (response: MediaFile[]) => {
-                    console.log(response);
                     this.selectedFiles = response;
                 },
                 (error) => {
