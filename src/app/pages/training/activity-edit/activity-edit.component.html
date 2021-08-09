@@ -6,6 +6,12 @@
     <ion-title>
       {{pageTitle}}
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="deleteActivity()">
+        <ion-icon slot="start" name="trash-outline"></ion-icon>
+        {{literals.form.delete}}
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

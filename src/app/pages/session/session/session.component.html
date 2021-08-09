@@ -2,18 +2,19 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="goToActivity(-1)" [disabled]="activityIndex === 0">
-        <!-- TODO --> Previous
+        {{literals.common.previous}}
         <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="goToActivity(+1)" [disabled]="activityIndex === (activities?.length - 1)">
-        <!-- TODO --> Next
+        {{literals.common.next}}
         <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true">
   <app-activity-view *ngIf="currentActivity" [fromSession]="currentActivity.id"></app-activity-view>
 </ion-content>
@@ -22,7 +23,7 @@
   <ion-toolbar>
     <ion-button expand="block" color="danger" (click)="finishSession()">
       <ion-icon slot="start" name="stop-outline"></ion-icon>
-      <!-- TODO: Create literal --> Finish current session
+      {{literals.messages.finish_session}}
     </ion-button>
   </ion-toolbar>
 </ion-footer>

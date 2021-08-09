@@ -13,6 +13,10 @@ export class SessionService {
 
     private url: string = `${this.serverService.getServer()}/session`;
 
+    public findById(sessionId: number): Observable<Session> {
+        return this.http.get<Session>(`${this.url}?sessionId=${sessionId}`);
+    }
+
     public findAllByUser(userId: number): Observable<Session[]> {
         return this.http.get<Session[]>(`${this.url}/user?userId=${userId}`);
     }
@@ -23,5 +27,9 @@ export class SessionService {
 
     public persistSession(session: SessionRequestDTO): Observable<Session> {
         return this.http.post<Session>(this.url, session);
+    }
+
+    public deleteSession(sessionId: number): Observable<void> {
+        return this.http.delete<void>(`${this.url}?sessionId=${sessionId}`);
     }
 }

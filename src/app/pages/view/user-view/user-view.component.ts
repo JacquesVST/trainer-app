@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SafeResourceUrl } from '@angular/platform-browser';
 import { ModalController } from '@ionic/angular';
 import { User } from 'src/app/model/user/user.model';
 import { ImageService } from 'src/app/service/image.service';
@@ -17,7 +16,7 @@ export class UserViewComponent implements OnInit {
     constructor(private modalController: ModalController, private imageService: ImageService) {}
 
     async ngOnInit() {
-        //this.user.picture = await this.imageService.getSanitizedOrDefault(this.user?.picture);
+        this.user.picture = await this.imageService.getSanitizedOrDefault(this.user?.picture);
     }
 
     public dismiss() {

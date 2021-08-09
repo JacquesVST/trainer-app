@@ -1,5 +1,3 @@
-import { ImageService } from 'src/app/service/image.service';
-import { FileService } from 'src/app/service/file.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
@@ -9,6 +7,7 @@ import { MediaFile } from 'src/app/model/media-file/media-file.model';
 import { Tag } from 'src/app/model/tag.model';
 import { User } from 'src/app/model/user/user.model';
 import { ExerciseService } from 'src/app/service/exercise.service';
+import { FileService } from 'src/app/service/file.service';
 import { LoadingService } from 'src/app/service/loading.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { Literals } from 'src/app/util/literal-util';

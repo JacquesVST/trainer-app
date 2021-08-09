@@ -21,7 +21,8 @@ export const enUs = {
         favorite_action: 'Favorite',
         wait: 'Wait',
         cancel: 'Cancel',
-        code: 'Code'
+        previous: 'Previous',
+        next: 'Next'
     },
 
     error_messages: {
@@ -48,7 +49,12 @@ export const enUs = {
         sets: 'Sets',
         comments: 'Comments',
         reorder: 'Reorder',
-        total: 'Total'
+        total: 'Total',
+        code: 'Code',
+        start: 'Start',
+        finish: 'Finish',
+        observations: 'Observations',
+        delete: 'delete'
     },
 
     login: {
@@ -82,8 +88,28 @@ export const enUs = {
         date_added: 'Added',
         added_favorite: 'Added to favorites!',
         removed_favorite: 'Removed from favorites!',
-        code_copied: 'Code copied to the clipboard.'
+        code_copied: 'Code copied to the clipboard!',
+        start_session: 'Start a new session with this training',
+        finish_session: 'Finish current session',
+        share_session: 'Share session with trainer'
     },
+
+    months: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ],
+
+    months_short: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 
     pages: {
         new_training: 'New training',
@@ -105,6 +131,7 @@ export const enUs = {
         item_saved: 'Item successfully saved!',
         welcome: 'Welcome back!',
         register: 'Successfully registered!',
-        added_to_library: 'Successfully added item to library!'
+        added_to_library: 'Successfully added item to library!',
+        item_deleted: 'Item successfully deleted!'
     }
 };

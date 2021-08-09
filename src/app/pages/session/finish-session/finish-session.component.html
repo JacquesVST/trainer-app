@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="" (click)="saveSession(false)"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{literals.messages.share_session}}
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="deleteSession()">
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+                {{literals.form.delete}}
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+    <ion-grid *ngIf="session">
+        <ion-row *ngIf="training">
+            <ion-col>
+                <ion-list>
+                    <ion-item>
+                        <ion-thumbnail slot="end">
+                            <img [src]="training?.picture?.sanitized">
+                        </ion-thumbnail>
+                        <ion-label>
+                            <h1><b>{{training.title}}</b></h1>
+                            <h3>{{training.description}}</h3>
+                            <br *ngIf="training?.tags?.length">
+                            <ion-chip *ngFor="let tag of training?.tags"
+                                [style]="{'color':tag.color, 'border-color':tag.color}" outline>
+                                <ion-label>{{tag.description}}</ion-label>
+                            </ion-chip>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="fixed">
+                        {{literals.form.start}}
+                    </ion-label>
+                    <ion-datetime [(ngModel)]="session.start" [displayFormat]="datePickerOptions.displayFormat"
+                        [pickerFormat]="datePickerOptions.pickerFormat" [slot]="datePickerOptions.slot"
+                        [monthShortNames]="datePickerOptions.monthShortNames" [max]="datePickerOptions.max">
+                    </ion-datetime>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="fixed">
+                        {{literals.form.finish}}
+                    </ion-label>
+                    <ion-datetime [(ngModel)]="session.finish" [displayFormat]="datePickerOptions.displayFormat"
+                        [pickerFormat]="datePickerOptions.pickerFormat" [slot]="datePickerOptions.slot"
+                        [monthShortNames]="datePickerOptions.monthShortNames" [max]="datePickerOptions.max">
+                    </ion-datetime>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">{{literals.form.observations}}:</ion-label>
+                    <ion-textarea [(ngModel)]="session.observations" rows="3"></ion-textarea>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-button expand="block" color="success" (click)="saveSession(true)">
+            <ion-icon slot="start" name="arrow-redo-outline"></ion-icon>
+            {{literals.messages.share_session}}
+        </ion-button>
+    </ion-toolbar>
+</ion-footer>

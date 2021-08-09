@@ -42,6 +42,7 @@ export class ActivityListComponent implements OnInit {
         await this.loadingService.show();
         this.activityService.findAllByTraining(this.trainingId).subscribe(
             (activities: Activity[]) => {
+                this.dividerTitle += ` (${activities?.length})`;
                 this.processImages(activities);
             },
             (error) => {
@@ -49,7 +50,6 @@ export class ActivityListComponent implements OnInit {
                 this.toastService.error('retrieving_items');
             },
             () => {
-                this.dividerTitle += ` (${this.activities?.length | 0})`;
                 this.loadingService.hide();
             }
         );

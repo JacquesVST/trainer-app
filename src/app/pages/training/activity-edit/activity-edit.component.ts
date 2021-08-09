@@ -115,6 +115,22 @@ export class ActivityEditComponent implements OnInit {
         );
     }
 
+    public deleteActivity() {
+        this.activityService.deleteActivity(this.activityId).subscribe(
+            () => {
+                this.toastService.custom({
+                    message: this.literals.success_messages.item_deleted
+                });
+                this.goTo('training/edit', this.selectedTrainingId);
+            },
+            (error) => {
+                console.error(error);
+                this.toastService.error('processing_request');
+            },
+            () => {}
+        );
+    }
+
     public prepareModel(): void {
         this.activity.duration = this.durationInput.value;
         this.activity.repeats = this.repeatsInput.value;

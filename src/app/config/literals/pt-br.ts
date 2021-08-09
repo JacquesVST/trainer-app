@@ -20,7 +20,10 @@ export const ptBr = {
         favorites: 'Favoritos',
         favorite_action: 'Favoritar',
         wait: 'Aguarde',
-        cancel: 'Cancelar'
+        cancel: 'Cancelar',
+        code: 'Código',
+        previous: 'Anterior',
+        next: 'Próximo'
     },
 
     error_messages: {
@@ -48,7 +51,11 @@ export const ptBr = {
         comments: 'Comentários',
         reorder: 'Reordenar',
         total: 'Total',
-        code: 'Código'
+        code: 'Código',
+        start: 'Início',
+        finish: 'Término',
+        observations: 'Observações',
+        delete: 'Excluir'
     },
 
     login: {
@@ -82,8 +89,28 @@ export const ptBr = {
         date_added: 'Adquirido',
         added_favorite: 'Adicionado aos favoritos!',
         removed_favorite: 'Removido dos favoritos!',
-        code_copied: 'Código copiado para área de transferência.'
+        code_copied: 'Código copiado para área de transferência!',
+        start_session: 'Iniciar nova sessão com esta aula',
+        finish_session: 'Concluir sessão atual',
+        share_session: 'Compartilhar sessão com instrutor'
     },
+
+    months: [
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho',
+        'Julho',
+        'Agosto',
+        'Setembro',
+        'Outubro',
+        'Novembro',
+        'Dezembro'
+    ],
+
+    months_short: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
 
     pages: {
         new_training: 'Nova aula',
@@ -105,6 +132,7 @@ export const ptBr = {
         item_saved: 'Item salvo com sucesso!',
         welcome: 'Bem vindo de volta!',
         register: 'Registrado com sucesso!',
-        added_to_library: 'Item adicionado a biblioteca com sucesso!'
+        added_to_library: 'Item adicionado a biblioteca com sucesso!',
+        item_deleted: 'Item excluído com sucesso!'
     }
 };

@@ -116,14 +116,19 @@ export class TrainingEditComponent implements OnInit {
         this.persistTraining();
     }
 
-    public convertToEdit(training: Training): void {
+    public async convertToEdit(training: Training) {
         this.training.id = training.id;
         this.training.title = training.title;
         this.training.description = training.description;
         this.training.published = !!training.published;
         this.training.code = training.code;
-        if (training?.picture?.data) {
-            this.selectedPicture = this.imageService.sanitizeImage(training.picture);
+        if (training?.tags) {
+            this.training.tagIds = training.tags ? training.tags.map((tag) => tag.id) : [];
+            this.selectedTags = training.tags;
+        }
+        if (training?.picture) {
+            this.training.pictureId = training.picture?.id;
+            this.selectedPicture = await this.imageService.getSanitizedOrDefault(training.picture);
         }
     }
 
