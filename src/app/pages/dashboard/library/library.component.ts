@@ -38,6 +38,9 @@ export class LibraryComponent implements OnInit {
         this.user = UserUtil.getUser();
         this.getLibrary();
     }
+    ionViewDidEnter() {
+        this.ngOnInit();
+    }
 
     public async getLibrary(refresh?) {
         if (!refresh) {

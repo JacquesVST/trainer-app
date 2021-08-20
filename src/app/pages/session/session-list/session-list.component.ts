@@ -30,13 +30,16 @@ export class SessionListComponent implements OnInit {
 
     ngOnInit() {
         this.user = UserUtil.getUser();
-        console.log(this.user);
         this.showUser = this.user.type === 'TRAINER';
         if (this.showUser) {
             this.findAllSessionsCreator();
         } else {
             this.findAllSessionsUser();
         }
+    }
+    
+    ionViewDidEnter() {
+        this.ngOnInit();
     }
 
     public async findAllSessionsUser() {

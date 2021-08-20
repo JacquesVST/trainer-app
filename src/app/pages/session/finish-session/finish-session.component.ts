@@ -1,3 +1,4 @@
+import { AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Session } from 'src/app/model/session/session.model';
@@ -28,7 +29,8 @@ export class FinishSessionComponent implements OnInit {
         private route: ActivatedRoute,
         private loadingService: LoadingService,
         private imageService: ImageService,
-        private navService: NavService
+        private navService: NavService,
+        private alertController: AlertController
     ) {}
 
     ngOnInit() {
@@ -79,6 +81,26 @@ export class FinishSessionComponent implements OnInit {
             },
             () => {}
         );
+    }
+
+    public async confirmDelete() {
+        const confirm = await this.alertController.create({
+            header: this.literals.form.confirmation,
+            message: this.literals.messages.confirm_delete,
+            buttons: [
+                {
+                    text: this.literals.common.no
+                },
+                {
+                    text: this.literals.common.yes,
+                    handler: () => {
+                        this.deleteSession();
+                    }
+                }
+            ]
+        });
+
+        confirm.present();
     }
 
     public deleteSession() {

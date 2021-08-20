@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ClipboardService } from 'ngx-clipboard';
@@ -14,6 +14,7 @@ import { TrainingService } from 'src/app/service/training.service';
 import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.component';
+import { ActivityListComponent } from '../activity-list/activity-list.component';
 import { FileService } from './../../../service/file.service';
 import { NavService } from './../../../service/nav.service';
 @Component({
@@ -22,6 +23,7 @@ import { NavService } from './../../../service/nav.service';
     styleUrls: ['./training-edit.component.scss']
 })
 export class TrainingEditComponent implements OnInit {
+    @ViewChild(ActivityListComponent, { static: false }) activityList: ActivityListComponent;
     public literals: any = Literals.getLiterals();
     public pageTitle: string;
 
@@ -52,6 +54,10 @@ export class TrainingEditComponent implements OnInit {
         if (this.trainingId) {
             this.getTraining();
         }
+    }
+    
+    ionViewDidEnter() {
+        this.activityList.ngOnInit();
     }
 
     public async getTraining() {
@@ -162,7 +168,9 @@ export class TrainingEditComponent implements OnInit {
         element.click();
     }
 
-    public goBack() {
-        this.navService.goBack();
+    
+    public goTo(url, param?): void {
+        this.navService.goTo(url, param);
     }
+
 }

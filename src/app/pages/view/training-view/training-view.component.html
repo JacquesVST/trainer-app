@@ -52,7 +52,7 @@
       </ion-col>
     </ion-row>
 
-    <app-activity-list *ngIf="trainingId" [trainingId]="trainingId" [readMode]="true"></app-activity-list>
+    <app-activity-list *ngIf="training?.id" [trainingId]="training.id" [readMode]="true"></app-activity-list>
   </ion-grid>
 </ion-content>
 

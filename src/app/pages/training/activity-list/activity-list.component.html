@@ -77,7 +77,7 @@
 
   <ion-row>
     <ion-col>
-      <ion-button expand="block" color="reorder ? success : light" (click)="toggleReorder()">
+      <ion-button expand="block" [color]="reorder ? 'success' : 'light'" (click)="toggleReorder()">
         <ion-icon slot="start" [name]="reorder ? 'save-outline' : 'repeat-outline'"></ion-icon>
         {{reorderButton}}
       </ion-button>

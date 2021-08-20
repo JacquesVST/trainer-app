@@ -28,6 +28,10 @@ export class TagComponent implements OnInit {
     ngOnInit() {
         this.getAllTags();
     }
+    
+    ionViewDidEnter() {
+        this.ngOnInit();
+    }
 
     public async getAllTags() {
         await this.loadingService.show();

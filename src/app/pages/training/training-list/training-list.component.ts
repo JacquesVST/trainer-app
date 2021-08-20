@@ -32,6 +32,10 @@ export class TrainingListComponent implements OnInit {
         this.findAllTrainings();
     }
 
+    ionViewDidEnter() {
+        this.ngOnInit();
+    }
+
     public async findAllTrainings() {
         await this.loadingService.show();
         this.trainingService.findAllByCreator(this.user.id).subscribe(

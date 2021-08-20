@@ -28,6 +28,10 @@ export class ExploreComponent implements OnInit {
         this.getTrainings();
     }
 
+    ionViewDidEnter() {
+        this.ngOnInit();
+    }
+
     public async getTrainings(refresh?) {
         if (!refresh) {
             await this.loadingService.show();

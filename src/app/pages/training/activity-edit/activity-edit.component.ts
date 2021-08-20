@@ -1,7 +1,7 @@
 import { ImageService } from 'src/app/service/image.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Activity } from 'src/app/model/activity/activity.model';
 import { Exercise } from 'src/app/model/exercise/exercise.model';
 import { LoadingService } from 'src/app/service/loading.service';
@@ -41,7 +41,8 @@ export class ActivityEditComponent implements OnInit {
         private navService: NavService,
         private route: ActivatedRoute,
         private loadingService: LoadingService,
-        private imageService: ImageService
+        private imageService: ImageService,
+        private alertController: AlertController
     ) {}
 
     ngOnInit() {
@@ -104,6 +105,7 @@ export class ActivityEditComponent implements OnInit {
                     this.activityId = response.id;
                     this.activity.id = this.activityId;
                 }
+                this.goTo('training/edit', this.selectedTrainingId);
             },
             (error) => {
                 console.error(error);
@@ -163,6 +165,26 @@ export class ActivityEditComponent implements OnInit {
             this.setsInput.value,
             this.selectedExercise?.title
         );
+    }
+
+    public async confirmDelete() {
+        const confirm = await this.alertController.create({
+            header: this.literals.form.confirmation,
+            message: this.literals.messages.confirm_delete,
+            buttons: [
+                {
+                    text: this.literals.common.no
+                },
+                {
+                    text: this.literals.common.yes,
+                    handler: () => {
+                        this.deleteActivity();
+                    }
+                }
+            ]
+        });
+
+        confirm.present();
     }
 
     public disableInput(event, input: ActivityCount) {

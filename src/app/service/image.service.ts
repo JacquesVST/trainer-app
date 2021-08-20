@@ -36,7 +36,7 @@ export class ImageService {
         const image = new MediaFile();
         image.sanitized = this.domSanitizer.sanitize(
             SecurityContext.RESOURCE_URL,
-            this.domSanitizer.bypassSecurityTrustResourceUrl(url ? url : 'https://picsum.photos/500')
+            this.domSanitizer.bypassSecurityTrustResourceUrl(url ? url : 'https://via.placeholder.com/1024/aaa/222')
         );
         return image;
     }

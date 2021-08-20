@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ExerciseFilesComponent } from './../exercise-files/exercise-files.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ExerciseRequestDTO } from 'src/app/model/exercise/exercise-request-dto.model';
@@ -21,6 +22,7 @@ import { NavService } from './../../../service/nav.service';
     styleUrls: ['./exercise-edit.component.scss']
 })
 export class ExerciseEditComponent implements OnInit {
+    @ViewChild(ExerciseFilesComponent, { static: false }) exerciseFiles: ExerciseFilesComponent;
     public literals: any = Literals.getLiterals();
     public pageTitle: string;
 
@@ -49,6 +51,10 @@ export class ExerciseEditComponent implements OnInit {
         if (this.exerciseId) {
             this.getExercise();
         }
+    }
+
+    ionViewDidEnter() {
+        this.exerciseFiles.ngOnInit();
     }
 
     public async getExercise() {

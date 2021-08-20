@@ -37,6 +37,9 @@ export class ProfileComponent implements OnInit {
         this.user = UserUtil.getUser();
         this.getImage();
     }
+    ionViewDidEnter() {
+        this.ngOnInit();
+    }
 
     public async getImage(refresh?) {
         if (!refresh) {

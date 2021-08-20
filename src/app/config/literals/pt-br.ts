@@ -23,7 +23,9 @@ export const ptBr = {
         cancel: 'Cancelar',
         code: 'Código',
         previous: 'Anterior',
-        next: 'Próximo'
+        next: 'Próximo',
+        yes: 'Sim',
+        no: 'Não'
     },
 
     error_messages: {
@@ -55,7 +57,8 @@ export const ptBr = {
         start: 'Início',
         finish: 'Término',
         observations: 'Observações',
-        delete: 'Excluir'
+        delete: 'Excluir',
+        confirmation: 'Confirmação'
     },
 
     login: {
@@ -92,7 +95,8 @@ export const ptBr = {
         code_copied: 'Código copiado para área de transferência!',
         start_session: 'Iniciar nova sessão com esta aula',
         finish_session: 'Concluir sessão atual',
-        share_session: 'Compartilhar sessão com instrutor'
+        share_session: 'Compartilhar sessão com instrutor',
+        confirm_delete: 'Tem certeza que deseja prosseguir com a exclusão?'
     },
 
     months: [
@@ -117,8 +121,8 @@ export const ptBr = {
         edit_training: 'Editar aula',
         new_exercise: 'Novo exercício',
         edit_exercise: 'Editar exercício',
-        new_activity: 'Nova Atividade',
-        edit_activity: 'Editar Atividade',
+        new_activity: 'Nova atividade',
+        edit_activity: 'Editar atividade',
         new_tag: 'Nova tag',
         select_tags: 'Selecionar Tags',
         select_image: 'Selecionar Imagem',

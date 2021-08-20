@@ -31,6 +31,10 @@ export class ExerciseListComponent implements OnInit {
         this.user = UserUtil.getUser();
         this.findAllExercises();
     }
+    
+    ionViewDidEnter() {
+        this.ngOnInit();
+    }
 
     public async findAllExercises() {
         await this.loadingService.show();

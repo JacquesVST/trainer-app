@@ -25,19 +25,19 @@
     <ion-row *ngIf="user.type">
       <ion-col class="ion-text-center">
         <ion-list>
-          <ion-item (click)="goTo('/training')">
+          <ion-item (click)="goTo('/training')" *ngIf="user.type === 'TRAINER'">
             <ion-label>{{literals.common.trainings}}</ion-label>
             <ion-icon slot="start" name="barbell-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           </ion-item>
 
-          <ion-item (click)="goTo('/exercise')">
+          <ion-item (click)="goTo('/exercise')" *ngIf="user.type === 'TRAINER'">
             <ion-label>{{literals.common.exercises}}</ion-label>
             <ion-icon slot="start" name="accessibility-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           </ion-item>
 
-          <ion-item (click)="goTo('/tag')">
+          <ion-item (click)="goTo('/tag')" *ngIf="user.type === 'TRAINER'">
             <ion-label>{{literals.common.tags}}</ion-label>
             <ion-icon slot="start" name="pricetag-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
@@ -48,12 +48,6 @@
             <ion-icon slot="start" name="bar-chart-outline"></ion-icon>
             <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           </ion-item>
-
-          <!-- <ion-item>
-            <ion-label>{{literals.menu.settings}}</ion-label>
-            <ion-icon slot="start" name="settings-outline"></ion-icon>
-            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
-          </ion-item> -->
 
           <ion-item (click)="logout()">
             <ion-label>{{literals.menu.exit}}</ion-label>

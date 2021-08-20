@@ -22,7 +22,9 @@ export const enUs = {
         wait: 'Wait',
         cancel: 'Cancel',
         previous: 'Previous',
-        next: 'Next'
+        next: 'Next',
+        yes: 'Yes',
+        no: 'No'
     },
 
     error_messages: {
@@ -54,7 +56,8 @@ export const enUs = {
         start: 'Start',
         finish: 'Finish',
         observations: 'Observations',
-        delete: 'delete'
+        delete: 'delete',
+        confirmation: 'Confirmation'
     },
 
     login: {
@@ -91,7 +94,8 @@ export const enUs = {
         code_copied: 'Code copied to the clipboard!',
         start_session: 'Start a new session with this training',
         finish_session: 'Finish current session',
-        share_session: 'Share session with trainer'
+        share_session: 'Share session with trainer',
+        confirm_delete: 'Are you sure you want to proceed with the deletion?'
     },
 
     months: [

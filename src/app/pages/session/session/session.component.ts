@@ -1,16 +1,15 @@
-import { NavService } from './../../../service/nav.service';
-import { SessionRequestDTO } from './../../../model/session/session-request-dto.model';
-import { Session } from '../../../model/session/session.model';
-import { ActivityService } from './../../../service/activity.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { LoadingService } from 'src/app/service/loading.service';
-import { ToastService } from 'src/app/service/toast.service';
-import { UserLibrary } from './../../../model/user-library/user-library.model';
-import { UserLibraryService } from './../../../service/user-library.service';
-import { Literals } from './../../../util/literal-util';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Activity } from 'src/app/model/activity/activity.model';
 import { SessionService } from 'src/app/service/session.service';
+import { ToastService } from 'src/app/service/toast.service';
+import { Session } from '../../../model/session/session.model';
+import { SessionRequestDTO } from './../../../model/session/session-request-dto.model';
+import { UserLibrary } from './../../../model/user-library/user-library.model';
+import { ActivityService } from './../../../service/activity.service';
+import { NavService } from './../../../service/nav.service';
+import { UserLibraryService } from './../../../service/user-library.service';
+import { Literals } from './../../../util/literal-util';
 
 @Component({
     selector: 'app-session',
@@ -29,7 +28,6 @@ export class SessionComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private loadingService: LoadingService,
         private userLibraryService: UserLibraryService,
         private activityService: ActivityService,
         private sessionService: SessionService,

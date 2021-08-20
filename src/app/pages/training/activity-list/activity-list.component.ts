@@ -104,7 +104,7 @@ export class ActivityListComponent implements OnInit {
             this.toastService.custom({
                 message: this.literals.messages.save_reorder,
                 duration: 5000,
-                color: 'warn',
+                color: 'warning',
                 position: 'top'
             });
         }
