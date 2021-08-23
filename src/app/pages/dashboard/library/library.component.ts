@@ -38,9 +38,6 @@ export class LibraryComponent implements OnInit {
         this.user = UserUtil.getUser();
         this.getLibrary();
     }
-    ionViewDidEnter() {
-        this.ngOnInit();
-    }
 
     public async getLibrary(refresh?) {
         if (!refresh) {
@@ -56,7 +53,7 @@ export class LibraryComponent implements OnInit {
             },
             () => {
                 if (refresh) {
-                    setTimeout(() => refresh.target.complete(), 0);
+                    setTimeout(() => refresh.target.complete(), 500);
                 } else {
                     this.loadingService.hide();
                 }

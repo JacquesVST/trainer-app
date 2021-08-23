@@ -23,4 +23,12 @@ export class LoadingService {
     public hide(delay: number = 100): void {
         setTimeout(() => this.loadingStack.pop().dismiss(), delay);
     }
+
+    public hideAll() {
+        setTimeout(() => {
+            this.loadingStack.forEach((modal) => {
+                this.hide(0);
+            });
+        }, 1000);
+    }
 }

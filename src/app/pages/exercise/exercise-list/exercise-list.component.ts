@@ -31,7 +31,7 @@ export class ExerciseListComponent implements OnInit {
         this.user = UserUtil.getUser();
         this.findAllExercises();
     }
-    
+
     ionViewDidEnter() {
         this.ngOnInit();
     }
@@ -40,6 +40,9 @@ export class ExerciseListComponent implements OnInit {
         await this.loadingService.show();
         this.exerciseService.findAllByCreator(this.user.id).subscribe(
             (exercises: Exercise[]) => {
+                exercises.sort((a, b) => {
+                    return a.title.toLocaleLowerCase().localeCompare(b.title.toLocaleLowerCase());
+                });
                 this.processImages(exercises);
             },
             (error) => {

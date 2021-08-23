@@ -10,7 +10,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-exercise-files *ngIf="activity?.exercise?.files?.length" [fileList]="activity?.exercise?.files">
+  <app-exercise-files *ngIf="activity?.exercise?.files?.length" [fileList]="activity?.exercise?.files"
+    [allowEdit]="false">
   </app-exercise-files>
   <ion-grid>
 

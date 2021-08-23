@@ -58,7 +58,8 @@ export const ptBr = {
         finish: 'Término',
         observations: 'Observações',
         delete: 'Excluir',
-        confirmation: 'Confirmação'
+        confirmation: 'Confirmação',
+        clone: 'Clonar'
     },
 
     login: {
@@ -96,7 +97,9 @@ export const ptBr = {
         start_session: 'Iniciar nova sessão com esta aula',
         finish_session: 'Concluir sessão atual',
         share_session: 'Compartilhar sessão com instrutor',
-        confirm_delete: 'Tem certeza que deseja prosseguir com a exclusão?'
+        confirm_delete: 'Tem certeza que deseja prosseguir com a exclusão?',
+        confirm_clone: 'Tem certeza que deseja clonar esta aula?',
+        copy_of: 'Cópia da aula ""'
     },
 
     months: [
@@ -127,6 +130,7 @@ export const ptBr = {
         select_tags: 'Selecionar Tags',
         select_image: 'Selecionar Imagem',
         select_images: 'Selecionar Imagens',
+        select_video: 'Selecionar Vídeos',
         select_exercise: 'Selecionar Exercício',
         user_info: 'Informações do Usuário',
         add_from_code: 'Inserir Código da Aula'

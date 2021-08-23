@@ -11,19 +11,11 @@ import { UserUtil } from 'src/app/util/user-util';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
     public login: Login = new Login();
-    public slideOptions: any;
     public literals: any = Literals.getLiterals();
 
-    constructor(private navService: NavService, private userService: UserService, private toastService: ToastService) {
-        this.slideOptions = {
-            initialSlide: 0,
-            speed: 400
-        };
-    }
-
-    ngOnInit() {}
+    constructor(private navService: NavService, private userService: UserService, private toastService: ToastService) {}
 
     public goTo(url, param?): void {
         this.navService.goTo(url, param);
@@ -34,7 +26,7 @@ export class LoginComponent implements OnInit {
             (response) => {
                 UserUtil.setUser(response);
                 this.toastService.success('welcome');
-                this.goTo('/dashboard');
+                this.navService.goHome();
             },
             (error) => {
                 console.error(error);

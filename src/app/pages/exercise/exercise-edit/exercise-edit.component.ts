@@ -93,14 +93,17 @@ export class ExerciseEditComponent implements OnInit {
         );
     }
 
-    public async saveSelectedImages(event) {
+    public async saveSelectedFiles(event) {
         let files = event?.target?.files;
         if (files) {
             await this.loadingService.show();
             files = Array.from(files);
             this.fileService.persistFiles(files).subscribe(
                 (response: MediaFile[]) => {
-                    this.selectedFiles = response;
+                    this.selectedFiles = Array.from(new Set(response.map((a) => a.id))).map((id) => {
+                        return response.find((a) => a.id === id);
+                    });
+                    this.exerciseFiles.sanitizeImages(this.selectedFiles);
                 },
                 (error) => {
                     console.error(error);
@@ -114,6 +117,7 @@ export class ExerciseEditComponent implements OnInit {
     }
 
     public prepareModel(): void {
+        this.selectedFiles = this.exerciseFiles.files;
         this.exercise.tagIds = this.selectedTags ? this.selectedTags.map((tag) => tag.id) : [];
         this.exercise.fileIds = this.selectedFiles ? this.selectedFiles.map((file) => file.id) : [];
         this.exercise.creatorId = this.user?.id;
@@ -147,7 +151,12 @@ export class ExerciseEditComponent implements OnInit {
     }
 
     public openImageSelection() {
-        const element = document.getElementById('file-input');
+        const element = document.getElementById('image-input');
+        element.click();
+    }
+
+    public openVideoSelection() {
+        const element = document.getElementById('video-input');
         element.click();
     }
 

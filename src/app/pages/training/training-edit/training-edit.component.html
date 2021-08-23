@@ -6,6 +6,13 @@
     <ion-title>
       {{pageTitle}}
     </ion-title>
+
+    <ion-buttons slot="end" *ngIf="training">
+      <ion-button (click)="confirmClone()">
+        <ion-icon name="copy-outline" slot="start"></ion-icon>
+        {{literals.form.clone}}
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

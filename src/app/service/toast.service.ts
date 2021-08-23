@@ -1,7 +1,8 @@
-import { Literals } from 'src/app/util/literal-util';
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-import { ToastOptions, ToastButton } from '@ionic/core';
+import { ToastButton, ToastOptions } from '@ionic/core';
+import { LoadingService } from 'src/app/service/loading.service';
+import { Literals } from 'src/app/util/literal-util';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ export class ToastService {
         role: 'cancel'
     };
 
-    constructor(private toastController: ToastController) {}
+    constructor(private toastController: ToastController, private loadingService: LoadingService) {}
 
     public success(message: string, dismiss: boolean = true): void {
         const finalMessage = this.literals.success_messages[message]
@@ -45,6 +46,7 @@ export class ToastService {
             })
             .then((toast) => {
                 toast.present();
+                this.loadingService.hideAll();
             });
     }
 

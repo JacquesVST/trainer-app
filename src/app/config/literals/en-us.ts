@@ -57,7 +57,8 @@ export const enUs = {
         finish: 'Finish',
         observations: 'Observations',
         delete: 'delete',
-        confirmation: 'Confirmation'
+        confirmation: 'Confirmation',
+        clone: 'Clone'
     },
 
     login: {
@@ -95,7 +96,9 @@ export const enUs = {
         start_session: 'Start a new session with this training',
         finish_session: 'Finish current session',
         share_session: 'Share session with trainer',
-        confirm_delete: 'Are you sure you want to proceed with the deletion?'
+        confirm_delete: 'Are you sure you want to proceed with the deletion?',
+        confirm_clone: 'Are you sure you want to clone this training?',
+        copy_of: 'Copy of training'
     },
 
     months: [
@@ -126,6 +129,7 @@ export const enUs = {
         select_tags: 'Select Tags',
         select_image: 'Select Image',
         select_images: 'Select Images',
+        select_video: 'Select Videos',
         select_exercise: 'Select Exercise',
         user_info: 'User Info',
         add_from_code: 'Insert Training Code'

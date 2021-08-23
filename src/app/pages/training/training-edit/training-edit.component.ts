@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { ClipboardService } from 'ngx-clipboard';
 import { MediaFile } from 'src/app/model/media-file/media-file.model';
 import { Tag } from 'src/app/model/tag.model';
-import { TrainingRequestDTO } from 'src/app/model/training/training-request-dto.model';
 import { Training } from 'src/app/model/training/training.model';
 import { User } from 'src/app/model/user/user.model';
 import { ImageService } from 'src/app/service/image.service';
@@ -15,6 +14,7 @@ import { Literals } from 'src/app/util/literal-util';
 import { UserUtil } from 'src/app/util/user-util';
 import { TagSelectionComponent } from '../../tag/tag-selection/tag-selection.component';
 import { ActivityListComponent } from '../activity-list/activity-list.component';
+import { TrainingRequestDTO } from './../../../model/training/training-request-dto.model';
 import { FileService } from './../../../service/file.service';
 import { NavService } from './../../../service/nav.service';
 @Component({
@@ -44,7 +44,8 @@ export class TrainingEditComponent implements OnInit {
         private navService: NavService,
         private fileService: FileService,
         private imageService: ImageService,
-        private clipboard: ClipboardService
+        private clipboard: ClipboardService,
+        private alertController: AlertController
     ) {}
 
     ngOnInit() {
@@ -55,7 +56,7 @@ export class TrainingEditComponent implements OnInit {
             this.getTraining();
         }
     }
-    
+
     ionViewDidEnter() {
         this.activityList.ngOnInit();
     }
@@ -76,7 +77,7 @@ export class TrainingEditComponent implements OnInit {
         );
     }
 
-    public async persistTraining() {
+    public async persistTraining(notify: boolean) {
         await this.loadingService.show();
         this.trainingService.persistTraining(this.training).subscribe(
             (response: Training) => {
@@ -84,7 +85,9 @@ export class TrainingEditComponent implements OnInit {
                     this.trainingId = response?.id;
                     this.training.id = this.trainingId;
                 }
-                this.toastService.success('item_saved');
+                if (notify) {
+                    this.toastService.success('item_saved');
+                }
             },
             (error) => {
                 console.error(error);
@@ -115,11 +118,11 @@ export class TrainingEditComponent implements OnInit {
         }
     }
 
-    public prepareModel(): void {
+    public async prepareModel(notify: boolean = true) {
         this.training.pictureId = this.selectedPicture?.id;
         this.training.creatorId = this.user?.id;
         this.training.tagIds = this.selectedTags ? this.selectedTags.map((tag) => tag.id) : [];
-        this.persistTraining();
+        await this.persistTraining(notify);
     }
 
     public async convertToEdit(training: Training) {
@@ -163,14 +166,58 @@ export class TrainingEditComponent implements OnInit {
         });
     }
 
+    public async confirmClone() {
+        const confirm = await this.alertController.create({
+            header: this.literals.form.confirmation,
+            message: this.literals.messages.confirm_clone,
+            buttons: [
+                {
+                    text: this.literals.common.no
+                },
+                {
+                    text: this.literals.common.yes,
+                    handler: () => {
+                        this.prepareClone();
+                    }
+                }
+            ]
+        });
+
+        confirm.present();
+    }
+
+    public async prepareClone() {
+        await this.prepareModel();
+        const newTraining: TrainingRequestDTO = { ...this.training };
+        newTraining.title = `${this.literals.messages.copy_of} "${newTraining.title}"`;
+        newTraining.id = undefined;
+        newTraining.code = undefined;
+        newTraining.published = false;
+        this.cloneTraining(newTraining);
+    }
+
+    public async cloneTraining(newTraining: TrainingRequestDTO) {
+        await this.loadingService.show();
+        this.trainingService.persistTraining(newTraining).subscribe(
+            (response: Training) => {
+                this.goTo('/training/edit', response.id);
+            },
+            (error) => {
+                console.error(error);
+                this.toastService.error('processing_request');
+            },
+            () => {
+                this.loadingService.hide();
+            }
+        );
+    }
+
     public openImageSelection() {
         const element = document.getElementById('file-input');
         element.click();
     }
 
-    
     public goTo(url, param?): void {
         this.navService.goTo(url, param);
     }
-
 }

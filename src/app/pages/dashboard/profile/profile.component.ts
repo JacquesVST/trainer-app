@@ -37,9 +37,6 @@ export class ProfileComponent implements OnInit {
         this.user = UserUtil.getUser();
         this.getImage();
     }
-    ionViewDidEnter() {
-        this.ngOnInit();
-    }
 
     public async getImage(refresh?) {
         if (!refresh) {
@@ -47,7 +44,7 @@ export class ProfileComponent implements OnInit {
         }
         this.user.picture = await this.imageService.getSanitizedOrDefault(this.user?.picture);
         if (refresh) {
-            setTimeout(() => refresh.target.complete(), 0);
+            setTimeout(() => refresh.target.complete(), 500);
         } else {
             this.loadingService.hide();
         }

@@ -1,5 +1,11 @@
 <ion-slides [pager]="files.length > 1" [options]="slideOptions">
   <ion-slide *ngFor="let file of files">
+    <div *ngIf="allowEdit" class="allowEdit">
+      <ion-button (click)="confirmDelete(file?.id)" color="light">
+        <ion-icon slot="start" name="trash-outline"></ion-icon>
+        {{literals.form.delete}}
+      </ion-button>
+    </div>
     <img [src]="file.sanitized">
   </ion-slide>
 </ion-slides>

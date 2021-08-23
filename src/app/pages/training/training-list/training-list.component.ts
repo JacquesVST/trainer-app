@@ -40,6 +40,7 @@ export class TrainingListComponent implements OnInit {
         await this.loadingService.show();
         this.trainingService.findAllByCreator(this.user.id).subscribe(
             (trainings: Training[]) => {
+                trainings.reverse();
                 this.processImages(trainings);
             },
             (error) => {
