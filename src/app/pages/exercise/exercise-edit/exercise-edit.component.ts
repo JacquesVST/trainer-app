@@ -65,7 +65,7 @@ export class ExerciseEditComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
             },
             () => {
                 this.loadingService.hide();
@@ -85,7 +85,7 @@ export class ExerciseEditComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('processing_request');
+                this.toastService.error('processing_request', error);
             },
             () => {
                 this.loadingService.hide();
@@ -100,14 +100,16 @@ export class ExerciseEditComponent implements OnInit {
             files = Array.from(files);
             this.fileService.persistFiles(files).subscribe(
                 (response: MediaFile[]) => {
+                    console.log(this.selectedFiles)
                     this.selectedFiles = Array.from(new Set(response.map((a) => a.id))).map((id) => {
                         return response.find((a) => a.id === id);
                     });
+                    console.log(this.selectedFiles)
                     this.exerciseFiles.sanitizeImages(this.selectedFiles);
                 },
                 (error) => {
                     console.error(error);
-                    this.toastService.error('processing_request');
+                    this.toastService.error('processing_request', error);
                 },
                 () => {
                     this.loadingService.hide();

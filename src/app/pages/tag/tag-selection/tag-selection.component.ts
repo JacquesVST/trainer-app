@@ -47,7 +47,7 @@ export class TagSelectionComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
             },
             () => {
                 this.loadingService.hide();

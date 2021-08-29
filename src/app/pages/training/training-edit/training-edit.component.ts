@@ -69,7 +69,7 @@ export class TrainingEditComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
             },
             () => {
                 this.loadingService.hide();
@@ -91,7 +91,7 @@ export class TrainingEditComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('processing_request');
+                this.toastService.error('processing_request', error);
             },
             () => {
                 this.loadingService.hide();
@@ -109,7 +109,7 @@ export class TrainingEditComponent implements OnInit {
                 },
                 (error) => {
                     console.error(error);
-                    this.toastService.error('processing_request');
+                    this.toastService.error('processing_request', error);
                 },
                 () => {
                     this.loadingService.hide();
@@ -200,11 +200,12 @@ export class TrainingEditComponent implements OnInit {
         await this.loadingService.show();
         this.trainingService.persistTraining(newTraining).subscribe(
             (response: Training) => {
+                this.activityList.prepareModels(response.id);
                 this.goTo('/training/edit', response.id);
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('processing_request');
+                this.toastService.error('processing_request', error);
             },
             () => {
                 this.loadingService.hide();

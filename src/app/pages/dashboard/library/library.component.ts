@@ -49,7 +49,7 @@ export class LibraryComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
             },
             () => {
                 if (refresh) {
@@ -85,7 +85,7 @@ export class LibraryComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('training_not_found');
+                this.toastService.error('training_not_found', error);
             }
         );
     }

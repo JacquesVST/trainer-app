@@ -51,7 +51,7 @@ export class SessionComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
             },
             () => {}
         );
@@ -65,7 +65,7 @@ export class SessionComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
             },
             () => {}
         );
@@ -81,7 +81,7 @@ export class SessionComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('processing_request');
+                this.toastService.error('processing_request', error);
             },
             () => {}
         );

@@ -31,7 +31,7 @@ export class RegisterComponent {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('processing_request');
+                this.toastService.error('processing_request', error);
             },
             () => {}
         );

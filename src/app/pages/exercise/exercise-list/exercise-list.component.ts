@@ -14,7 +14,7 @@ import { ToastService } from '../../../service/toast.service';
     templateUrl: './exercise-list.component.html',
     styleUrls: ['./exercise-list.component.scss']
 })
-export class ExerciseListComponent implements OnInit {
+export class ExerciseListComponent {
     public literals: any = Literals.getLiterals();
     public user: User;
     public exercises: Exercise[] = [];
@@ -27,13 +27,9 @@ export class ExerciseListComponent implements OnInit {
         private imageService: ImageService
     ) {}
 
-    ngOnInit() {
+    ionViewDidEnter() {
         this.user = UserUtil.getUser();
         this.findAllExercises();
-    }
-
-    ionViewDidEnter() {
-        this.ngOnInit();
     }
 
     public async findAllExercises() {
@@ -46,7 +42,7 @@ export class ExerciseListComponent implements OnInit {
                 this.processImages(exercises);
             },
             (error) => {
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
                 console.error(error);
             },
             () => {

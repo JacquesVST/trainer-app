@@ -31,13 +31,14 @@ export const enUs = {
         retrieving_items: 'Error while retrieving items!',
         processing_request: 'Error while processing your request!',
         incorrect_login: 'User or password are incorrect!',
-        training_not_found: 'No training found for this code!'
+        training_not_found: 'No training found for this code!',
+        no_connection: 'No connection'
     },
 
     form: {
         title: 'Title',
         description: 'Description',
-        material: 'Material',
+        material: 'Material/Equipment',
         publish: 'Publish',
         color: 'Color',
         pick_color: 'Pick Color',

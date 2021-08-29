@@ -14,7 +14,7 @@ import { UserUtil } from '../../../util/user-util';
     templateUrl: './training-list.component.html',
     styleUrls: ['./training-list.component.scss']
 })
-export class TrainingListComponent implements OnInit {
+export class TrainingListComponent {
     public literals: any = Literals.getLiterals();
     public user: User;
     public trainings: Training[] = [];
@@ -27,13 +27,10 @@ export class TrainingListComponent implements OnInit {
         private imageService: ImageService
     ) {}
 
-    ngOnInit() {
-        this.user = UserUtil.getUser();
-        this.findAllTrainings();
-    }
 
     ionViewDidEnter() {
-        this.ngOnInit();
+        this.user = UserUtil.getUser();
+        this.findAllTrainings();
     }
 
     public async findAllTrainings() {
@@ -44,7 +41,7 @@ export class TrainingListComponent implements OnInit {
                 this.processImages(trainings);
             },
             (error) => {
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
                 console.error(error);
             },
             () => {

@@ -13,7 +13,7 @@ import { NavService } from './../../../service/nav.service';
     templateUrl: './tag.component.html',
     styleUrls: ['./tag.component.scss']
 })
-export class TagComponent implements OnInit {
+export class TagComponent {
     public literals: any = Literals.getLiterals();
     public tags: Tag[] = [];
 
@@ -24,13 +24,9 @@ export class TagComponent implements OnInit {
         private loadingService: LoadingService,
         private navService: NavService
     ) {}
-
-    ngOnInit() {
-        this.getAllTags();
-    }
     
     ionViewDidEnter() {
-        this.ngOnInit();
+        this.getAllTags();
     }
 
     public async getAllTags() {
@@ -41,7 +37,7 @@ export class TagComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
             },
             () => {
                 this.loadingService.hide();

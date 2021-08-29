@@ -38,7 +38,7 @@ export class TagEditComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('processing_request');
+                this.toastService.error('processing_request', error);
             },
             () => {
                 this.loadingService.hide();

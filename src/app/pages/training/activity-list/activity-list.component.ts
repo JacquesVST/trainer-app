@@ -47,7 +47,7 @@ export class ActivityListComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
             },
             () => {
                 this.loadingService.hide();
@@ -63,7 +63,7 @@ export class ActivityListComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
             },
             () => {
                 this.reorder = false;
@@ -74,23 +74,23 @@ export class ActivityListComponent implements OnInit {
 
     public async processImages(activities) {
         for (let item of activities) {
-            item.picture = await this.imageService.getSanitizedOrDefault(item?.exercise?.files[0]);
+            item.exercise.files[0] = await this.imageService.getSanitizedOrDefault(item?.exercise?.files[0]);
         }
         this.activities = activities;
     }
 
-    public prepareModels(): void {
+    public prepareModels(newTrainingId?: number): void {
         const result: ActivityRequestDTO[] = [];
         for (let index: number = 0; index < this.activities.length; index++) {
             const activity = this.activities[index];
             result.push({
-                id: activity.id,
+                id: newTrainingId ? undefined : activity.id,
                 duration: activity.duration,
                 repeats: activity.repeats,
                 sets: activity.sets,
                 comments: activity.comments,
                 exerciseId: activity.exercise.id,
-                trainingId: activity.training.id,
+                trainingId: newTrainingId ? newTrainingId : activity.training.id,
                 sequentialOrder: index
             });
         }

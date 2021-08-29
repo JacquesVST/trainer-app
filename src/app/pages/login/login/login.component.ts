@@ -30,7 +30,7 @@ export class LoginComponent {
             },
             (error) => {
                 console.error(error);
-                this.toastService.error('incorrect_login');
+                this.toastService.error('incorrect_login', error);
             },
             () => {}
         );

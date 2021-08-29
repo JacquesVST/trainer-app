@@ -49,7 +49,7 @@ export class SessionListComponent implements OnInit {
                 this.processImages(sessions);
             },
             (error) => {
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
                 console.error(error);
             },
             () => {
@@ -65,7 +65,7 @@ export class SessionListComponent implements OnInit {
                 this.processImages(sessions);
             },
             (error) => {
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
                 console.error(error);
             },
             () => {

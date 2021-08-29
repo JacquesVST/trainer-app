@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <img [src]="training?.picture?.sanitized">
+  <img *ngIf="training?.picture?.id" [src]="training?.picture?.sanitized">
   <ion-grid>
 
     <ion-row>

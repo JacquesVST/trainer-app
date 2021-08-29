@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> {{literals.menu.explore}} </ion-title>
+    <!-- <ion-title> {{literals.menu.explore}} </ion-title> -->
   </ion-toolbar>
 </ion-header>
 
@@ -23,7 +23,7 @@
             </ion-card-title>
           </ion-card-header>
 
-          <ion-item *ngIf="training?.tags?.length">
+          <ion-item *ngIf="training?.tags?.length" lines="none">
             <ion-chip *ngFor="let tag of training?.tags" [style]="{'color':tag.color, 'border-color':tag.color}"
               outline>
               <ion-label>{{tag.description}}</ion-label>

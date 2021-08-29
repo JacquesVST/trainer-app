@@ -44,7 +44,7 @@ export class ExerciseSelectionComponent implements OnInit {
                 this.processImages(exercises);
             },
             (error) => {
-                this.toastService.error('retrieving_items');
+                this.toastService.error('retrieving_items', error);
                 console.error(error);
             },
             () => {
