@@ -24,7 +24,7 @@ export class TagComponent {
         private loadingService: LoadingService,
         private navService: NavService
     ) {}
-    
+
     ionViewDidEnter() {
         this.getAllTags();
     }

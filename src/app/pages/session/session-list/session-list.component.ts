@@ -37,7 +37,7 @@ export class SessionListComponent implements OnInit {
             this.findAllSessionsUser();
         }
     }
-    
+
     ionViewDidEnter() {
         this.ngOnInit();
     }

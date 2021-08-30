@@ -100,11 +100,11 @@ export class ExerciseEditComponent implements OnInit {
             files = Array.from(files);
             this.fileService.persistFiles(files).subscribe(
                 (response: MediaFile[]) => {
-                    console.log(this.selectedFiles)
+                    console.log(this.selectedFiles);
                     this.selectedFiles = Array.from(new Set(response.map((a) => a.id))).map((id) => {
                         return response.find((a) => a.id === id);
                     });
-                    console.log(this.selectedFiles)
+                    console.log(this.selectedFiles);
                     this.exerciseFiles.sanitizeImages(this.selectedFiles);
                 },
                 (error) => {

@@ -27,7 +27,6 @@ export class TrainingListComponent {
         private imageService: ImageService
     ) {}
 
-
     ionViewDidEnter() {
         this.user = UserUtil.getUser();
         this.findAllTrainings();

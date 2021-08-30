@@ -36,7 +36,7 @@ export class ToastService {
 
     public error(message: string, error?, dismiss: boolean = true): void {
         let finalMessage = this.literals.error_messages[message] ? this.literals.error_messages[message] : message;
-        finalMessage = error.status === 0 ? this.literals.error_messages.no_connection : finalMessage
+        finalMessage = error.status === 0 ? this.literals.error_messages.no_connection : finalMessage;
         this.toastController
             .create({
                 message: finalMessage,
