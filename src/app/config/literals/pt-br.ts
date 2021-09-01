@@ -21,7 +21,6 @@ export const ptBr = {
         favorite_action: 'Favoritar',
         wait: 'Aguarde',
         cancel: 'Cancelar',
-        code: 'Código',
         previous: 'Anterior',
         next: 'Próximo',
         yes: 'Sim',
