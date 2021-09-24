@@ -14,13 +14,13 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <!-- <ion-button expand="block" color="light" (click)="openVideoSelection()">
+        <ion-button expand="block" color="light" (click)="openElementSelection('video-input')">
           <ion-icon slot="start" name="film-outline"></ion-icon>
           {{literals.pages.select_video}}
         </ion-button>
-        <input type="file" id="video-input" slot="end" (change)="saveSelectedFiles($event)" accept="video/*" multiple>
-         -->
-        <ion-button expand="block" color="light" (click)="openImageSelection()">
+        <input type="file" id="video-input" slot="end" (change)="saveSelectedFiles($event)" accept="video/mp4" multiple>
+
+        <ion-button expand="block" color="light" (click)="openElementSelection('image-input')">
           <ion-icon slot="start" name="image-outline"></ion-icon>
           {{literals.pages.select_images}}
         </ion-button>

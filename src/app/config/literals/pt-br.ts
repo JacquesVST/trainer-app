@@ -99,7 +99,8 @@ export const ptBr = {
         share_session: 'Compartilhar sessão com instrutor',
         confirm_delete: 'Tem certeza que deseja prosseguir com a exclusão?',
         confirm_clone: 'Tem certeza que deseja clonar esta aula?',
-        copy_of: 'Cópia da aula ""'
+        copy_of: 'Cópia da aula',
+        video_not_supported: 'O Vídeo não pode ser carregado em seu aparelho'
     },
 
     months: [

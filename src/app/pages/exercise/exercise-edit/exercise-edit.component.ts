@@ -97,14 +97,13 @@ export class ExerciseEditComponent implements OnInit {
         let files = event?.target?.files;
         if (files) {
             await this.loadingService.show();
-            files = Array.from(files);
-            this.fileService.persistFiles(files).subscribe(
+            this.fileService.persistFiles(Array.from(files)).subscribe(
                 (response: MediaFile[]) => {
                     console.log(this.selectedFiles);
-                    this.selectedFiles = Array.from(new Set(response.map((a) => a.id))).map((id) => {
-                        return response.find((a) => a.id === id);
-                    });
+                    console.log(response);
+                    this.selectedFiles = this.selectedFiles.concat(response);
                     console.log(this.selectedFiles);
+                    this.exerciseFiles.ngOnInit();
                     this.exerciseFiles.sanitizeImages(this.selectedFiles);
                 },
                 (error) => {
@@ -152,13 +151,8 @@ export class ExerciseEditComponent implements OnInit {
         return await modal.present();
     }
 
-    public openImageSelection() {
-        const element = document.getElementById('image-input');
-        element.click();
-    }
-
-    public openVideoSelection() {
-        const element = document.getElementById('video-input');
+    public openElementSelection(elementId: string) {
+        const element = document.getElementById(elementId);
         element.click();
     }
 

@@ -4,8 +4,20 @@ img {
     object-fit: cover;
 }
 
+video {
+    width: 100%;
+    height: 75vw;
+    object-fit: cover;
+}
+
 .allowEdit {
+    z-index: 100;
     position: absolute;
     right: 5px;
     top: 5px;
 }
+
+ion-slide {
+    z-index: 90;
+}
+

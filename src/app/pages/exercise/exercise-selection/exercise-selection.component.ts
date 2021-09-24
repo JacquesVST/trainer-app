@@ -9,6 +9,7 @@ import { Exercise } from '../../../model/exercise/exercise.model';
 import { User } from '../../../model/user/user.model';
 import { ExerciseService } from '../../../service/exercise.service';
 import { ToastService } from '../../../service/toast.service';
+import { MediaFile } from 'src/app/model/media-file/media-file.model';
 
 @Component({
     selector: 'app-exercise-selection',
@@ -55,7 +56,11 @@ export class ExerciseSelectionComponent implements OnInit {
 
     public async processImages(exercises) {
         for (let item of exercises) {
-            item.picture = await this.imageService.getSanitizedOrDefault(item?.files[0]);
+            let file = item?.files.find(f => f.type !== 'mp4');
+            if (!file){
+                file = new MediaFile();
+            }
+            item.picture = await this.imageService.getSanitizedOrDefault(file);
         }
         this.exercises = exercises;
     }

@@ -99,7 +99,8 @@ export const enUs = {
         share_session: 'Share session with trainer',
         confirm_delete: 'Are you sure you want to proceed with the deletion?',
         confirm_clone: 'Are you sure you want to clone this training?',
-        copy_of: 'Copy of training'
+        copy_of: 'Copy of training',
+        video_not_supported: 'Video could not load on your device'
     },
 
     months: [

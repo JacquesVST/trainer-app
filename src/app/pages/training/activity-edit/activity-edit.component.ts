@@ -13,6 +13,7 @@ import { ActivityCount } from './../../../model/activity/activity-count.model';
 import { ActivityRequestDTO } from './../../../model/activity/activity-request-dto.mode';
 import { ActivityService } from './../../../service/activity.service';
 import { ActivityUtil } from './../../../util/activity-util';
+import { MediaFile } from 'src/app/model/media-file/media-file.model';
 
 @Component({
     selector: 'app-activity-edit',
@@ -143,7 +144,7 @@ export class ActivityEditComponent implements OnInit {
         this.persistActivity();
     }
 
-    public convertToEdit(activity: Activity): void {
+    public async convertToEdit(activity: Activity) {
         this.activity.id = activity.id;
         this.activity.comments = activity.comments;
         this.activity.sequentialOrder = activity.sequentialOrder;
@@ -155,6 +156,12 @@ export class ActivityEditComponent implements OnInit {
         this.selectedExercise = activity.exercise;
         this.selectedTrainingId = activity.training.id;
         this.showTotal();
+
+        let file = this.selectedExercise?.files.find((f) => f.type !== 'mp4');
+        if (!file) {
+            file = new MediaFile();
+        }
+        this.selectedExercise.picture = await this.imageService.getSanitizedOrDefault(file);
     }
 
     public showTotal() {

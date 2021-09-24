@@ -7,6 +7,7 @@ import { NavService } from 'src/app/service/nav.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { Literals } from 'src/app/util/literal-util';
 import { ActivityUtil } from './../../../util/activity-util';
+import { MediaFile } from 'src/app/model/media-file/media-file.model';
 
 @Component({
     selector: 'app-activity-list-view',
@@ -51,7 +52,11 @@ export class ActivityListViewComponent implements OnInit {
 
     public async processImages(activities) {
         for (let item of activities) {
-            item.picture = await this.imageService.getSanitizedOrDefault(item?.exercise?.files[0]);
+            let file = item?.exercise?.files.find(f => f.type !== 'mp4');
+            if (!file){
+                file = new MediaFile();
+            }
+            item.picture = await this.imageService.getSanitizedOrDefault(file);
         }
         this.activities = activities;
     }

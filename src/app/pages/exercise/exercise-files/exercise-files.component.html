@@ -6,6 +6,11 @@
         {{literals.form.delete}}
       </ion-button>
     </div>
-    <img [src]="file.sanitized">
+    <img *ngIf="file.type!=='mp4'" [src]="file.sanitized" imageViewer />
+
+    <video *ngIf="file.type==='mp4'" controls>
+      <source [src]="file.sanitized" type="video/mp4">
+      {{literals.messages.video_not_supported}}
+    </video>
   </ion-slide>
 </ion-slides>
