@@ -5,4 +5,7 @@ export class UserRequestDTO {
     lastName: string;
     email: string;
     type: string;
+    birth: Date;
+    phoneNumber: string;
+    pictureId: number;
 }

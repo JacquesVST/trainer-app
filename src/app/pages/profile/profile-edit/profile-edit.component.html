@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="" (click)="goTo('/dashboard/profile')"></ion-back-button>
+        </ion-buttons>
+        <!-- TODO: literals -->
+        <ion-title>
+            Editar Perfil
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <img *ngIf="selectedPicture" [src]="selectedPicture?.sanitized">
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-button expand="block" color="light" (click)="openImageSelection()">
+                    <ion-icon slot="start" name="image-outline"></ion-icon>
+                    {{literals.pages.select_image}}
+                </ion-button>
+                <input type="file" id="file-input" slot="end" (change)="saveSelectedImage($event)" accept="image/*">
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">{{literals.login.first_name}}:</ion-label>
+                    <ion-input [(ngModel)]="user.firstName"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">{{literals.login.last_name}}:</ion-label>
+                    <ion-input [(ngModel)]="user.lastName"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">{{literals.login.phone}}:</ion-label>
+                    <ion-input [(ngModel)]="user.phoneNumber"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="fixed">
+                        {{literals.login.birth}}:
+                    </ion-label>
+                    <ion-datetime [(ngModel)]="user.birth" [displayFormat]="datePickerOptions.displayFormat"
+                        [pickerFormat]="datePickerOptions.pickerFormat" [slot]="datePickerOptions.slot"
+                        [monthShortNames]="datePickerOptions.monthShortNames" [max]="datePickerOptions.max">
+                    </ion-datetime>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-button expand="block" color="success" (click)="prepareModel()">
+            <ion-icon slot="start" name="save-outline"></ion-icon>
+            {{literals.common.save}}
+        </ion-button>
+    </ion-toolbar>
+</ion-footer>

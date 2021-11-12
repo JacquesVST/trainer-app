@@ -12,17 +12,18 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-item lines="none">
+        <ion-item lines="none" (click)="goTo('/profile')">
           <ion-thumbnail slot="start">
             <img [src]="user?.picture?.sanitized">
           </ion-thumbnail>
           <ion-label class="ion-text-center">
             {{user.firstName + ' ' + user.lastName}}
           </ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
         </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="user.type">
+    <ion-row *ngIf="user">
       <ion-col class="ion-text-center">
         <ion-list>
           <ion-item (click)="goTo('/training')" *ngIf="user.type === 'TRAINER'">

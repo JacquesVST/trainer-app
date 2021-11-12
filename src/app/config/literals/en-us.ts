@@ -59,7 +59,8 @@ export const enUs = {
         observations: 'Observations',
         delete: 'delete',
         confirmation: 'Confirmation',
-        clone: 'Clone'
+        clone: 'Clone',
+        edit: 'Edit'
     },
 
     login: {
@@ -68,6 +69,8 @@ export const enUs = {
         username: 'Username',
         email: 'E-mail',
         password: 'Password',
+        phone: 'Phone number',
+        birth: 'Birthday',
         confirm: 'Confirm Password',
         return: 'Return to Login',
         create: 'Create Account',

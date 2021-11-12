@@ -22,7 +22,15 @@ export class UserService {
         return this.http.post<User>(this.url, userRequestDTO);
     }
 
+    public updateUser(userRequestDTO: UserRequestDTO): Observable<User> {
+        return this.http.put<User>(this.url, userRequestDTO);
+    }
+
     public getAllUsers(): Observable<User[]> {
         return this.http.get<User[]>(this.url);
+    }
+
+    public getUser(userId: number): Observable<User> {
+        return this.http.get<User>(`${this.url}?userId=${userId}`);
     }
 }

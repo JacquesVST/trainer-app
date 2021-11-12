@@ -60,6 +60,7 @@ export class ProfileComponent implements OnInit {
     }
 
     public doRefresh(event) {
+        this.user = UserUtil.getUser();
         this.getImage(event);
     }
 }

@@ -59,7 +59,8 @@ export const ptBr = {
         observations: 'Observações',
         delete: 'Excluir',
         confirmation: 'Confirmação',
-        clone: 'Clonar'
+        clone: 'Clonar',
+        edit: 'Editar'
     },
 
     login: {
@@ -68,6 +69,8 @@ export const ptBr = {
         username: 'Nome de Usuário',
         email: 'E-mail',
         password: 'Senha',
+        phone: 'Número para contato',
+        birth: 'Data de Nascimento',
         confirm: 'Confirmar Senha',
         return: 'Retornar ao Login',
         create: 'Criar Conta',
