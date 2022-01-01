@@ -137,7 +137,8 @@ export const enUs = {
         select_video: 'Select Videos',
         select_exercise: 'Select Exercise',
         user_info: 'User Info',
-        add_from_code: 'Insert Training Code'
+        add_from_code: 'Insert Training Code',
+        edit_profile: 'Edit Profile'
     },
 
     success_messages: {

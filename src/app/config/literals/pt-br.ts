@@ -137,7 +137,8 @@ export const ptBr = {
         select_video: 'Selecionar Vídeos',
         select_exercise: 'Selecionar Exercício',
         user_info: 'Informações do Usuário',
-        add_from_code: 'Inserir Código da Aula'
+        add_from_code: 'Inserir Código da Aula',
+        edit_profile: 'Editar Perfil'
     },
 
     success_messages: {

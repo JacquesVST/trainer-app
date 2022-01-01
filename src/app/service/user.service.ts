@@ -23,6 +23,7 @@ export class UserService {
     }
 
     public updateUser(userRequestDTO: UserRequestDTO): Observable<User> {
+        console.log(userRequestDTO);
         return this.http.put<User>(this.url, userRequestDTO);
     }
 

@@ -1,4 +1,5 @@
 export class UserRequestDTO {
+    id: number;
     username: string;
     pass: string;
     firstName: string;

@@ -3,6 +3,7 @@ import { ToastController } from '@ionic/angular';
 import { ToastButton, ToastOptions } from '@ionic/core';
 import { LoadingService } from 'src/app/service/loading.service';
 import { Literals } from 'src/app/util/literal-util';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -36,7 +37,7 @@ export class ToastService {
 
     public error(message: string, error?, dismiss: boolean = true): void {
         let finalMessage = this.literals.error_messages[message] ? this.literals.error_messages[message] : message;
-        finalMessage = error.status === 0 ? this.literals.error_messages.no_connection : finalMessage;
+        finalMessage = error.status === 0 ? this.literals.error_messages.no_connection + ' (' + environment.API_URL + ')': finalMessage;
         this.toastController
             .create({
                 message: finalMessage,

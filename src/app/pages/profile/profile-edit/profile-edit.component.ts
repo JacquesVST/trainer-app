@@ -35,8 +35,8 @@ export class ProfileEditComponent implements OnInit {
     ngOnInit() {
         this.getUser();
         this.datePickerOptions = {
-          displayFormat: 'DD MMM YYYY HH:mm',
-          pickerFormat: 'YYYY MMM DD HH:mm',
+          displayFormat: 'DD MMM YYYY',
+          pickerFormat: 'YYYY MMM DD',
           slot: 'end',
           max: new Date().toISOString(),
           monthShortNames: this.literals.months_short,
@@ -50,7 +50,7 @@ export class ProfileEditComponent implements OnInit {
         this.userService.getUser(UserUtil.getUser().id).subscribe(
             (user: User) => {
                 this.currentUser = user;
-                this.convertToEdit(user);
+                this.convertToEdit(this.currentUser);
             },
             (error) => {
                 console.error(error);
@@ -85,6 +85,12 @@ export class ProfileEditComponent implements OnInit {
     }
 
     public async convertToEdit(user: User) {
+        this.user.id = user.id;
+        this.user.username = user.username;
+        this.user.pass = user.pass;
+        this.user.email = user.email;
+        this.user.type = user.type;
+
         this.user.firstName = user.firstName;
         this.user.lastName = user.lastName;
         this.user.phoneNumber = user.phoneNumber;
