@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ViewRoutingModule } from './view-routing.module';
+import { SessionViewComponent } from './session-view/session-view.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { ViewRoutingModule } from './view-routing.module';
         ActivityListViewComponent,
         LibraryViewComponent,
         TrainingViewComponent,
-        UserViewComponent
+        UserViewComponent,
+        SessionViewComponent
     ],
     imports: [IonicModule, CommonModule, FormsModule, ViewRoutingModule, TrainingModule, ExerciseModule],
     exports: [LibraryViewComponent, ActivityViewComponent]

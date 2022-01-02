@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivityViewComponent } from './activity-view/activity-view.component';
 import { LibraryViewComponent } from './library-view/library-view.component';
+import { SessionViewComponent } from './session-view/session-view.component';
 import { TrainingViewComponent } from './training-view/training-view.component';
 import { UserViewComponent } from './user-view/user-view.component';
 
@@ -13,6 +14,10 @@ const routes: Routes = [
     {
         path: 'library/:id',
         component: LibraryViewComponent
+    },
+    {
+        path: 'session/:id',
+        component: SessionViewComponent
     },
     {
         path: 'training/:code',

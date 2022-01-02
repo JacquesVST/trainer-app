@@ -13,6 +13,8 @@ export const enUs = {
         exercises: 'Exercises',
         activity: 'Activity',
         activities: 'Activities',
+        sessions: 'Sessions',
+        session: 'Session',
         ok: 'Ok',
         save: 'Save',
         add_library: 'Add to my library',

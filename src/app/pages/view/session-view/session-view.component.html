@@ -1,0 +1,79 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="" (click)="goBack()"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{ literals.common.session }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-grid *ngIf="session">
+        <ion-row *ngIf="training">
+            <ion-col>
+                <ion-list>
+                    <ion-item (click)="goTo('view/training', training.code)">
+                        <ion-thumbnail slot="end">
+                            <img [src]="training?.picture?.sanitized" />
+                        </ion-thumbnail>
+                        <ion-label>
+                            <h1>
+                                <b>{{ training.title }}</b>
+                            </h1>
+                            <h3>{{ training.description }}</h3>
+                            <br *ngIf="training?.tags?.length" />
+                            <ion-chip *ngFor="let tag of training?.tags" [style]="{ color: tag.color, 'border-color': tag.color }" outline>
+                                <ion-label>{{ tag.description }}</ion-label>
+                            </ion-chip>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="fixed">
+                        {{ literals.form.start }}
+                    </ion-label>
+                    <ion-datetime [(ngModel)]="session.start" [displayFormat]="datePickerOptions.displayFormat" [slot]="datePickerOptions.slot" [monthShortNames]="datePickerOptions.monthShortNames" disabled>
+                    </ion-datetime>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="fixed">
+                        {{ literals.form.finish }}
+                    </ion-label>
+                    <ion-datetime [(ngModel)]="session.finish" [displayFormat]="datePickerOptions.displayFormat" [slot]="datePickerOptions.slot" [monthShortNames]="datePickerOptions.monthShortNames" disabled>
+                    </ion-datetime>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="session.observations">
+            <ion-col>
+                <ion-item>
+                    <ion-label>{{ literals.form.observations }}:</ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                    <ion-text class="ion-margin">
+                        {{ session.observations }}
+                    </ion-text>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <!-- 
+        <ion-row>
+            <ion-col>
+                <ion-item> </ion-item>
+            </ion-col>
+        </ion-row> -->
+    </ion-grid>
+</ion-content>

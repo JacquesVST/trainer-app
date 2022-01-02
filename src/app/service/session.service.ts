@@ -9,7 +9,7 @@ import { ServerService } from './server.service';
     providedIn: 'root'
 })
 export class SessionService {
-    constructor(private serverService: ServerService, private http: HttpClient) {}
+    constructor(private serverService: ServerService, private http: HttpClient) { }
 
     private url: string = `${this.serverService.getServer()}/session`;
 

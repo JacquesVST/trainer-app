@@ -13,6 +13,8 @@ export const ptBr = {
         exercises: 'Exercícios',
         activity: 'Atividade',
         activities: 'Atividades',
+        sessions: 'Sessões',
+        session: 'Sessão',
         ok: 'Ok',
         save: 'Salvar',
         add_library: 'Adicionar à minha biblioteca',

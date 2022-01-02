@@ -10,6 +10,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-row *ngIf="sessions && sessions.length">
       <ion-col>
@@ -18,15 +21,12 @@
             <ion-item-divider>
               <ion-label>
                 <span *ngIf="showUser">
-                  {{session?.userLibrary?.endUser?.firstName + ' ' + session?.userLibrary?.endUser?.lastName + ' ('}}
+                  {{session?.userLibrary?.endUser?.firstName + ' ' + session?.userLibrary?.endUser?.lastName + ' - '}}
                 </span>
                 {{session?.start | date: 'dd/MM/yyyy'}}
-                <span *ngIf="session?.finish"> - </span>
-                {{session?.finish | date: 'dd/MM/yyyy'}}
-                <span *ngIf="showUser">)</span>
               </ion-label>
             </ion-item-divider>
-            <ion-item (click)="checkGoTo(session)">
+            <ion-item (click)="goTo('view/session', session.id)">
               <ion-thumbnail slot="end">
                 <img [src]="session?.userLibrary?.training?.picture?.sanitized">
               </ion-thumbnail>
@@ -39,11 +39,6 @@
                   <ion-label>{{tag.description}}</ion-label>
                 </ion-chip>
               </ion-label>
-            </ion-item>
-            <ion-item lines="none" *ngIf="session?.observations">
-              <ion-text class="ion-margin">
-                {{session?.observations}}
-              </ion-text>
             </ion-item>
           </div>
         </ion-list>

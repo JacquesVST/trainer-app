@@ -33,7 +33,7 @@ export class ActivityListComponent implements OnInit {
 
     ngOnInit() {
         this.reorderButton = this.literals.form.reorder;
-        this.dividerTitle = this.readMode ? this.literals.common.exercises : this.literals.common.activities;
+        this.dividerTitle = this.getDividerTitle();
         if (this.trainingId) {
             this.findAllByTraining();
         }
@@ -43,7 +43,7 @@ export class ActivityListComponent implements OnInit {
         await this.loadingService.show();
         this.activityService.findAllByTraining(this.trainingId).subscribe(
             (activities: Activity[]) => {
-                this.dividerTitle += ` (${activities?.length})`;
+                this.dividerTitle = `${this.getDividerTitle()} (${activities?.length})`;
                 this.processImages(activities);
             },
             (error) => {
@@ -100,6 +100,10 @@ export class ActivityListComponent implements OnInit {
             });
         }
         this.saveActivitiesList(result);
+    }
+
+    public getDividerTitle(){
+        return this.readMode ? this.literals.common.exercises : this.literals.common.activities;
     }
 
     public toggleReorder() {

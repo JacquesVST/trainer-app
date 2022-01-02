@@ -42,8 +42,10 @@ export class SessionListComponent implements OnInit {
         this.ngOnInit();
     }
 
-    public async findAllSessionsUser() {
-        await this.loadingService.show();
+    public async findAllSessionsUser(refresh?) {
+        if(!refresh){
+            await this.loadingService.show();
+        }
         this.sessionService.findAllByUser(this.user.id).subscribe(
             (sessions: Session[]) => {
                 this.processImages(sessions);
@@ -53,7 +55,11 @@ export class SessionListComponent implements OnInit {
                 console.error(error);
             },
             () => {
-                this.loadingService.hide();
+                if (refresh) {
+                    setTimeout(() => refresh.target.complete(), 500);
+                } else {
+                    this.loadingService.hide();
+                }
             }
         );
     }
@@ -79,6 +85,10 @@ export class SessionListComponent implements OnInit {
             item.picture = await this.imageService.getSanitizedOrDefault(item?.picture);
         }
         this.sessions = sessions;
+    }
+
+    public doRefresh(event) {
+        this.findAllSessionsUser(event);
     }
 
     public goTo(url, param?): void {
